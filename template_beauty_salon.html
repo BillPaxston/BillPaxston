@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{salon_name}}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================
+       CSS Variables
+    =========================== */
+    :root {
+      --gold:      #c9a84c;
+      --gold-lt:   #e2c97e;
+      --gold-dk:   #9a7a2e;
+      --black:     #0a0a0a;
+      --dark:      #1a1a1a;
+      --gray:      #555555;
+      --light:     #f7f5f2;
+      --white:     #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ===========================
+       Typography helpers
+    =========================== */
+    .serif     { font-family: 'Noto Serif JP', serif; }
+    .cormorant { font-family: 'Cormorant Garamond', serif; }
+
+    .section-en {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+    }
+    .section-title.on-dark { color: #fff; }
+
+    .gold-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 20px auto 48px;
+    }
+    .gold-line.left { margin-left: 0; }
+
+    /* ===========================
+       Container
+    =========================== */
+    .c {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    @media (max-width: 768px) { .c { padding: 0 20px; } }
+
+    /* ===========================
+       HEADER
+    =========================== */
+    #header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 100;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #header.is-top    { background: transparent; }
+    #header.is-scroll {
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(201,168,76,0.18);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      gap: 16px;
+    }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(16px, 2vw, 24px);
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.2em;
+      text-decoration: none;
+      word-break: break-word;
+      line-height: 1.2;
+      max-width: clamp(160px, 30vw, 320px);
+      flex-shrink: 0;
+    }
+    .header-nav { display: flex; align-items: center; gap: 28px; }
+    .header-nav a {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--gold); }
+
+    .btn-reserve-hd {
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 10px 22px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.3s, color 0.3s;
+      flex-shrink: 0;
+    }
+    .btn-reserve-hd:hover { background: var(--gold); color: #000; }
+
+    /* hamburger */
+    #hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 30px; height: 30px;
+      background: none; border: none;
+      cursor: pointer; padding: 0;
+      flex-shrink: 0;
+    }
+    #hamburger span {
+      width: 22px; height: 1px;
+      background: #fff; display: block;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+
+    /* ===========================
+       MOBILE NAV
+    =========================== */
+    #mobile-nav {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 200;
+      background: rgba(10,10,10,0.98);
+      flex-direction: column;
+      overflow-y: auto;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    #mobile-nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .mnav-link {
+      display: block;
+      padding: 18px 24px;
+      font-size: 12px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color 0.2s, background 0.2s;
+    }
+    .mnav-link:hover { color: var(--gold); }
+
+    /* ===========================
+       HERO
+    =========================== */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        url('https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1920&q=80')
+        center/cover no-repeat;
+      background-color: #1a1a1a;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0.52);
+    }
+    .hero-content {
+      position: relative; z-index: 1;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .hero-scroll-line {
+      width: 1px; height: 80px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.8), transparent);
+      margin: 0 auto 24px;
+    }
+    .hero-salon-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 8vw, 96px);
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.35em;
+      line-height: 1;
+      margin-bottom: 20px;
+      word-break: break-word;
+    }
+    .hero-catch {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(13px, 1.4vw, 17px);
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.25em;
+      margin-bottom: 48px;
+      line-height: 1.9;
+    }
+    .btn-hero {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 14px 40px;
+      text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-hero:hover { background: var(--gold); color: #000; }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column;
+      align-items: center; gap: 8px;
+    }
+    .scroll-indicator span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 9px;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ===========================
+       NEWS
+    =========================== */
+    #news { background: var(--light); padding: 88px 0; }
+    .news-row {
+      display: flex;
+      align-items: baseline;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      flex-wrap: wrap;
+    }
+    .news-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      color: var(--gray);
+      white-space: nowrap;
+    }
+    .news-cat {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 3px 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .news-ttl {
+      font-size: 14px;
+      color: var(--dark);
+      letter-spacing: 0.06em;
+      line-height: 1.7;
+    }
+
+    /* ===========================
+       CONCEPT
+    =========================== */
+    #concept { background: #fff; padding: 120px 0; }
+    .concept-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+    .concept-photo {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+    .concept-body {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(14px, 1.4vw, 17px);
+      font-weight: 300;
+      color: var(--gray);
+      line-height: 2.4;
+      letter-spacing: 0.12em;
+    }
+
+    /* ===========================
+       COMMITMENT
+    =========================== */
+    #commitment { background: var(--black); padding: 100px 0; }
+    .commitment-card {
+      border-left: 1px solid rgba(201,168,76,0.4);
+      padding: 8px 0 8px 32px;
+      transition: border-color 0.3s;
+    }
+    .commitment-card:hover { border-color: var(--gold); }
+    .commitment-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .commitment-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+    .commitment-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      line-height: 2;
+      letter-spacing: 0.06em;
+    }
+
+    /* ===========================
+       MENU / PRICE
+    =========================== */
+    #menu { background: var(--black); padding: 100px 0; }
+    .menu-card {
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 52px 40px;
+      text-align: center;
+      transition: border-color 0.35s;
+      position: relative;
+    }
+    .menu-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(201,168,76,0.03);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .menu-card:hover { border-color: var(--gold); }
+    .menu-card:hover::before { opacity: 1; }
+    .menu-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 24px;
+    }
+    .menu-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 19px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 0.12em;
+      margin-bottom: 28px;
+    }
+    .menu-divider {
+      width: 32px; height: 1px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+    }
+    .menu-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 300;
+      color: var(--gold);
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+    .menu-price-sub {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 6px;
+    }
+    .menu-time {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.12em;
+      margin-top: 16px;
+    }
+
+    /* ===========================
+       HAIR CATALOG
+    =========================== */
+    #catalog { background: var(--light); padding: 100px 0; }
+    .catalog-card { overflow: hidden; cursor: default; }
+    .catalog-img-wrap { overflow: hidden; }
+    .catalog-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+    .catalog-card:hover .catalog-img { transform: scale(1.05); }
+    .catalog-body { padding: 24px 0 8px; }
+    .catalog-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 16px;
+      letter-spacing: 0.1em;
+      color: var(--black);
+      margin-bottom: 12px;
+    }
+    .catalog-desc {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.9;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===========================
+       STAFF
+    =========================== */
+    #staff { background: #fff; padding: 100px 0; }
+    .staff-card { text-align: center; }
+    .staff-photo {
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto 24px;
+      border: 1px solid rgba(201,168,76,0.35);
+      transition: transform 0.5s, box-shadow 0.5s;
+    }
+    .staff-card:hover .staff-photo {
+      transform: scale(1.04);
+      box-shadow: 0 0 0 4px rgba(201,168,76,0.15);
+    }
+    .staff-role {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+    .staff-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 19px;
+      letter-spacing: 0.12em;
+      color: var(--black);
+      margin-bottom: 18px;
+    }
+    .staff-bio {
+      font-size: 13px;
+      color: var(--gray);
+      line-height: 1.95;
+      letter-spacing: 0.05em;
+      text-align: left;
+    }
+    @media (max-width: 768px) { .staff-bio { text-align: center; } }
+
+    /* ===========================
+       TESTIMONIALS
+    =========================== */
+    #testimonials { background: var(--black); padding: 100px 0; }
+    .voice-card {
+      border-top: 1px solid rgba(201,168,76,0.25);
+      padding-top: 36px;
+    }
+    .voice-stars {
+      font-size: 13px;
+      letter-spacing: 5px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .voice-text {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.78);
+      line-height: 2.1;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+    }
+    .voice-author {
+      font-size: 11px;
+      color: var(--gold);
+      letter-spacing: 0.18em;
+    }
+
+    /* ===========================
+       ACCESS
+    =========================== */
+    #access { background: #fff; padding: 100px 0; }
+    .info-lbl {
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+    .info-val {
+      font-size: 15px;
+      color: var(--dark);
+      line-height: 1.75;
+      letter-spacing: 0.05em;
+    }
+    .map-wrap {
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+    }
+    .map-wrap iframe {
+      width: 100%; height: 100%;
+      border: none; display: block;
+    }
+    @media (max-width: 768px) { .map-wrap { height: 280px; } }
+
+    /* ===========================
+       CONTACT
+    =========================== */
+    #contact { background: var(--light); padding: 100px 0; }
+    .form-field { margin-bottom: 28px; }
+    .form-lbl {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+    .form-ctrl {
+      width: 100%;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      background: transparent;
+      padding: 12px 0;
+      font-size: 15px;
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--dark);
+      outline: none;
+      -webkit-appearance: none;
+      transition: border-color 0.3s;
+    }
+    .form-ctrl:focus { border-color: var(--gold); }
+    textarea.form-ctrl { resize: vertical; min-height: 100px; }
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--gold);
+      color: #000;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      padding: 18px 52px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif;
+      transition: background 0.3s;
+    }
+    .btn-submit:hover { background: var(--gold-dk); }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    #footer { background: var(--black); padding: 72px 0 96px; }
+    .footer-logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 300;
+      color: #fff;
+      letter-spacing: 0.3em;
+      text-decoration: none;
+      word-break: break-word;
+    }
+    .footer-nav a {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 10px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.1em;
+    }
+
+    /* ===========================
+       FIXED CTA BAR
+    =========================== */
+    #cta-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 99;
+      display: flex;
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+    #cta-bar.show { transform: translateY(0); }
+    .cta-tel {
+      flex: 1;
+      background: var(--dark);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      display: flex; align-items: center;
+      justify-content: center; gap: 12px;
+      padding: 14px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-tel:hover { background: #2a2a2a; }
+    .cta-book {
+      flex: 1;
+      background: var(--gold);
+      display: flex; align-items: center;
+      justify-content: center; gap: 12px;
+      padding: 14px;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta-book:hover { background: var(--gold-dk); }
+
+    /* ===========================
+       Fade-in animation
+    =========================== */
+    .fi {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .fi.on { opacity: 1; transform: translateY(0); }
+    .fi-d1 { transition-delay: 0.1s; }
+    .fi-d2 { transition-delay: 0.2s; }
+    .fi-d3 { transition-delay: 0.3s; }
+
+    /* ===========================
+       Mobile overrides
+    =========================== */
+    @media (max-width: 768px) {
+      .header-nav        { display: none !important; }
+      .btn-reserve-hd    { display: none !important; }
+      #hamburger         { display: flex !important; }
+      .hero-salon-name   { letter-spacing: 0.15em; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header id="header" class="is-top">
+  <div class="c header-inner">
+    <!-- Logo -->
+    <a href="#" class="logo-text">{{salon_name}}</a>
+
+    <!-- Nav (PC) -->
+    <nav class="header-nav">
+      <a href="#news">NEWS</a>
+      <a href="#concept">CONCEPT</a>
+      <a href="#menu">MENU</a>
+      <a href="#catalog">GALLERY</a>
+      <a href="#staff">STAFF</a>
+      <a href="#access">ACCESS</a>
+    </nav>
+
+    <!-- CTA + Hamburger -->
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="#contact" class="btn-reserve-hd">RESERVE</a>
+      <button id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     MOBILE NAV
+============================================================ -->
+<div id="mobile-nav">
+  <!-- Mobile nav header -->
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:68px; border-bottom:1px solid rgba(255,255,255,0.05); flex-shrink:0;">
+    <span class="logo-text" style="font-size:clamp(14px,4vw,20px);">{{salon_name}}</span>
+    <button id="mnav-close" aria-label="閉じる" style="width:30px;height:30px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="18" height="18" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Nav links -->
+  <nav style="flex:1; padding:16px 0;">
+    <a href="#news"         class="mnav-link">NEWS</a>
+    <a href="#concept"      class="mnav-link">CONCEPT</a>
+    <a href="#commitment"   class="mnav-link">COMMITMENT</a>
+    <a href="#menu"         class="mnav-link">MENU / PRICE</a>
+    <a href="#catalog"      class="mnav-link">STYLE GALLERY</a>
+    <a href="#staff"        class="mnav-link">STAFF</a>
+    <a href="#testimonials" class="mnav-link">VOICE</a>
+    <a href="#access"       class="mnav-link">ACCESS</a>
+    <a href="#contact"      class="mnav-link">CONTACT / RESERVE</a>
+  </nav>
+
+  <!-- Phone + CTA -->
+  <div style="padding:24px 20px 48px; flex-shrink:0;">
+    <a href="tel:{{phone}}" style="display:flex; align-items:center; justify-content:center; gap:12px; padding:16px; border:1px solid rgba(201,168,76,0.4); color:#fff; text-decoration:none; font-family:'Cormorant Garamond',serif; font-size:22px; letter-spacing:0.1em; margin-bottom:12px;">
+      <svg width="16" height="16" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      {{phone}}
+    </a>
+    <a href="#contact" class="mnav-link" style="display:flex; align-items:center; justify-content:center; background:var(--gold); color:#000; font-size:11px; letter-spacing:0.3em; padding:18px; border-bottom:none;">
+      WEB RESERVE
+    </a>
+  </div>
+</div>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-scroll-line"></div>
+    <h1 class="hero-salon-name">{{salon_name}}</h1>
+    <p class="hero-catch">{{catchphrase}}</p>
+    <a href="#contact" class="btn-hero">WEB RESERVE</a>
+  </div>
+  <div class="scroll-indicator">
+    <span>SCROLL</span>
+    <div style="width:1px; height:52px; background:linear-gradient(to bottom, rgba(201,168,76,0.7), transparent);"></div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWS
+============================================================ -->
+<section id="news">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">NEWS</span>
+      <h2 class="section-title">お知らせ</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div style="max-width:760px; margin:0 auto;" class="fi">
+      <div class="news-row">
+        <span class="news-date">{{news1_date}}</span>
+        <span class="news-cat">{{news1_category}}</span>
+        <span class="news-ttl">{{news1_title}}</span>
+      </div>
+      <div class="news-row">
+        <span class="news-date">{{news2_date}}</span>
+        <span class="news-cat">{{news2_category}}</span>
+        <span class="news-ttl">{{news2_title}}</span>
+      </div>
+      <div class="news-row">
+        <span class="news-date">{{news3_date}}</span>
+        <span class="news-cat">{{news3_category}}</span>
+        <span class="news-ttl">{{news3_title}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONCEPT
+============================================================ -->
+<section id="concept">
+  <div class="c">
+    <div class="concept-grid fi">
+      <!-- Photo -->
+      <div>
+        <img class="concept-photo"
+          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80"
+          alt="サロン内観" loading="lazy">
+      </div>
+      <!-- Text -->
+      <div>
+        <span class="section-en">CONCEPT</span>
+        <h2 class="section-title" style="margin-bottom:8px;">私たちの想い</h2>
+        <div class="gold-line left"></div>
+        <p class="concept-body">{{concept_text}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     COMMITMENT
+============================================================ -->
+<section id="commitment">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">COMMITMENT</span>
+      <h2 class="section-title on-dark">私たちが大切にすること</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="commitment-card fi fi-d1">
+        <p class="commitment-num">01</p>
+        <h3 class="commitment-title">{{commitment1_title}}</h3>
+        <p class="commitment-desc">{{commitment1_description}}</p>
+      </div>
+      <div class="commitment-card fi fi-d2">
+        <p class="commitment-num">02</p>
+        <h3 class="commitment-title">{{commitment2_title}}</h3>
+        <p class="commitment-desc">{{commitment2_description}}</p>
+      </div>
+      <div class="commitment-card fi fi-d3">
+        <p class="commitment-num">03</p>
+        <h3 class="commitment-title">{{commitment3_title}}</h3>
+        <p class="commitment-desc">{{commitment3_description}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     MENU / PRICE
+============================================================ -->
+<section id="menu">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">MENU</span>
+      <h2 class="section-title on-dark">料金メニュー</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Menu 1 -->
+      <div class="menu-card fi fi-d1">
+        <p class="menu-num">01</p>
+        <h3 class="menu-name">{{menu1_name}}</h3>
+        <div class="menu-divider"></div>
+        <p class="menu-price">¥{{menu1_price}}</p>
+        <p class="menu-price-sub">税込</p>
+        <p class="menu-time">所要時間：{{menu1_time}}</p>
+      </div>
+      <!-- Menu 2 -->
+      <div class="menu-card fi fi-d2">
+        <p class="menu-num">02</p>
+        <h3 class="menu-name">{{menu2_name}}</h3>
+        <div class="menu-divider"></div>
+        <p class="menu-price">¥{{menu2_price}}</p>
+        <p class="menu-price-sub">税込</p>
+        <p class="menu-time">所要時間：{{menu2_time}}</p>
+      </div>
+      <!-- Menu 3 -->
+      <div class="menu-card fi fi-d3">
+        <p class="menu-num">03</p>
+        <h3 class="menu-name">{{menu3_name}}</h3>
+        <div class="menu-divider"></div>
+        <p class="menu-price">¥{{menu3_price}}</p>
+        <p class="menu-price-sub">税込</p>
+        <p class="menu-time">所要時間：{{menu3_time}}</p>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:52px; font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:0.1em;" class="fi">
+      ※ 表示価格はすべて税込みです。仕上がりにより変動する場合がございます。
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     STYLE GALLERY (3×3)
+============================================================ -->
+<section id="catalog">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">STYLE GALLERY</span>
+      <h2 class="section-title">施術スタイル一覧</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Row 1 -->
+      <div class="catalog-card fi fi-d1">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog1_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog1_title}}</h3>
+          <p class="catalog-desc">{{catalog1_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d2">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog2_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog2_title}}</h3>
+          <p class="catalog-desc">{{catalog2_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d3">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog3_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog3_title}}</h3>
+          <p class="catalog-desc">{{catalog3_description}}</p>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="catalog-card fi fi-d1">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog4_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog4_title}}</h3>
+          <p class="catalog-desc">{{catalog4_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d2">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog5_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog5_title}}</h3>
+          <p class="catalog-desc">{{catalog5_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d3">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1560264418-c4445382edbc?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog6_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog6_title}}</h3>
+          <p class="catalog-desc">{{catalog6_description}}</p>
+        </div>
+      </div>
+      <!-- Row 3 -->
+      <div class="catalog-card fi fi-d1">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1583323915585-7d47d32a37e7?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog7_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog7_title}}</h3>
+          <p class="catalog-desc">{{catalog7_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d2">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog8_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog8_title}}</h3>
+          <p class="catalog-desc">{{catalog8_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d3">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog9_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog9_title}}</h3>
+          <p class="catalog-desc">{{catalog9_description}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STAFF
+============================================================ -->
+<section id="staff">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">STAFF</span>
+      <h2 class="section-title">スタイリスト</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-14">
+      <!-- Stylist 1 -->
+      <div class="staff-card fi fi-d1">
+        <img class="staff-photo"
+          src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=400&q=80"
+          alt="{{stylist1_name}}" loading="lazy">
+        <p class="staff-role">{{stylist1_title}}</p>
+        <h3 class="staff-name">{{stylist1_name}}</h3>
+        <p class="staff-bio">{{stylist1_description}}</p>
+      </div>
+      <!-- Stylist 2 -->
+      <div class="staff-card fi fi-d2">
+        <img class="staff-photo"
+          src="https://images.unsplash.com/photo-1583864697784-a0efc8379f70?auto=format&fit=crop&w=400&q=80"
+          alt="{{stylist2_name}}" loading="lazy">
+        <p class="staff-role">{{stylist2_title}}</p>
+        <h3 class="staff-name">{{stylist2_name}}</h3>
+        <p class="staff-bio">{{stylist2_description}}</p>
+      </div>
+      <!-- Stylist 3 -->
+      <div class="staff-card fi fi-d3">
+        <img class="staff-photo"
+          src="https://images.unsplash.com/photo-1595514191664-f1abbbdb9dd7?auto=format&fit=crop&w=400&q=80"
+          alt="{{stylist3_name}}" loading="lazy">
+        <p class="staff-role">{{stylist3_title}}</p>
+        <h3 class="staff-name">{{stylist3_name}}</h3>
+        <p class="staff-bio">{{stylist3_description}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS (VOICE)
+============================================================ -->
+<section id="testimonials">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">VOICE</span>
+      <h2 class="section-title on-dark">お客様の声</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-14">
+      <!-- Voice 1 -->
+      <div class="voice-card fi fi-d1">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">「{{testimonial1_text}}」</p>
+        <p class="voice-author">{{testimonial1_name}}（{{testimonial1_age}}）</p>
+      </div>
+      <!-- Voice 2 -->
+      <div class="voice-card fi fi-d2">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">「{{testimonial2_text}}」</p>
+        <p class="voice-author">{{testimonial2_name}}（{{testimonial2_age}}）</p>
+      </div>
+      <!-- Voice 3 -->
+      <div class="voice-card fi fi-d3">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">「{{testimonial3_text}}」</p>
+        <p class="voice-author">{{testimonial3_name}}（{{testimonial3_age}}）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ACCESS
+============================================================ -->
+<section id="access">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">ACCESS</span>
+      <h2 class="section-title">アクセス</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start fi">
+      <!-- Info -->
+      <div>
+        <div style="margin-bottom:28px;">
+          <p class="info-lbl">SALON</p>
+          <p class="info-val" style="font-family:'Noto Serif JP',serif; font-size:18px;">{{salon_name}}</p>
+        </div>
+        <div style="margin-bottom:24px;">
+          <p class="info-lbl">ADDRESS</p>
+          <p class="info-val">{{address}}</p>
+        </div>
+        <div style="margin-bottom:24px;">
+          <p class="info-lbl">TEL</p>
+          <p class="info-val">
+            <a href="tel:{{phone}}" style="color:var(--dark); text-decoration:none; font-size:20px; font-family:'Cormorant Garamond',serif; letter-spacing:0.08em;">{{phone}}</a>
+          </p>
+        </div>
+        <div style="margin-bottom:24px;">
+          <p class="info-lbl">HOURS</p>
+          <p class="info-val">{{opening_hours}}</p>
+        </div>
+        <div style="margin-bottom:40px;">
+          <p class="info-lbl">CLOSED</p>
+          <p class="info-val">{{closed_days}}</p>
+        </div>
+        <a href="#contact" class="btn-reserve-hd" style="display:inline-block;">WEB RESERVE</a>
+      </div>
+      <!-- Map -->
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps?cid={{map_cid}}&output=embed"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CONTACT / RESERVE
+============================================================ -->
+<section id="contact">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">CONTACT</span>
+      <h2 class="section-title">ご予約・お問い合わせ</h2>
+      <div class="gold-line"></div>
+      <p style="font-size:14px; color:var(--gray); letter-spacing:0.08em; line-height:1.9; margin-bottom:56px;">
+        お電話でのご予約：<a href="tel:{{phone}}" style="color:var(--dark); font-family:'Cormorant Garamond',serif; font-size:20px; font-weight:400; text-decoration:none; letter-spacing:0.08em;">{{phone}}</a><br>
+        <span style="font-size:12px; color:#aaa;">{{opening_hours}}</span>
+      </p>
+    </div>
+    <form style="max-width:680px; margin:0 auto;" class="fi">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12">
+        <div class="form-field">
+          <label class="form-lbl">お名前 <span style="color:var(--gold);">*</span></label>
+          <input type="text" class="form-ctrl" placeholder="山田 花子" required>
+        </div>
+        <div class="form-field">
+          <label class="form-lbl">電話番号 <span style="color:var(--gold);">*</span></label>
+          <input type="tel" class="form-ctrl" placeholder="090-0000-0000" required>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-lbl">メールアドレス</label>
+        <input type="email" class="form-ctrl" placeholder="example@email.com">
+      </div>
+      <div class="form-field">
+        <label class="form-lbl">ご希望メニュー</label>
+        <select class="form-ctrl">
+          <option value="">選択してください</option>
+          <option>{{menu1_name}}</option>
+          <option>{{menu2_name}}</option>
+          <option>{{menu3_name}}</option>
+          <option>その他・ご相談</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-lbl">ご希望日時</label>
+        <input type="text" class="form-ctrl" placeholder="例：4月5日（土）14:00〜">
+      </div>
+      <div class="form-field">
+        <label class="form-lbl">ご質問・ご要望</label>
+        <textarea class="form-ctrl" placeholder="お気軽にご記入ください"></textarea>
+      </div>
+      <div class="text-center" style="margin-top:40px;">
+        <button type="submit" class="btn-submit">
+          SEND
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer id="footer">
+  <div class="c">
+    <div class="text-center" style="margin-bottom:40px;">
+      <a href="#" class="footer-logo-text">{{salon_name}}</a>
+      <div class="gold-line" style="margin:24px auto 32px;"></div>
+      <p style="font-size:12px; color:rgba(255,255,255,0.35); letter-spacing:0.08em; line-height:2.2;">
+        {{address}}<br>
+        TEL: <a href="tel:{{phone}}" style="color:rgba(255,255,255,0.35); text-decoration:none;">{{phone}}</a>
+        &nbsp;／&nbsp;
+        <a href="mailto:{{email}}" style="color:rgba(255,255,255,0.35); text-decoration:none;">{{email}}</a>
+      </p>
+    </div>
+    <nav class="footer-nav flex justify-center gap-8 flex-wrap" style="margin-bottom:40px;">
+      <a href="#concept">CONCEPT</a>
+      <a href="#commitment">COMMITMENT</a>
+      <a href="#menu">MENU</a>
+      <a href="#catalog">GALLERY</a>
+      <a href="#staff">STAFF</a>
+      <a href="#testimonials">VOICE</a>
+      <a href="#access">ACCESS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <p class="footer-copy text-center">© {{year}} {{salon_name}}. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- ============================================================
+     FIXED CTA BAR
+============================================================ -->
+<div id="cta-bar">
+  <a href="tel:{{phone}}" class="cta-tel">
+    <svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+    <div>
+      <div style="font-size:9px; color:rgba(255,255,255,0.45); letter-spacing:0.15em; line-height:1;">TEL</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:17px; color:#fff; letter-spacing:0.06em; line-height:1.3;">{{phone}}</div>
+    </div>
+  </a>
+  <a href="#contact" class="cta-book">
+    <svg width="17" height="17" fill="none" stroke="#000" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+    <div>
+      <div style="font-size:9px; color:rgba(0,0,0,0.55); letter-spacing:0.15em; line-height:1;">WEB</div>
+      <div style="font-size:13px; font-weight:600; color:#000; letter-spacing:0.18em; line-height:1.3;">RESERVE</div>
+    </div>
+  </a>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+<script>
+  // --- Header scroll state ---
+  const header = document.getElementById('header');
+  function updateHeader() {
+    if (window.scrollY > 60) {
+      header.classList.replace('is-top', 'is-scroll');
+    } else {
+      header.classList.replace('is-scroll', 'is-top');
+    }
+  }
+  window.addEventListener('scroll', updateHeader, { passive: true });
+
+  // --- Mobile Nav ---
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mnavClose = document.getElementById('mnav-close');
+
+  function openNav() {
+    mobileNav.style.display = 'flex';
+    requestAnimationFrame(() => requestAnimationFrame(() => mobileNav.classList.add('is-open')));
+    document.body.style.overflow = 'hidden';
+  }
+  function closeNav() {
+    mobileNav.classList.remove('is-open');
+    setTimeout(() => { mobileNav.style.display = 'none'; }, 300);
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openNav);
+  mnavClose.addEventListener('click', closeNav);
+  mobileNav.querySelectorAll('.mnav-link').forEach(l => l.addEventListener('click', closeNav));
+
+  function checkMobile() {
+    hamburger.style.display = window.innerWidth < 768 ? 'flex' : 'none';
+    if (window.innerWidth >= 768) closeNav();
+  }
+  checkMobile();
+  window.addEventListener('resize', checkMobile);
+
+  // --- Fixed CTA bar ---
+  const ctaBar = document.getElementById('cta-bar');
+  window.addEventListener('scroll', () => {
+    ctaBar.classList.toggle('show', window.scrollY > 500);
+  }, { passive: true });
+
+  // --- Scroll fade-in ---
+  const fiEls = document.querySelectorAll('.fi');
+  const fiObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('on'); fiObs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  fiEls.forEach(el => fiObs.observe(el));
+
+  // --- Smooth anchor scroll ---
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); window.scrollTo({ top: t.offsetTop - 68, behavior: 'smooth' }); }
+    });
+  });
+
+  // --- {{year}} fallback for direct browser preview ---
+  document.querySelectorAll('p, span').forEach(el => {
+    if (el.children.length === 0)
+      el.innerHTML = el.innerHTML.replace('{{year}}', new Date().getFullYear());
+  });
+</script>
+</body>
+</html>
