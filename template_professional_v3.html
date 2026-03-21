@@ -162,25 +162,29 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(135deg, #0a1628 0%, #0f1f50 35%, #1e3a8a 70%, #1e4fa8 100%);
+      background:
+        url('https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1920&q=80')
+        center center / cover no-repeat;
+      /* Fallback gradient if image fails to load */
+      background-color: #0a1628;
     }
-    /* Subtle geometric texture overlay */
+    /* Dark overlay for text readability */
     .hero-bg::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(245,158,11,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(245,158,11,0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
+      background: rgba(0, 0, 0, 0.55);
     }
+    /* Subtle warm gradient from left */
     .hero-bg::after {
       content: '';
       position: absolute;
-      top: -200px; right: -200px;
-      width: 700px; height: 700px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(10, 22, 40, 0.45) 0%,
+        transparent 55%
+      );
     }
     .hero-overlay {
       position: absolute;
@@ -966,13 +970,46 @@
     }
 
     /* =============================
+       Mobile Nav Animation
+    ============================= */
+    #mobile-nav {
+      opacity: 0;
+      transform: translateY(-12px);
+      transition: opacity 0.32s ease, transform 0.32s ease;
+      pointer-events: none;
+    }
+    #mobile-nav.is-open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .mobile-nav-link {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 18px 20px;
+      font-size: 17px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      letter-spacing: 0.08em;
+      transition: color 0.2s, background 0.2s;
+    }
+    .mobile-nav-link:hover,
+    .mobile-nav-link:active { color: #fbbf24; background: rgba(255,255,255,0.04); }
+
+    /* =============================
        Responsive
     ============================= */
     @media (max-width: 768px) {
       .section { padding: 80px 0; }
       .container-custom { padding: 0 20px; }
-      .header-nav { display: none; }
-      .header-phone { display: none; }
+      .header-nav  { display: none !important; }
+      .header-phone { display: none !important; }
+      /* ロゴを1行・14pxに */
+      .logo-text { font-size: 14px !important; letter-spacing: 0.04em; }
+      .logo-sub  { display: none !important; }
       .hero-title { font-size: 32px; }
       .hero-desc { font-size: 14px; }
       .badge-row { flex-wrap: wrap; gap: 16px; }
@@ -1045,41 +1082,51 @@
         </a>
       </div>
 
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" style="display:none;" aria-label="メニュー">
-        <span style="width:24px;height:2px;background:#1e3a8a;display:block;"></span>
-        <span style="width:24px;height:2px;background:#1e3a8a;display:block;"></span>
-        <span style="width:24px;height:2px;background:#1e3a8a;display:block;"></span>
+      <!-- Mobile Menu Button (30×30px) -->
+      <button id="mobile-menu-btn" aria-label="メニューを開く" style="display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:30px; height:30px; background:none; border:none; cursor:pointer; padding:0; flex-shrink:0;">
+        <span style="width:22px;height:2px;background:#1e3a8a;display:block;border-radius:2px;transition:transform 0.3s,opacity 0.3s;"></span>
+        <span style="width:22px;height:2px;background:#1e3a8a;display:block;border-radius:2px;transition:transform 0.3s,opacity 0.3s;"></span>
+        <span style="width:22px;height:2px;background:#1e3a8a;display:block;border-radius:2px;transition:transform 0.3s,opacity 0.3s;"></span>
       </button>
     </div>
   </div>
 </header>
 
 <!-- Mobile Navigation Overlay -->
-<div id="mobile-nav" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(10,22,60,0.98); flex-direction:column; align-items:center; justify-content:center;">
-  <!-- Close button -->
-  <button id="mobile-nav-close" aria-label="閉じる" style="position:absolute; top:24px; right:24px; background:none; border:none; cursor:pointer; display:flex; flex-direction:column; gap:0; align-items:center; justify-content:center; width:44px; height:44px;">
-    <span style="display:block; width:24px; height:2px; background:#ffffff; transform:rotate(45deg) translate(1px,1px);"></span>
-    <span style="display:block; width:24px; height:2px; background:#ffffff; transform:rotate(-45deg) translate(1px,-1px);"></span>
-  </button>
-  <!-- Logo in overlay -->
-  <div style="position:absolute; top:24px; left:24px; font-family:'Noto Serif JP',serif; font-size:18px; font-weight:700; color:#ffffff; letter-spacing:0.06em;">{{company_name}}</div>
+<div id="mobile-nav" style="display:none; position:fixed; inset:0; z-index:200; background:rgba(10,22,60,0.98); flex-direction:column; overflow-y:auto;">
+
+  <!-- Header row (ロゴ + 閉じるボタン) -->
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 24px; height:64px; border-bottom:1px solid rgba(255,255,255,0.07); flex-shrink:0;">
+    <span style="font-family:'Noto Serif JP',serif; font-size:16px; font-weight:700; color:#ffffff; letter-spacing:0.06em;">{{company_name}}</span>
+    <button id="mobile-nav-close" aria-label="メニューを閉じる" style="background:none; border:none; cursor:pointer; width:30px; height:30px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:0; padding:0;">
+      <span style="display:block; width:22px; height:2px; background:#ffffff; border-radius:2px; transform:rotate(45deg) translateY(1px);"></span>
+      <span style="display:block; width:22px; height:2px; background:#ffffff; border-radius:2px; transform:rotate(-45deg) translateY(-1px);"></span>
+    </button>
+  </div>
+
   <!-- Nav links -->
-  <nav style="display:flex; flex-direction:column; align-items:center; width:100%; gap:0;">
-    <a href="#services"       class="mobile-nav-link" style="display:block; width:100%; text-align:center; padding:20px; font-size:18px; font-weight:500; color:rgba(255,255,255,0.9); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.08); letter-spacing:0.06em; transition:color 0.2s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">サービス</a>
-    <a href="#strengths"      class="mobile-nav-link" style="display:block; width:100%; text-align:center; padding:20px; font-size:18px; font-weight:500; color:rgba(255,255,255,0.9); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.08); letter-spacing:0.06em; transition:color 0.2s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">強み</a>
-    <a href="#representative" class="mobile-nav-link" style="display:block; width:100%; text-align:center; padding:20px; font-size:18px; font-weight:500; color:rgba(255,255,255,0.9); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.08); letter-spacing:0.06em; transition:color 0.2s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">代表</a>
-    <a href="#testimonials"   class="mobile-nav-link" style="display:block; width:100%; text-align:center; padding:20px; font-size:18px; font-weight:500; color:rgba(255,255,255,0.9); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.08); letter-spacing:0.06em; transition:color 0.2s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">お客様の声</a>
-    <a href="#access"         class="mobile-nav-link" style="display:block; width:100%; text-align:center; padding:20px; font-size:18px; font-weight:500; color:rgba(255,255,255,0.9); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.08); letter-spacing:0.06em; transition:color 0.2s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">アクセス</a>
-    <a href="#contact"        class="mobile-nav-link" style="display:block; width:100%; text-align:center; padding:20px; font-size:18px; font-weight:500; color:rgba(255,255,255,0.9); text-decoration:none; letter-spacing:0.06em; transition:color 0.2s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='rgba(255,255,255,0.9)'">お問い合わせ</a>
+  <nav style="flex:1; display:flex; flex-direction:column;">
+    <a href="#services"       class="mobile-nav-link">サービス</a>
+    <a href="#pricing"        class="mobile-nav-link">料金</a>
+    <a href="#strengths"      class="mobile-nav-link">強み</a>
+    <a href="#representative" class="mobile-nav-link">代表</a>
+    <a href="#testimonials"   class="mobile-nav-link">お客様の声</a>
+    <a href="#access"         class="mobile-nav-link">アクセス</a>
+    <a href="#contact"        class="mobile-nav-link" style="border-bottom:none;">お問い合わせ</a>
   </nav>
-  <!-- CTA in overlay -->
-  <div style="margin-top:40px;">
-    <a href="#contact" style="display:inline-flex; align-items:center; gap:10px; background:linear-gradient(135deg,#1e3a8a,#3b82f6); color:#fff; font-size:15px; font-weight:700; padding:16px 40px; text-decoration:none; border-radius:2px; letter-spacing:0.08em;">
+
+  <!-- Footer area (電話番号 + CTAボタン) -->
+  <div style="padding:28px 24px 40px; border-top:1px solid rgba(255,255,255,0.07); flex-shrink:0;">
+    <div style="text-align:center; margin-bottom:20px;">
+      <div style="font-size:11px; color:rgba(255,255,255,0.45); letter-spacing:0.12em; margin-bottom:8px;">無料相談受付中 — 平日 9:00 〜 18:00</div>
+      <a href="tel:{{phone}}" style="font-size:26px; font-weight:700; color:#fbbf24; text-decoration:none; letter-spacing:0.06em; display:block;">{{phone}}</a>
+    </div>
+    <a href="#contact" class="mobile-nav-link" style="display:flex; align-items:center; justify-content:center; gap:10px; background:linear-gradient(135deg,#1e3a8a,#3b82f6); color:#fff; font-size:15px; font-weight:700; padding:16px 20px; text-decoration:none; border-radius:2px; letter-spacing:0.08em; border-bottom:none; width:100%;">
       無料相談を申し込む
       <svg width="14" height="14" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
   </div>
+
 </div>
 
 
@@ -1947,10 +1994,14 @@
 
   function openMobileNav() {
     mobileNav.style.display = 'flex';
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => { mobileNav.classList.add('is-open'); });
+    });
     document.body.style.overflow = 'hidden';
   }
   function closeMobileNav() {
-    mobileNav.style.display = 'none';
+    mobileNav.classList.remove('is-open');
+    setTimeout(() => { mobileNav.style.display = 'none'; }, 320);
     document.body.style.overflow = '';
   }
 
