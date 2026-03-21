@@ -791,11 +791,26 @@
 <section id="concept">
   <div class="c">
     <div class="concept-grid fi">
-      <!-- Photo -->
-      <div>
-        <img class="concept-photo"
-          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=800&q=80"
-          alt="サロン内観" loading="lazy">
+      <!-- Photos: main + 2 sub stacked -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:12px;">
+        <!-- メイン写真（左全高） -->
+        <img
+          src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80"
+          alt="サロン内観"
+          loading="lazy"
+          style="grid-row:1/3; width:100%; height:100%; object-fit:cover; display:block;">
+        <!-- リラックスするお客様 -->
+        <img
+          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=400&q=80"
+          alt="くつろぐお客様"
+          loading="lazy"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
+        <!-- こだわりのインテリア -->
+        <img
+          src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=400&q=80"
+          alt="こだわりのインテリア"
+          loading="lazy"
+          style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
       </div>
       <!-- Text -->
       <div>
@@ -803,6 +818,123 @@
         <h2 class="section-title" style="margin-bottom:8px;">私たちの想い</h2>
         <div class="gold-line left"></div>
         <p class="concept-body">{{concept_text}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STYLE GALLERY (3×3)  ← CONCEPT直後に移動
+============================================================ -->
+<section id="catalog">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">STYLE GALLERY</span>
+      <h2 class="section-title">施術スタイル一覧</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Row 1: ヘアスタイル仕上がり 1〜3 -->
+      <div class="catalog-card fi fi-d1">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog1_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog1_title}}</h3>
+          <p class="catalog-desc">{{catalog1_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d2">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog2_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog2_title}}</h3>
+          <p class="catalog-desc">{{catalog2_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d3">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog3_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog3_title}}</h3>
+          <p class="catalog-desc">{{catalog3_description}}</p>
+        </div>
+      </div>
+      <!-- Row 2: ヘアスタイル仕上がり 4〜6 -->
+      <div class="catalog-card fi fi-d1">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog4_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog4_title}}</h3>
+          <p class="catalog-desc">{{catalog4_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d2">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1526045612212-70caf35c14df?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog5_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog5_title}}</h3>
+          <p class="catalog-desc">{{catalog5_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d3">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog6_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog6_title}}</h3>
+          <p class="catalog-desc">{{catalog6_description}}</p>
+        </div>
+      </div>
+      <!-- Row 3: 施術風景×2 + サロン雰囲気×1 -->
+      <div class="catalog-card fi fi-d1">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog7_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog7_title}}</h3>
+          <p class="catalog-desc">{{catalog7_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d2">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog8_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog8_title}}</h3>
+          <p class="catalog-desc">{{catalog8_description}}</p>
+        </div>
+      </div>
+      <div class="catalog-card fi fi-d3">
+        <div class="catalog-img-wrap">
+          <img class="catalog-img"
+            src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=600&q=80"
+            alt="{{catalog9_title}}" loading="lazy">
+        </div>
+        <div class="catalog-body">
+          <h3 class="catalog-title">{{catalog9_title}}</h3>
+          <p class="catalog-desc">{{catalog9_description}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -880,123 +1012,6 @@
     <p style="text-align:center; margin-top:52px; font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:0.1em;" class="fi">
       ※ 表示価格はすべて税込みです。仕上がりにより変動する場合がございます。
     </p>
-  </div>
-</section>
-
-<!-- ============================================================
-     STYLE GALLERY (3×3)
-============================================================ -->
-<section id="catalog">
-  <div class="c">
-    <div class="text-center fi">
-      <span class="section-en">STYLE GALLERY</span>
-      <h2 class="section-title">施術スタイル一覧</h2>
-      <div class="gold-line"></div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Row 1 -->
-      <div class="catalog-card fi fi-d1">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog1_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog1_title}}</h3>
-          <p class="catalog-desc">{{catalog1_description}}</p>
-        </div>
-      </div>
-      <div class="catalog-card fi fi-d2">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog2_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog2_title}}</h3>
-          <p class="catalog-desc">{{catalog2_description}}</p>
-        </div>
-      </div>
-      <div class="catalog-card fi fi-d3">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog3_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog3_title}}</h3>
-          <p class="catalog-desc">{{catalog3_description}}</p>
-        </div>
-      </div>
-      <!-- Row 2 -->
-      <div class="catalog-card fi fi-d1">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog4_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog4_title}}</h3>
-          <p class="catalog-desc">{{catalog4_description}}</p>
-        </div>
-      </div>
-      <div class="catalog-card fi fi-d2">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog5_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog5_title}}</h3>
-          <p class="catalog-desc">{{catalog5_description}}</p>
-        </div>
-      </div>
-      <div class="catalog-card fi fi-d3">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1560264418-c4445382edbc?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog6_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog6_title}}</h3>
-          <p class="catalog-desc">{{catalog6_description}}</p>
-        </div>
-      </div>
-      <!-- Row 3 -->
-      <div class="catalog-card fi fi-d1">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1583323915585-7d47d32a37e7?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog7_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog7_title}}</h3>
-          <p class="catalog-desc">{{catalog7_description}}</p>
-        </div>
-      </div>
-      <div class="catalog-card fi fi-d2">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog8_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog8_title}}</h3>
-          <p class="catalog-desc">{{catalog8_description}}</p>
-        </div>
-      </div>
-      <div class="catalog-card fi fi-d3">
-        <div class="catalog-img-wrap">
-          <img class="catalog-img"
-            src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?auto=format&fit=crop&w=600&q=80"
-            alt="{{catalog9_title}}" loading="lazy">
-        </div>
-        <div class="catalog-body">
-          <h3 class="catalog-title">{{catalog9_title}}</h3>
-          <p class="catalog-desc">{{catalog9_description}}</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
