@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hair Salon Lucia — LINE Bot デモ</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #e8e8e8;
+      font-family: -apple-system, 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 16px 80px;
+      min-height: 100vh;
+    }
+
+    /* ── Page title ── */
+    .page-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #444;
+      margin-bottom: 20px;
+      letter-spacing: .06em;
+      text-align: center;
+    }
+
+    /* ── Mode switcher (Before / After) ── */
+    .mode-switcher {
+      display: flex;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15);
+      margin-bottom: 14px;
+    }
+    .mode-btn {
+      padding: 10px 28px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all .25s;
+      letter-spacing: .04em;
+    }
+    .mode-btn.before {
+      background: #ddd;
+      color: #999;
+    }
+    .mode-btn.before.active {
+      background: #e53935;
+      color: #fff;
+    }
+    .mode-btn.after {
+      background: #ddd;
+      color: #999;
+    }
+    .mode-btn.after.active {
+      background: #06c755;
+      color: #fff;
+    }
+
+    /* ── Sub-tabs (After mode only) ── */
+    .sub-tabs {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      min-height: 38px;
+      transition: opacity .2s;
+    }
+    .sub-tabs.hidden { opacity: 0; pointer-events: none; }
+    .tab-btn {
+      padding: 7px 16px;
+      border: 2px solid #06c755;
+      border-radius: 20px;
+      background: #fff;
+      color: #06c755;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: #06c755;
+      color: #fff;
+    }
+
+    /* ── Scene label ── */
+    .scene-label {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 10px;
+      text-align: center;
+      letter-spacing: .05em;
+      min-height: 18px;
+    }
+    .scene-label.bad { color: #e53935; font-weight: 700; }
+
+    /* ── Phone frame ── */
+    .phone {
+      width: 375px;
+      max-width: 100%;
+      background: #fff;
+      border-radius: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25), 0 0 0 8px #222;
+      overflow: hidden;
+      transition: box-shadow .3s;
+    }
+    .phone.bad-mode {
+      box-shadow: 0 20px 60px rgba(229,57,53,.3), 0 0 0 8px #444;
+    }
+
+    /* Status bar */
+    .status-bar {
+      background: #fff;
+      padding: 12px 24px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .status-bar.bad-mode { background: #fff5f5; }
+    .status-bar .time { font-size: 15px; font-weight: 700; }
+
+    /* LINE header */
+    .line-header {
+      background: #fff;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 10px 16px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .line-header.bad-mode { background: #fff5f5; border-bottom-color: #ffcdd2; }
+    .back-icon { font-size: 20px; color: #06c755; }
+    .back-icon.bad-mode { color: #e53935; }
+    .avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .avatar.bad-mode { background: #eee; filter: grayscale(1); }
+    .header-info { flex: 1; }
+    .header-name { font-size: 15px; font-weight: 700; color: #222; }
+    .header-sub { font-size: 11px; color: #999; margin-top: 1px; }
+    .header-icons { display: flex; gap: 16px; font-size: 20px; color: #555; }
+
+    /* Chat area */
+    .chat-area {
+      background: #c8e6b1;
+      min-height: 540px;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      position: relative;
+    }
+    .chat-area.bad-mode { background: #ddd; }
+
+    /* Date badge */
+    .date-badge {
+      text-align: center;
+      font-size: 11px;
+      color: #555;
+      background: rgba(255,255,255,.6);
+      display: inline-block;
+      margin: 0 auto;
+      padding: 3px 12px;
+      border-radius: 10px;
+    }
+
+    /* Message row */
+    .msg-row {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+    }
+    .msg-row.user { flex-direction: row-reverse; }
+
+    /* Bot avatar */
+    .msg-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .msg-avatar.gray { background: #ccc; filter: grayscale(1); }
+
+    /* Bubble */
+    .bubble {
+      max-width: 255px;
+      padding: 10px 13px;
+      border-radius: 18px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .bubble.bot {
+      background: #fff;
+      border-top-left-radius: 4px;
+      color: #222;
+      box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    }
+    .bubble.bot.muted {
+      background: #f0f0f0;
+      color: #888;
+    }
+    .bubble.user {
+      background: #06c755;
+      border-bottom-right-radius: 4px;
+      color: #fff;
+    }
+    .bubble.user.giving-up {
+      background: #aaa;
+    }
+
+    /* Timestamp */
+    .msg-time {
+      font-size: 10px;
+      color: #666;
+      white-space: nowrap;
+      margin-bottom: 2px;
+    }
+    .msg-row.user .msg-time { align-self: flex-end; }
+
+    /* Read / Unread */
+    .read     { font-size: 10px; color: #06c755; align-self: flex-end; margin-bottom: 2px; }
+    .unread   { font-size: 10px; color: #bbb;    align-self: flex-end; margin-bottom: 2px; }
+
+    /* Typing indicator */
+    .typing {
+      display: flex; align-items: center; gap: 8px;
+    }
+    .typing-dots {
+      background: #fff;
+      border-radius: 18px;
+      border-top-left-radius: 4px;
+      padding: 12px 16px;
+      display: flex; gap: 5px; align-items: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    }
+    .dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #bbb;
+      animation: bounce 1.2s infinite;
+    }
+    .dot:nth-child(2) { animation-delay: .2s; }
+    .dot:nth-child(3) { animation-delay: .4s; }
+    @keyframes bounce {
+      0%,80%,100% { transform: translateY(0); }
+      40% { transform: translateY(-6px); }
+    }
+
+    /* CTA Card */
+    .cta-card {
+      max-width: 240px;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.15);
+      font-size: 13px;
+    }
+    .cta-header {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 13px;
+      color: #333;
+    }
+    .cta-body { padding: 10px 14px; display: flex; flex-direction: column; gap: 8px; }
+    .cta-btn {
+      display: block;
+      text-align: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: default;
+    }
+    .cta-btn.primary   { background: #06c755; color: #fff; }
+    .cta-btn.secondary { background: #f5f5f5; color: #333; border: 1px solid #ddd; }
+
+    /* ── 機会損失バナー ── */
+    .loss-banner {
+      background: linear-gradient(135deg, #e53935, #c62828);
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 12.5px;
+      line-height: 1.7;
+      margin: 4px 0;
+      box-shadow: 0 4px 12px rgba(229,57,53,.4);
+    }
+    .loss-banner .loss-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .loss-banner ul {
+      padding-left: 16px;
+      margin-top: 4px;
+    }
+    .loss-banner li { margin-bottom: 2px; }
+
+    /* Conversation panels */
+    .conv { display: none; flex-direction: column; gap: 14px; }
+    .conv.active { display: flex; }
+
+    /* Bottom bar */
+    .bottom-bar {
+      background: #fff;
+      border-top: 1px solid #e0e0e0;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .bottom-icons { display: flex; gap: 14px; font-size: 22px; color: #555; }
+    .input-box {
+      flex: 1;
+      background: #f2f2f2;
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 14px;
+      color: #aaa;
+    }
+    .send-btn {
+      width: 36px; height: 36px;
+      background: #06c755;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 18px;
+    }
+
+    /* ── Comparison table ── */
+    .compare-wrap {
+      margin-top: 32px;
+      width: 375px;
+      max-width: 100%;
+    }
+    .compare-title {
+      text-align: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 12px;
+      letter-spacing: .05em;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0,0,0,.12);
+      font-size: 12.5px;
+    }
+    .compare-table th {
+      padding: 11px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    .compare-table th:first-child  { background: #444; color: #ccc; width: 30%; }
+    .compare-table th.bad-head     { background: #e53935; color: #fff; }
+    .compare-table th.good-head    { background: #06c755; color: #fff; }
+    .compare-table td {
+      padding: 10px 10px;
+      vertical-align: middle;
+      border-bottom: 1px solid #f0f0f0;
+      line-height: 1.5;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child  { background: #f9f9f9; color: #555; font-weight: 600; font-size: 11.5px; }
+    .compare-table td.bad  { background: #fff5f5; color: #c62828; }
+    .compare-table td.good { background: #f0fff4; color: #1b7a3e; }
+    .compare-table tr:nth-child(odd) td:first-child { background: #f3f3f3; }
+
+    /* Watermark */
+    .watermark {
+      margin-top: 20px;
+      font-size: 11px;
+      color: #bbb;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <p class="page-title">LINE Bot デモ ── Hair Salon Lucia</p>
+
+  <!-- ── Mode switcher ── -->
+  <div class="mode-switcher">
+    <button class="mode-btn before" id="btn-before" onclick="setMode('before')">⚠️ Bot 導入前</button>
+    <button class="mode-btn after  active" id="btn-after"  onclick="setMode('after')">✅ Bot 導入後</button>
+  </div>
+
+  <!-- ── Sub-tabs (After only) ── -->
+  <div class="sub-tabs" id="sub-tabs">
+    <button class="tab-btn active" onclick="showTab(0)">📅 営業時間</button>
+    <button class="tab-btn"        onclick="showTab(1)">✂️ 予約したい</button>
+    <button class="tab-btn"        onclick="showTab(2)">💴 料金・メニュー</button>
+  </div>
+
+  <p class="scene-label" id="scene-label">Bot導入後 ── シーン 1 / 3：営業時間を確認する</p>
+
+  <!-- ══ Phone ══════════════════════════════════════════════════════════════ -->
+  <div class="phone" id="phone">
+
+    <!-- Status bar -->
+    <div class="status-bar" id="status-bar">
+      <span class="time" id="status-time">9:41</span>
+      <div style="display:flex;gap:6px;align-items:center;">
+        <svg width="16" height="11" viewBox="0 0 16 11"><rect x="0" y="4" width="3" height="7" rx="1" fill="#222"/><rect x="4.5" y="2.5" width="3" height="8.5" rx="1" fill="#222"/><rect x="9" y="0.5" width="3" height="10.5" rx="1" fill="#222"/><rect x="13.5" y="0" width="2.5" height="11" rx="1" fill="#ddd"/></svg>
+        <svg width="16" height="11" viewBox="0 0 16 11"><path d="M8 2C5 2 2.5 3.5 1 6l1.5 1.5C3.8 5.5 5.8 4.5 8 4.5s4.2 1 5.5 3L15 6C13.5 3.5 11 2 8 2z" fill="#222"/><circle cx="8" cy="9" r="1.8" fill="#222"/></svg>
+        <svg width="25" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="22" height="10" rx="3" stroke="#222" stroke-width="1.2" fill="none"/><rect x="22.5" y="3.5" width="2" height="5" rx="1" fill="#222"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="#222"/></svg>
+      </div>
+    </div>
+
+    <!-- LINE Header -->
+    <div class="line-header" id="line-header">
+      <div class="back-icon" id="back-icon">‹</div>
+      <div class="avatar" id="header-avatar">🌿</div>
+      <div class="header-info">
+        <div class="header-name">Hair Salon Lucia</div>
+        <div class="header-sub" id="header-sub">公式アカウント</div>
+      </div>
+      <div class="header-icons"><span>📞</span><span>☰</span></div>
+    </div>
+
+    <!-- Chat area -->
+    <div class="chat-area" id="chat-area">
+      <div class="date-badge" id="chat-date">2025年1月12日（日）</div>
+
+      <!-- ══ BEFORE ══════════════════════════════════════════════════════ -->
+      <div class="conv" id="conv-before">
+
+        <!-- 19:05 Customer asks -->
+        <div class="msg-row user">
+          <div class="msg-time">19:05</div>
+          <div class="unread">未読</div>
+          <div class="bubble user">こんにちは！カラーとカットをお願いしたいのですが、料金を教えていただけますか？</div>
+        </div>
+
+        <!-- No reply — time passes -->
+        <div class="date-badge" style="margin:4px auto;">── 1時間経過… ──</div>
+
+        <!-- 20:22 Follow-up -->
+        <div class="msg-row user">
+          <div class="msg-time">20:22</div>
+          <div class="unread">未読</div>
+          <div class="bubble user">すみません、確認していただけましたか？😅</div>
+        </div>
+
+        <!-- Still no reply -->
+        <div class="date-badge" style="margin:4px auto;">── 翌日 ──</div>
+
+        <!-- Next day 11:23 Staff finally replies -->
+        <div class="msg-row">
+          <div class="msg-avatar gray">👤</div>
+          <div style="display:flex;flex-direction:column;gap:6px;max-width:260px;">
+            <div class="bubble bot muted">お問い合わせありがとうございます。
+料金はメニューによって異なります。
+詳しくはお電話にてお問い合わせください。</div>
+          </div>
+          <div class="msg-time">11:23</div>
+        </div>
+
+        <!-- Customer gives up -->
+        <div class="date-badge" style="margin:4px auto;">── 3時間後 ──</div>
+
+        <div class="msg-row user">
+          <div class="msg-time">14:10</div>
+          <div class="read">既読</div>
+          <div class="bubble user giving-up">他のサロンで予約しました。ありがとうございました。</div>
+        </div>
+
+        <!-- Loss banner -->
+        <div class="loss-banner">
+          <div class="loss-title">⚠️ 機会損失が発生しました</div>
+          <ul>
+            <li>返信まで <strong>16時間以上</strong> かかった</li>
+            <li>料金情報がなく <strong>不安を与えた</strong></li>
+            <li>予約リンクも電話番号も <strong>案内なし</strong></li>
+            <li>顧客は <strong>競合サロンへ流出</strong></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- ══ AFTER: Scene 0 ─ 営業時間 ════════════════════════════════ -->
+      <div class="conv active" id="conv-0">
+        <div class="msg-row user">
+          <div class="msg-time">9:41</div>
+          <div class="read">既読</div>
+          <div class="bubble user">営業時間って何時までですか？</div>
+        </div>
+        <div class="msg-row">
+          <div class="msg-avatar">🌿</div>
+          <div style="display:flex;flex-direction:column;gap:8px;max-width:270px;">
+            <div class="bubble bot">こんにちは！
+ヘアサロン ルシア 公式LINEです 🌿
+
+営業時間をご案内します：
+
+📅 平日｜10:00 〜 20:00
+　　　（最終受付 19:00）
+📅 土日祝｜9:00 〜 19:00
+　　　（最終受付 18:00）
+🗓 定休日｜毎週 火曜日
+
+ご不明な点はお気軽にどうぞ 😊</div>
+            <div class="cta-card">
+              <div class="cta-header">📩 ご予約・お問い合わせ</div>
+              <div class="cta-body">
+                <span class="cta-btn primary">📅 オンライン予約はこちら</span>
+                <span class="cta-btn secondary">📞 03-5678-9012 に電話する</span>
+              </div>
+            </div>
+          </div>
+          <div class="msg-time">9:41</div>
+        </div>
+        <!-- Typing indicator -->
+        <div class="typing">
+          <div class="msg-avatar" style="width:36px;height:36px;font-size:18px;">🌿</div>
+          <div class="typing-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ AFTER: Scene 1 ─ 予約 ══════════════════════════════════ -->
+      <div class="conv" id="conv-1">
+        <div class="msg-row user">
+          <div class="msg-time">14:22</div>
+          <div class="read">既読</div>
+          <div class="bubble user">今週の土曜日、予約できますか？</div>
+        </div>
+        <div class="msg-row">
+          <div class="msg-avatar">🌿</div>
+          <div style="display:flex;flex-direction:column;gap:8px;max-width:270px;">
+            <div class="bubble bot">ご予約のご希望、ありがとうございます ✨
+
+土曜日は 9:00〜19:00 で営業中です！
+
+オンライン予約なら空き状況をすぐにご確認いただけます 📲
+
+ご希望のメニュー・お時間をこのLINEにお送りいただければ、スタッフが折り返しご連絡することも可能です 🙏</div>
+            <div class="cta-card">
+              <div class="cta-header">✂️ 今すぐ予約する</div>
+              <div class="cta-body">
+                <span class="cta-btn primary">📅 空き状況を確認・予約</span>
+                <span class="cta-btn secondary">📞 お急ぎは 03-5678-9012</span>
+              </div>
+            </div>
+          </div>
+          <div class="msg-time">14:22</div>
+        </div>
+      </div>
+
+      <!-- ══ AFTER: Scene 2 ─ 料金 ══════════════════════════════════ -->
+      <div class="conv" id="conv-2">
+        <div class="msg-row user">
+          <div class="msg-time">19:05</div>
+          <div class="read">既読</div>
+          <div class="bubble user">カラーとカットしたいんですが、いくらですか？</div>
+        </div>
+        <div class="msg-row">
+          <div class="msg-avatar">🌿</div>
+          <div style="display:flex;flex-direction:column;gap:8px;max-width:270px;">
+            <div class="bubble bot">お問い合わせありがとうございます 💄
+
+カット＋カラーの料金はこちらです：
+
+✂️ カット　　　¥6,600〜
+🎨 フルカラー　¥9,900〜
+━━━━━━━━━━━
+✨ セット割　　¥15,400〜
+
+※髪の長さや状態により変わる場合があります。
+カウンセリングは無料ですので、まずはお気軽に！ 😊</div>
+            <div class="cta-card">
+              <div class="cta-header">💴 無料カウンセリング予約</div>
+              <div class="cta-body">
+                <span class="cta-btn primary">📅 予約ページへ進む</span>
+                <span class="cta-btn secondary">📞 03-5678-9012 に相談</span>
+              </div>
+            </div>
+          </div>
+          <div class="msg-time">19:05</div>
+        </div>
+      </div>
+
+    </div><!-- /chat-area -->
+
+    <!-- Bottom bar -->
+    <div class="bottom-bar">
+      <div class="bottom-icons"><span>＋</span><span>🎤</span></div>
+      <div class="input-box">メッセージを入力…</div>
+      <div class="send-btn">➤</div>
+    </div>
+
+  </div><!-- /phone -->
+
+  <!-- ══ Comparison table ══════════════════════════════════════════════════ -->
+  <div class="compare-wrap">
+    <p class="compare-title">導入前 vs 導入後 ── 比較表</p>
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="bad-head">⚠️ 導入前（手動）</th>
+          <th class="good-head">✅ 導入後（Bot）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>返信速度</td>
+          <td class="bad">数時間〜翌日</td>
+          <td class="good">即時（0秒）</td>
+        </tr>
+        <tr>
+          <td>対応時間</td>
+          <td class="bad">営業時間内のみ</td>
+          <td class="good">24時間365日</td>
+        </tr>
+        <tr>
+          <td>料金案内</td>
+          <td class="bad">「お電話で」と丸投げ</td>
+          <td class="good">自動で正確に回答</td>
+        </tr>
+        <tr>
+          <td>予約誘導</td>
+          <td class="bad">なし（顧客任せ）</td>
+          <td class="good">毎回ボタンで自動誘導</td>
+        </tr>
+        <tr>
+          <td>機会損失</td>
+          <td class="bad">高い（競合流出）</td>
+          <td class="good">ほぼゼロ</td>
+        </tr>
+        <tr>
+          <td>スタッフ負担</td>
+          <td class="bad">全件手動対応</td>
+          <td class="good">複雑な案件のみ対応</td>
+        </tr>
+        <tr>
+          <td>予約転換率</td>
+          <td class="bad">低い</td>
+          <td class="good">大幅アップ</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="watermark">Hair Salon Lucia — LINE Bot Demo | Powered by LINE Messaging API</p>
+
+  <script>
+    let currentMode = 'after';
+    let currentTab  = 0;
+
+    const afterLabels = [
+      'Bot導入後 ── シーン 1 / 3：営業時間を確認する',
+      'Bot導入後 ── シーン 2 / 3：予約を入れたい',
+      'Bot導入後 ── シーン 3 / 3：料金・メニューを聞く'
+    ];
+
+    function setMode(mode) {
+      currentMode = mode;
+
+      const phone      = document.getElementById('phone');
+      const statusBar  = document.getElementById('status-bar');
+      const lineHeader = document.getElementById('line-header');
+      const backIcon   = document.getElementById('back-icon');
+      const avatar     = document.getElementById('header-avatar');
+      const headerSub  = document.getElementById('header-sub');
+      const chatArea   = document.getElementById('chat-area');
+      const subTabs    = document.getElementById('sub-tabs');
+      const label      = document.getElementById('scene-label');
+      const statusTime = document.getElementById('status-time');
+
+      const btnBefore  = document.getElementById('btn-before');
+      const btnAfter   = document.getElementById('btn-after');
+
+      if (mode === 'before') {
+        // Activate before button
+        btnBefore.classList.add('active');
+        btnAfter.classList.remove('active');
+
+        // Red-tinted phone UI
+        phone.classList.add('bad-mode');
+        statusBar.classList.add('bad-mode');
+        lineHeader.classList.add('bad-mode');
+        backIcon.classList.add('bad-mode');
+        avatar.classList.add('bad-mode');
+        chatArea.classList.add('bad-mode');
+        avatar.textContent = '👤';
+        headerSub.textContent = '未読あり';
+        statusTime.textContent = '翌日 11:23';
+
+        // Hide sub-tabs, update label
+        subTabs.classList.add('hidden');
+        label.textContent = '⚠️ Bot 導入前 ── 手動対応による機会損失';
+        label.classList.add('bad');
+
+        // Show only before conv
+        document.querySelectorAll('.conv').forEach(el => el.classList.remove('active'));
+        document.getElementById('conv-before').classList.add('active');
+
+      } else {
+        // Activate after button
+        btnAfter.classList.add('active');
+        btnBefore.classList.remove('active');
+
+        // Restore normal UI
+        phone.classList.remove('bad-mode');
+        statusBar.classList.remove('bad-mode');
+        lineHeader.classList.remove('bad-mode');
+        backIcon.classList.remove('bad-mode');
+        avatar.classList.remove('bad-mode');
+        chatArea.classList.remove('bad-mode');
+        avatar.textContent = '🌿';
+        headerSub.textContent = '公式アカウント';
+        statusTime.textContent = '9:41';
+
+        // Show sub-tabs, restore label
+        subTabs.classList.remove('hidden');
+        label.classList.remove('bad');
+
+        // Show the current after tab
+        showTab(currentTab);
+      }
+    }
+
+    function showTab(index) {
+      currentTab = index;
+      const label = document.getElementById('scene-label');
+
+      document.querySelectorAll('.conv').forEach(el => el.classList.remove('active'));
+      document.getElementById('conv-' + index).classList.add('active');
+
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      label.textContent = afterLabels[index];
+    }
+  </script>
+
+</body>
+</html>
