@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hair Salon Lucia — LINE Bot デモ</title>
+  <style>
+    /* ④ フォント統一 */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #ececec;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* ① 余白：上下を余裕ある設定に */
+      padding: 32px 16px 88px;
+      min-height: 100vh;
+    }
+
+    /* 共通幅 */
+    .w375 { width: 375px; max-width: 100%; }
+
+    /* ─── キャッチコピー ─────────────────────────────────── */
+    .catchcopy {
+      width: 375px; max-width: 100%;
+      background: linear-gradient(135deg, #b71c1c, #e53935);
+      color: #fff;
+      border-radius: 16px;
+      /* ① 余白強化 */
+      padding: 20px 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 22px rgba(183,28,28,.32);
+      text-align: center;
+    }
+    .catchcopy-main {
+      font-size: 15.5px;
+      font-weight: 800;
+      line-height: 1.6;
+      letter-spacing: .02em;
+    }
+    .catchcopy-sub {
+      font-size: 11.5px;
+      opacity: .82;
+      margin-top: 6px;
+      letter-spacing: .03em;
+    }
+
+    /* ─── ② ターゲット訴求カード ────────────────────────── */
+    .pain-card {
+      width: 375px; max-width: 100%;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.09);
+      border-left: 4px solid #e53935;
+    }
+    .pain-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #222;
+      margin-bottom: 14px;
+      letter-spacing: .02em;
+    }
+    .pain-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #f5f5f5;
+      font-size: 13px;
+      color: #444;
+      line-height: 1.45;
+    }
+    .pain-item:last-child { border-bottom: none; }
+    .pain-icon { font-size: 18px; flex-shrink: 0; }
+
+    /* ─── Mode switcher ──────────────────────────────────── */
+    .mode-switcher {
+      display: flex;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,.13);
+      /* ① 余白 */
+      margin-bottom: 20px;
+    }
+    .mode-btn {
+      padding: 11px 32px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all .22s;
+      letter-spacing: .04em;
+      background: #d4d4d4;
+      color: #888;
+      font-family: inherit;
+    }
+    .mode-btn.before.active { background: #e53935; color: #fff; }
+    .mode-btn.after.active  { background: #06c755; color: #fff; }
+
+    /* ─── ① 数字訴求バッジ ───────────────────────────────── */
+    .metrics-bar {
+      display: flex;
+      gap: 10px;
+      /* ① 余白強化 */
+      margin-bottom: 20px;
+      width: 375px; max-width: 100%;
+      transition: opacity .2s;
+    }
+    .metrics-bar.hidden { opacity: 0; pointer-events: none; }
+    .metric {
+      flex: 1;
+      background: #fff;
+      border-radius: 14px;
+      /* ① 内側余白を広げる */
+      padding: 14px 6px 13px;
+      text-align: center;
+      border-top: 3px solid #06c755;
+      box-shadow: 0 3px 10px rgba(0,0,0,.08);
+    }
+    .metric-num {
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+      color: #06c755;
+      line-height: 1;
+      letter-spacing: -.01em;
+    }
+    .metric-arrow { font-size: 12px; color: #06c755; font-weight: 700; }
+    .metric-label {
+      display: block;
+      font-size: 10px;
+      color: #666;
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    /* ─── Sub-tabs ───────────────────────────────────────── */
+    .sub-tabs {
+      display: flex;
+      gap: 7px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      min-height: 36px;
+      transition: opacity .2s;
+    }
+    .sub-tabs.hidden { opacity: 0; pointer-events: none; }
+    .tab-btn {
+      padding: 7px 15px;
+      border: 2px solid #06c755;
+      border-radius: 20px;
+      background: #fff;
+      color: #06c755;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .18s;
+      font-family: inherit;
+    }
+    .tab-btn.active, .tab-btn:hover { background: #06c755; color: #fff; }
+
+    /* ─── Scene label ────────────────────────────────────── */
+    .scene-label {
+      font-size: 11.5px;
+      color: #aaa;
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: .04em;
+      min-height: 17px;
+    }
+    .scene-label.bad { color: #e53935; font-weight: 700; }
+
+    /* ─── Phone frame ────────────────────────────────────── */
+    .phone {
+      width: 375px; max-width: 100%;
+      background: #fff;
+      border-radius: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2), 0 0 0 8px #1a1a1a;
+      overflow: hidden;
+      transition: box-shadow .28s;
+    }
+    .phone.bad-mode {
+      box-shadow: 0 20px 60px rgba(229,57,53,.25), 0 0 0 8px #383838;
+    }
+
+    /* Status bar */
+    .status-bar {
+      background: #fff;
+      padding: 12px 22px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .status-bar.bad-mode { background: #fff6f6; }
+    .s-time { font-size: 15px; font-weight: 700; color: #111; }
+    .s-icons { display: flex; gap: 5px; align-items: center; }
+
+    /* LINE header */
+    .line-header {
+      background: #fff;
+      border-bottom: 1px solid #ebebeb;
+      padding: 10px 15px 12px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+    .line-header.bad-mode { background: #fff6f6; border-bottom-color: #ffd0d0; }
+    .back-icon { font-size: 20px; color: #06c755; line-height: 1; }
+    .back-icon.bad-mode { color: #e53935; }
+    .lh-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 19px; flex-shrink: 0;
+    }
+    .lh-avatar.bad-mode { background: #e0e0e0; filter: grayscale(1); }
+    .lh-info { flex: 1; }
+    .lh-name { font-size: 14.5px; font-weight: 700; color: #111; }
+    .lh-sub  { font-size: 10.5px; color: #aaa; margin-top: 1px; }
+    .lh-icons { display: flex; gap: 15px; font-size: 19px; color: #555; }
+
+    /* Chat area */
+    .chat-area {
+      background: #c8e6b1;
+      min-height: 500px;
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .chat-area.bad-mode { background: #d8d8d8; }
+
+    /* Date badge */
+    .date-badge {
+      font-size: 10.5px;
+      color: #555;
+      background: rgba(255,255,255,.62);
+      display: inline-block;
+      margin: 0 auto;
+      padding: 3px 12px;
+      border-radius: 9px;
+    }
+
+    /* Message rows */
+    .msg-row { display: flex; align-items: flex-end; gap: 7px; }
+    .msg-row.user { flex-direction: row-reverse; }
+
+    .msg-avatar {
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #a8edea, #fed6e3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px; flex-shrink: 0; align-self: flex-start;
+    }
+    .msg-avatar.gray { background: #c8c8c8; filter: grayscale(1); }
+
+    .bubble {
+      max-width: 252px;
+      padding: 10px 13px;
+      border-radius: 18px;
+      font-size: 13px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .bubble.bot {
+      background: #fff;
+      border-top-left-radius: 4px;
+      color: #1a1a1a;
+      box-shadow: 0 1px 4px rgba(0,0,0,.09);
+    }
+    .bubble.bot.muted { background: #efefef; color: #999; }
+    .bubble.user { background: #06c755; border-bottom-right-radius: 4px; color: #fff; }
+    .bubble.user.gave-up { background: #aaaaaa; }
+
+    .msg-time { font-size: 10px; color: #777; white-space: nowrap; margin-bottom: 2px; }
+    .msg-row.user .msg-time { align-self: flex-end; }
+    .read   { font-size: 10px; color: #06c755; align-self: flex-end; margin-bottom: 2px; }
+    .unread { font-size: 10px; color: #c0c0c0; align-self: flex-end; margin-bottom: 2px; }
+
+    /* Typing */
+    .typing { display: flex; align-items: center; gap: 7px; }
+    .typing-dots {
+      background: #fff;
+      border-radius: 18px; border-top-left-radius: 4px;
+      padding: 12px 16px;
+      display: flex; gap: 5px; align-items: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,.09);
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: #bbb; animation: bup 1.2s infinite; }
+    .dot:nth-child(2) { animation-delay: .2s; }
+    .dot:nth-child(3) { animation-delay: .4s; }
+    @keyframes bup { 0%,80%,100%{ transform:translateY(0);} 40%{ transform:translateY(-5px);} }
+
+    /* ① CTA card — 余白強化 */
+    .cta-card {
+      max-width: 238px;
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 3px 12px rgba(0,0,0,.12);
+    }
+    .cta-head {
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      padding: 10px 14px;
+      font-weight: 700;
+      font-size: 12.5px;
+      color: #333;
+    }
+    /* ① CTA body 内側余白を広げる */
+    .cta-body {
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .cta-btn {
+      display: block; text-align: center;
+      padding: 9px 10px;
+      border-radius: 9px;
+      font-size: 12.5px; font-weight: 700; cursor: default;
+      font-family: inherit;
+    }
+    .cta-btn.p { background: #06c755; color: #fff; }
+    .cta-btn.s { background: #f4f4f4; color: #444; border: 1px solid #e0e0e0; }
+
+    /* Loss banner */
+    .loss-banner {
+      background: linear-gradient(135deg, #e53935, #c62828);
+      color: #fff;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 12px;
+      line-height: 1.7;
+      box-shadow: 0 4px 16px rgba(229,57,53,.35);
+    }
+    .loss-title { font-size: 13.5px; font-weight: 800; margin-bottom: 8px; }
+    .loss-banner ul { padding-left: 16px; }
+    .loss-banner li { margin-bottom: 2px; }
+
+    /* Conv panels */
+    .conv { display: none; flex-direction: column; gap: 14px; }
+    .conv.active { display: flex; }
+
+    /* Bottom bar */
+    .bottom-bar {
+      background: #fff;
+      border-top: 1px solid #e2e2e2;
+      padding: 10px 12px;
+      display: flex; align-items: center; gap: 9px;
+    }
+    .b-icons { display: flex; gap: 13px; font-size: 21px; color: #555; }
+    .b-input { flex: 1; background: #f2f2f2; border-radius: 20px; padding: 8px 14px; font-size: 13px; color: #bbb; }
+    .b-send { width: 34px; height: 34px; background: #06c755; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 16px; }
+
+    /* ─── 比較カード ─────────────────────────────────────── */
+    .compare-wrap {
+      /* ① 余白強化 */
+      margin-top: 44px;
+      width: 375px; max-width: 100%;
+    }
+    .compare-headline {
+      text-align: center;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #333;
+      /* ① 余白 */
+      margin-bottom: 16px;
+      letter-spacing: .04em;
+    }
+    .compare-cards { display: flex; gap: 10px; }
+    .compare-col {
+      flex: 1;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0,0,0,.1);
+    }
+    .col-head {
+      padding: 13px 10px;
+      font-size: 13px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: .04em;
+    }
+    .col-head.bad  { background: #e53935; color: #fff; }
+    .col-head.good { background: #06c755; color: #fff; }
+    .col-body {
+      background: #fff;
+      /* ① 比較カード内余白 */
+      padding: 6px 13px 10px;
+      display: flex; flex-direction: column;
+    }
+    .col-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      /* ① 行間余白 */
+      padding: 10px 0;
+      border-bottom: 1px solid #f2f2f2;
+      font-size: 12px;
+      line-height: 1.45;
+    }
+    .col-row:last-child { border-bottom: none; }
+    .col-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+    .col-row.bad-row  { color: #b71c1c; }
+    .col-row.good-row { color: #1b5e20; }
+
+    /* ─── ③ 最終CTA（購入導線） ─────────────────────────── */
+    .final-cta {
+      width: 375px; max-width: 100%;
+      /* ① 余白 */
+      margin-top: 40px;
+      background: linear-gradient(135deg, #00a63e, #06c755);
+      border-radius: 18px;
+      padding: 26px 24px 22px;
+      text-align: center;
+      box-shadow: 0 8px 28px rgba(6,199,85,.28);
+    }
+    .final-cta-eyebrow {
+      font-size: 11px;
+      color: rgba(255,255,255,.75);
+      letter-spacing: .1em;
+      margin-bottom: 8px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    .final-cta-title {
+      font-size: 17px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.55;
+      letter-spacing: .02em;
+      margin-bottom: 6px;
+    }
+    .final-cta-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,.8);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .final-cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: #00a63e;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 13px 28px;
+      border-radius: 50px;
+      letter-spacing: .03em;
+      box-shadow: 0 4px 16px rgba(0,0,0,.12);
+    }
+
+    /* ─── ② デモ注意書き ─────────────────────────────────── */
+    .demo-notice {
+      width: 375px; max-width: 100%;
+      background: #f7f7f7;
+      border: 1px solid #e2e2e2;
+      border-radius: 10px;
+      padding: 11px 16px;
+      margin-bottom: 16px;
+      font-size: 11px;
+      color: #999;
+      line-height: 1.7;
+      text-align: center;
+      letter-spacing: .02em;
+    }
+    .demo-notice strong { color: #777; font-weight: 700; }
+
+    /* ─── ① CTAボタン デモ制限 ────────────────────────────── */
+    .cta-btn { cursor: not-allowed !important; }
+    .cta-card { position: relative; }
+    .cta-card::after {
+      content: "DEMO";
+      position: absolute;
+      top: 9px; right: 11px;
+      font-size: 9px;
+      font-weight: 800;
+      color: #bbb;
+      letter-spacing: .08em;
+      background: #f0f0f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* ─── ③ カスタマイズ訴求カード ─────────────────────────── */
+    .customize-card {
+      width: 375px; max-width: 100%;
+      margin-top: 28px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 22px 20px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.09);
+      border-top: 4px solid #06c755;
+    }
+    .customize-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #1a1a1a;
+      margin-bottom: 4px;
+      line-height: 1.5;
+    }
+    .customize-subtitle {
+      font-size: 11.5px;
+      color: #888;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .customize-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f3f3f3;
+      font-size: 13px;
+      color: #333;
+      line-height: 1.45;
+    }
+    .customize-item:last-child { border-bottom: none; }
+    .c-check { color: #06c755; font-size: 15px; font-weight: 900; flex-shrink: 0; }
+    .customize-footer {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #f0f0f0;
+      font-size: 11.5px;
+      color: #aaa;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .watermark { margin-top: 24px; font-size: 10.5px; color: #c0c0c0; text-align: center; }
+  </style>
+</head>
+<body>
+
+  <!-- ② デモ注意書き -->
+  <div class="demo-notice">
+    <strong>※ これはデモ画面です。</strong><br>
+    実際には貴サロンのメニュー・料金・予約導線に合わせてカスタマイズして納品します。
+  </div>
+
+  <!-- キャッチコピー -->
+  <div class="catchcopy">
+    <div class="catchcopy-main">LINE返信が遅いだけで、<br>顧客は他店に流れています。</div>
+    <div class="catchcopy-sub">Bot導入で「即時対応 × 24時間予約誘導」を自動化する</div>
+  </div>
+
+  <!-- ② ターゲット訴求カード -->
+  <div class="pain-card">
+    <div class="pain-title">美容室オーナー様、こんなお悩みありませんか？</div>
+    <div class="pain-item">
+      <span class="pain-icon">😰</span>
+      <span>営業中でLINEの返信ができない</span>
+    </div>
+    <div class="pain-item">
+      <span class="pain-icon">🌙</span>
+      <span>営業時間外の問い合わせに対応できない</span>
+    </div>
+    <div class="pain-item">
+      <span class="pain-icon">📉</span>
+      <span>予約を取りこぼしている気がする</span>
+    </div>
+  </div>
+
+  <!-- Mode switcher -->
+  <div class="mode-switcher">
+    <button class="mode-btn before" id="btn-before" onclick="setMode('before')">⚠️ Bot 導入前</button>
+    <button class="mode-btn after active" id="btn-after" onclick="setMode('after')">✅ Bot 導入後</button>
+  </div>
+
+  <!-- 数字訴求バッジ（After専用） -->
+  <div class="metrics-bar" id="metrics-bar">
+    <div class="metric">
+      <span class="metric-num">70<span class="metric-arrow">%↓</span></span>
+      <span class="metric-label">返信遅れによる<br>機会損失を削減</span>
+    </div>
+    <div class="metric">
+      <span class="metric-num">+30<span class="metric-arrow">%</span></span>
+      <span class="metric-label">時間外の<br>予約獲得が増加</span>
+    </div>
+    <div class="metric">
+      <span class="metric-num">80<span class="metric-arrow">%↓</span></span>
+      <span class="metric-label">LINE対応の<br>スタッフ工数削減</span>
+    </div>
+  </div>
+
+  <!-- Sub-tabs -->
+  <div class="sub-tabs" id="sub-tabs">
+    <button class="tab-btn active" onclick="showTab(0)">📅 営業時間</button>
+    <button class="tab-btn"        onclick="showTab(1)">✂️ 予約したい</button>
+    <button class="tab-btn"        onclick="showTab(2)">💴 料金・メニュー</button>
+  </div>
+
+  <p class="scene-label" id="scene-label">Bot導入後 ── シーン 1 / 3：営業時間を確認する</p>
+
+  <!-- ══ Phone ══════════════════════════════════════════════════════════════ -->
+  <div class="phone" id="phone">
+
+    <div class="status-bar" id="status-bar">
+      <span class="s-time" id="s-time">9:41</span>
+      <div class="s-icons">
+        <svg width="15" height="11" viewBox="0 0 16 11"><rect x="0" y="4" width="3" height="7" rx="1" fill="#111"/><rect x="4.5" y="2.5" width="3" height="8.5" rx="1" fill="#111"/><rect x="9" y=".5" width="3" height="10.5" rx="1" fill="#111"/><rect x="13.5" y="0" width="2.5" height="11" rx="1" fill="#ccc"/></svg>
+        <svg width="15" height="11" viewBox="0 0 16 11"><path d="M8 2C5 2 2.5 3.5 1 6l1.5 1.5C3.8 5.5 5.8 4.5 8 4.5s4.2 1 5.5 3L15 6C13.5 3.5 11 2 8 2z" fill="#111"/><circle cx="8" cy="9" r="1.8" fill="#111"/></svg>
+        <svg width="24" height="12" viewBox="0 0 25 12"><rect x="0" y="1" width="22" height="10" rx="3" stroke="#111" stroke-width="1.2" fill="none"/><rect x="22.5" y="3.5" width="2" height="5" rx="1" fill="#111"/><rect x="1.5" y="2.5" width="17" height="7" rx="1.5" fill="#111"/></svg>
+      </div>
+    </div>
+
+    <div class="line-header" id="line-header">
+      <div class="back-icon" id="back-icon">‹</div>
+      <div class="lh-avatar" id="lh-avatar">🌿</div>
+      <div class="lh-info">
+        <div class="lh-name">Hair Salon Lucia</div>
+        <div class="lh-sub" id="lh-sub">公式アカウント</div>
+      </div>
+      <div class="lh-icons"><span>📞</span><span>☰</span></div>
+    </div>
+
+    <div class="chat-area" id="chat-area">
+      <div class="date-badge" id="chat-date">2025年1月12日（日）</div>
+
+      <!-- ══ BEFORE ══ -->
+      <div class="conv" id="conv-before">
+        <div class="msg-row user">
+          <div class="msg-time">19:05</div>
+          <div class="unread">未読</div>
+          <div class="bubble user">こんにちは！カラーとカットをしたいのですが、料金を教えていただけますか？</div>
+        </div>
+        <div class="date-badge" style="margin:2px auto;">── 1時間以上経過… ──</div>
+        <div class="msg-row user">
+          <div class="msg-time">20:22</div>
+          <div class="unread">未読</div>
+          <div class="bubble user">すみません、確認していただけましたか？😅</div>
+        </div>
+        <div class="date-badge" style="margin:2px auto;">── 翌日 ──</div>
+        <div class="msg-row">
+          <div class="msg-avatar gray">👤</div>
+          <div style="display:flex;flex-direction:column;gap:6px;max-width:252px;">
+            <div class="bubble bot muted">お問い合わせありがとうございます。
+料金はメニューにより異なります。
+詳しくはお電話にてお問い合わせください。</div>
+          </div>
+          <div class="msg-time">11:23</div>
+        </div>
+        <div class="date-badge" style="margin:2px auto;">── 3時間後 ──</div>
+        <div class="msg-row user">
+          <div class="msg-time">14:10</div>
+          <div class="read">既読</div>
+          <div class="bubble user gave-up">他のサロンで予約しました。ありがとうございました。</div>
+        </div>
+        <div class="loss-banner">
+          <div class="loss-title">⚠️ 機会損失が発生しました</div>
+          <ul>
+            <li>返信まで <strong>16時間以上</strong> かかった</li>
+            <li>料金を答えず <strong>顧客を不安にさせた</strong></li>
+            <li>予約リンク・電話番号の <strong>案内が一切ない</strong></li>
+            <li>顧客は <strong>競合サロンへ流出</strong> した</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ══ AFTER 0：営業時間 ══ -->
+      <div class="conv active" id="conv-0">
+        <div class="msg-row user">
+          <div class="msg-time">9:41</div>
+          <div class="read">既読</div>
+          <div class="bubble user">営業時間って何時までですか？</div>
+        </div>
+        <div class="msg-row">
+          <div class="msg-avatar">🌿</div>
+          <div style="display:flex;flex-direction:column;gap:8px;max-width:262px;">
+            <div class="bubble bot">こんにちは！
+ヘアサロン ルシア 公式LINEです 🌿
+
+営業時間をご案内します：
+
+📅 平日｜10:00 〜 20:00
+　　　（最終受付 19:00）
+📅 土日祝｜9:00 〜 19:00
+　　　（最終受付 18:00）
+🗓 定休日｜毎週 火曜日
+
+ご不明な点はお気軽にどうぞ 😊</div>
+            <div class="cta-card">
+              <div class="cta-head">📩 ご予約・お問い合わせ</div>
+              <div class="cta-body">
+                <span class="cta-btn p">📅 オンライン予約はこちら</span>
+                <span class="cta-btn s">📞 03-5678-9012 に電話する</span>
+              </div>
+            </div>
+          </div>
+          <div class="msg-time">9:41</div>
+        </div>
+        <div class="typing">
+          <div class="msg-avatar">🌿</div>
+          <div class="typing-dots">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══ AFTER 1：予約 ══ -->
+      <div class="conv" id="conv-1">
+        <div class="msg-row user">
+          <div class="msg-time">14:22</div>
+          <div class="read">既読</div>
+          <div class="bubble user">今週の土曜日、予約できますか？</div>
+        </div>
+        <div class="msg-row">
+          <div class="msg-avatar">🌿</div>
+          <div style="display:flex;flex-direction:column;gap:8px;max-width:262px;">
+            <div class="bubble bot">ご予約のご希望、ありがとうございます ✨
+
+土曜日は 9:00〜19:00 で営業中です！
+
+オンライン予約なら空き状況をすぐにご確認いただけます 📲
+
+ご希望のメニュー・お時間をこのLINEにお送りいただければ、スタッフが折り返しご連絡することも可能です 🙏</div>
+            <div class="cta-card">
+              <div class="cta-head">✂️ 今すぐ予約する</div>
+              <div class="cta-body">
+                <span class="cta-btn p">📅 空き状況を確認・予約</span>
+                <span class="cta-btn s">📞 お急ぎは 03-5678-9012</span>
+              </div>
+            </div>
+          </div>
+          <div class="msg-time">14:22</div>
+        </div>
+      </div>
+
+      <!-- ══ AFTER 2：料金 ══ -->
+      <div class="conv" id="conv-2">
+        <div class="msg-row user">
+          <div class="msg-time">19:05</div>
+          <div class="read">既読</div>
+          <div class="bubble user">カラーとカットしたいんですが、いくらですか？</div>
+        </div>
+        <div class="msg-row">
+          <div class="msg-avatar">🌿</div>
+          <div style="display:flex;flex-direction:column;gap:8px;max-width:262px;">
+            <div class="bubble bot">お問い合わせありがとうございます 💄
+
+カット＋カラーの料金はこちらです：
+
+✂️ カット　　　¥6,600〜
+🎨 フルカラー　¥9,900〜
+━━━━━━━━━━━
+✨ セット割　　¥15,400〜
+
+※髪の長さや状態により変わる場合があります。
+カウンセリングは無料ですので、まずはお気軽に！ 😊</div>
+            <div class="cta-card">
+              <div class="cta-head">💴 無料カウンセリング予約</div>
+              <div class="cta-body">
+                <span class="cta-btn p">📅 予約ページへ進む</span>
+                <span class="cta-btn s">📞 03-5678-9012 に相談</span>
+              </div>
+            </div>
+          </div>
+          <div class="msg-time">19:05</div>
+        </div>
+      </div>
+
+    </div><!-- /chat-area -->
+
+    <div class="bottom-bar">
+      <div class="b-icons"><span>＋</span><span>🎤</span></div>
+      <div class="b-input">メッセージを入力…</div>
+      <div class="b-send">➤</div>
+    </div>
+
+  </div><!-- /phone -->
+
+  <!-- 比較カード -->
+  <div class="compare-wrap">
+    <p class="compare-headline">導入前 vs 導入後 ── 一目でわかる違い</p>
+    <div class="compare-cards">
+      <div class="compare-col">
+        <div class="col-head bad">⚠️ Bot 導入前</div>
+        <div class="col-body">
+          <div class="col-row bad-row"><span class="col-icon">✗</span><span>返信まで数時間〜翌日</span></div>
+          <div class="col-row bad-row"><span class="col-icon">✗</span><span>営業時間外は放置</span></div>
+          <div class="col-row bad-row"><span class="col-icon">✗</span><span>料金は「電話して」と丸投げ</span></div>
+          <div class="col-row bad-row"><span class="col-icon">✗</span><span>予約導線がない</span></div>
+          <div class="col-row bad-row"><span class="col-icon">✗</span><span>顧客が競合へ流出</span></div>
+          <div class="col-row bad-row"><span class="col-icon">✗</span><span>全件スタッフが手動対応</span></div>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="col-head good">✅ Bot 導入後</div>
+        <div class="col-body">
+          <div class="col-row good-row"><span class="col-icon">✓</span><span>即時返信（0秒）</span></div>
+          <div class="col-row good-row"><span class="col-icon">✓</span><span>24時間365日対応</span></div>
+          <div class="col-row good-row"><span class="col-icon">✓</span><span>料金・メニューを自動案内</span></div>
+          <div class="col-row good-row"><span class="col-icon">✓</span><span>毎回、予約ボタンで誘導</span></div>
+          <div class="col-row good-row"><span class="col-icon">✓</span><span>売上機会を最大化</span></div>
+          <div class="col-row good-row"><span class="col-icon">✓</span><span>複雑な案件のみ人対応</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 最終CTA（購入導線） -->
+  <div class="final-cta">
+    <div class="final-cta-eyebrow">For Beauty Salon Owners</div>
+    <div class="final-cta-title">この仕組みを<br>あなたのサロンにも導入できます</div>
+    <div class="final-cta-sub">LINE Bot × AI × 予約導線を一括でセットアップ。<br>非エンジニアでも最短1日で稼働します。</div>
+    <div class="final-cta-btn">ココナラから今すぐご相談ください →</div>
+  </div>
+
+  <!-- ③ カスタマイズ訴求カード -->
+  <div class="customize-card">
+    <div class="customize-title">本サービスは、あなたのサロンに合わせて完全カスタマイズします</div>
+    <div class="customize-subtitle">デモ画面の内容はすべてサンプルです。納品時には以下を貴サロン専用に構築します。</div>
+    <div class="customize-item"><span class="c-check">✓</span><span>メニュー構成（カット・カラー・パーマ etc.）</span></div>
+    <div class="customize-item"><span class="c-check">✓</span><span>料金設定（税込・税抜・コース料金など）</span></div>
+    <div class="customize-item"><span class="c-check">✓</span><span>予約導線（URL・電話番号・LINE予約など）</span></div>
+    <div class="customize-item"><span class="c-check">✓</span><span>よくある質問（定休日・アクセス・支払いなど）</span></div>
+    <div class="customize-footer">ご購入後にヒアリングシートをお送りします。<br>回答いただければ、あとはすべてお任せください。</div>
+  </div>
+
+  <p class="watermark">Hair Salon Lucia — LINE Bot Demo | Powered by LINE Messaging API + Dify AI</p>
+
+  <script>
+    let currentMode = 'after';
+    let currentTab  = 0;
+
+    const afterLabels = [
+      'Bot導入後 ── シーン 1 / 3：営業時間を確認する',
+      'Bot導入後 ── シーン 2 / 3：予約を入れたい',
+      'Bot導入後 ── シーン 3 / 3：料金・メニューを聞く'
+    ];
+
+    function setMode(mode) {
+      currentMode = mode;
+      const isBefore = mode === 'before';
+
+      document.getElementById('btn-before').classList.toggle('active', isBefore);
+      document.getElementById('btn-after').classList.toggle('active', !isBefore);
+
+      ['phone','status-bar','line-header','back-icon','lh-avatar','chat-area'].forEach(id => {
+        document.getElementById(id).classList.toggle('bad-mode', isBefore);
+      });
+
+      document.getElementById('lh-avatar').textContent = isBefore ? '👤' : '🌿';
+      document.getElementById('lh-sub').textContent    = isBefore ? '未読あり' : '公式アカウント';
+      document.getElementById('s-time').textContent    = isBefore ? '翌日 11:23' : '9:41';
+      document.getElementById('chat-date').textContent = isBefore ? '2025年1月11日（土）〜12日（日）' : '2025年1月12日（日）';
+
+      document.getElementById('metrics-bar').classList.toggle('hidden', isBefore);
+      document.getElementById('sub-tabs').classList.toggle('hidden', isBefore);
+
+      const label = document.getElementById('scene-label');
+      if (isBefore) {
+        label.textContent = '⚠️ Bot 導入前 ── 手動対応による機会損失';
+        label.classList.add('bad');
+      } else {
+        label.classList.remove('bad');
+      }
+
+      document.querySelectorAll('.conv').forEach(el => el.classList.remove('active'));
+      if (isBefore) {
+        document.getElementById('conv-before').classList.add('active');
+      } else {
+        showTab(currentTab);
+      }
+    }
+
+    function showTab(index) {
+      currentTab = index;
+      document.querySelectorAll('.conv').forEach(el => el.classList.remove('active'));
+      document.getElementById('conv-' + index).classList.add('active');
+      document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', i === index));
+      document.getElementById('scene-label').textContent = afterLabels[index];
+    }
+
+    // ① デモ制限：CTAボタンの動作を無効化
+    document.querySelectorAll('.cta-btn').forEach(btn => {
+      btn.title = '※ デモ版のため動作しません。導入後は実際のURLに接続されます。';
+      btn.addEventListener('click', e => e.preventDefault());
+    });
+  </script>
+
+</body>
+</html>
