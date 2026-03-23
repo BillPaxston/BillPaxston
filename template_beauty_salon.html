@@ -683,10 +683,10 @@
 
     <!-- Nav (PC) -->
     <nav class="header-nav">
-      <a href="#news">NEWS</a>
-      <a href="#concept">CONCEPT</a>
-      <a href="#menu">MENU</a>
       <a href="#catalog">GALLERY</a>
+      <a href="#menu">MENU</a>
+      <a href="#vacancy">VACANCY</a>
+      <a href="#instagram">INSTAGRAM</a>
       <a href="#staff">STAFF</a>
       <a href="#access">ACCESS</a>
     </nav>
@@ -716,10 +716,10 @@
   <!-- Nav links -->
   <nav style="flex:1; padding:16px 0;">
     <a href="#news"         class="mnav-link">NEWS</a>
-    <a href="#concept"      class="mnav-link">CONCEPT</a>
-    <a href="#commitment"   class="mnav-link">COMMITMENT</a>
-    <a href="#menu"         class="mnav-link">MENU / PRICE</a>
     <a href="#catalog"      class="mnav-link">STYLE GALLERY</a>
+    <a href="#menu"         class="mnav-link">MENU / PRICE</a>
+    <a href="#vacancy"      class="mnav-link">VACANCY / 空き状況</a>
+    <a href="#instagram"    class="mnav-link">INSTAGRAM</a>
     <a href="#staff"        class="mnav-link">STAFF</a>
     <a href="#testimonials" class="mnav-link">VOICE</a>
     <a href="#access"       class="mnav-link">ACCESS</a>
@@ -785,43 +785,6 @@
   </div>
 </section>
 
-<!-- ============================================================
-     CONCEPT
-============================================================ -->
-<section id="concept">
-  <div class="c">
-    <div class="concept-grid fi">
-      <!-- Photos: main + 2 sub stacked -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto auto; gap:12px;">
-        <!-- メイン写真（左全高） -->
-        <img
-          src="https://images.pexels.com/photos/3993449/pexels-photo-3993449.jpeg?auto=compress&cs=tinysrgb&w=800"
-          alt="サロン内観"
-          loading="lazy"
-          style="grid-row:1/3; width:100%; height:100%; object-fit:cover; display:block;">
-        <!-- リラックスするお客様 -->
-        <img
-          src="https://images.pexels.com/photos/3993453/pexels-photo-3993453.jpeg?auto=compress&cs=tinysrgb&w=800"
-          alt="くつろぐお客様"
-          loading="lazy"
-          style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
-        <!-- こだわりのインテリア -->
-        <img
-          src="https://images.pexels.com/photos/3993323/pexels-photo-3993323.jpeg?auto=compress&cs=tinysrgb&w=800"
-          alt="こだわりのインテリア"
-          loading="lazy"
-          style="width:100%; aspect-ratio:4/3; object-fit:cover; display:block;">
-      </div>
-      <!-- Text -->
-      <div>
-        <span class="section-en">CONCEPT</span>
-        <h2 class="section-title" style="margin-bottom:8px;">私たちの想い</h2>
-        <div class="gold-line left"></div>
-        <p class="concept-body">{{concept_text}}</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ============================================================
      STYLE GALLERY (3×3)  ← CONCEPT直後に移動
@@ -941,36 +904,6 @@
 </section>
 
 <!-- ============================================================
-     COMMITMENT
-============================================================ -->
-<section id="commitment">
-  <div class="c">
-    <div class="text-center fi">
-      <span class="section-en">COMMITMENT</span>
-      <h2 class="section-title on-dark">私たちが大切にすること</h2>
-      <div class="gold-line"></div>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-      <div class="commitment-card fi fi-d1">
-        <p class="commitment-num">01</p>
-        <h3 class="commitment-title">{{commitment1_title}}</h3>
-        <p class="commitment-desc">{{commitment1_description}}</p>
-      </div>
-      <div class="commitment-card fi fi-d2">
-        <p class="commitment-num">02</p>
-        <h3 class="commitment-title">{{commitment2_title}}</h3>
-        <p class="commitment-desc">{{commitment2_description}}</p>
-      </div>
-      <div class="commitment-card fi fi-d3">
-        <p class="commitment-num">03</p>
-        <h3 class="commitment-title">{{commitment3_title}}</h3>
-        <p class="commitment-desc">{{commitment3_description}}</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
      MENU / PRICE
 ============================================================ -->
 <section id="menu">
@@ -1012,6 +945,103 @@
     <p style="text-align:center; margin-top:52px; font-size:11px; color:rgba(255,255,255,0.3); letter-spacing:0.1em;" class="fi">
       ※ 表示価格はすべて税込みです。仕上がりにより変動する場合がございます。
     </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     VACANCY / 空き状況
+============================================================ -->
+<section id="vacancy" style="background:var(--light); padding:88px 0;">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">VACANCY</span>
+      <h2 class="section-title">空き状況</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="fi" style="overflow-x:auto;">
+      <table style="width:100%; border-collapse:collapse; font-size:13px; letter-spacing:0.05em; min-width:480px;">
+        <thead>
+          <tr>
+            <th style="padding:12px 8px; color:var(--gray); font-weight:400; border-bottom:1px solid rgba(0,0,0,0.08); text-align:center; min-width:60px;"></th>
+            <th style="padding:12px 8px; color:var(--gray); font-weight:400; border-bottom:1px solid rgba(0,0,0,0.08); text-align:center;">月</th>
+            <th style="padding:12px 8px; color:var(--gray); font-weight:400; border-bottom:1px solid rgba(0,0,0,0.08); text-align:center;">火</th>
+            <th style="padding:12px 8px; color:var(--gray); font-weight:400; border-bottom:1px solid rgba(0,0,0,0.08); text-align:center;">水</th>
+            <th style="padding:12px 8px; color:var(--gray); font-weight:400; border-bottom:1px solid rgba(0,0,0,0.08); text-align:center;">木</th>
+            <th style="padding:12px 8px; color:var(--gray); font-weight:400; border-bottom:1px solid rgba(0,0,0,0.08); text-align:center;">金</th>
+            <th style="padding:12px 8px; color:var(--gray); font-weight:400; border-bottom:1px solid rgba(0,0,0,0.08); text-align:center;">土</th>
+            <th style="padding:12px 8px; color:var(--gray); font-weight:400; border-bottom:1px solid rgba(0,0,0,0.08); text-align:center;">日</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:14px 8px; color:var(--gray); font-size:11px; letter-spacing:0.1em; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05);">午前</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_mon_am}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_tue_am}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_wed_am}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_thu_am}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_fri_am}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_sat_am}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_sun_am}}</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 8px; color:var(--gray); font-size:11px; letter-spacing:0.1em; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05);">午後</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_mon_pm}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_tue_pm}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_wed_pm}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_thu_pm}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_fri_pm}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_sat_pm}}</td>
+            <td style="padding:14px 8px; text-align:center; border-bottom:1px solid rgba(0,0,0,0.05); color:var(--gold); font-size:18px;">{{slot_sun_pm}}</td>
+          </tr>
+          <tr>
+            <td style="padding:14px 8px; color:var(--gray); font-size:11px; letter-spacing:0.1em; text-align:center;">夜</td>
+            <td style="padding:14px 8px; text-align:center; color:var(--gold); font-size:18px;">{{slot_mon_eve}}</td>
+            <td style="padding:14px 8px; text-align:center; color:var(--gold); font-size:18px;">{{slot_tue_eve}}</td>
+            <td style="padding:14px 8px; text-align:center; color:var(--gold); font-size:18px;">{{slot_wed_eve}}</td>
+            <td style="padding:14px 8px; text-align:center; color:var(--gold); font-size:18px;">{{slot_thu_eve}}</td>
+            <td style="padding:14px 8px; text-align:center; color:var(--gold); font-size:18px;">{{slot_fri_eve}}</td>
+            <td style="padding:14px 8px; text-align:center; color:var(--gold); font-size:18px;">{{slot_sat_eve}}</td>
+            <td style="padding:14px 8px; text-align:center; color:var(--gold); font-size:18px;">{{slot_sun_eve}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="margin-top:16px; font-size:11px; color:var(--gray); letter-spacing:0.1em; text-align:center;">
+        ○ 空きあり　△ 残りわずか　× 満席　— 定休日
+      </p>
+    </div>
+    <!-- LINE予約ボタン -->
+    <div class="text-center fi" style="margin-top:48px;">
+      <a href="{{line_url}}" target="_blank" rel="noopener"
+        style="display:inline-flex; align-items:center; gap:12px; background:#06C755; color:#fff; padding:16px 40px; font-size:12px; letter-spacing:0.2em; text-decoration:none; transition:opacity 0.2s;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.93 2 10.77c0 2.72 1.38 5.15 3.55 6.78-.15.54-.57 1.96-.65 2.27-.1.38.14.38.29.28.12-.08 1.96-1.3 2.76-1.83.62.09 1.26.14 1.91.14 5.52 0 10-3.93 10-8.77S17.52 2 12 2z"/></svg>
+        LINEで予約する
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     INSTAGRAM
+============================================================ -->
+<section id="instagram" style="padding:88px 0;">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">INSTAGRAM</span>
+      <h2 class="section-title">インスタグラム</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="text-center fi">
+      <a href="{{instagram_url}}" target="_blank" rel="noopener"
+        style="display:inline-flex; align-items:center; gap:10px; color:var(--dark); font-size:13px; letter-spacing:0.2em; text-decoration:none; border:1px solid rgba(0,0,0,0.12); padding:14px 36px; transition:border-color 0.2s, color 0.2s;">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+        </svg>
+        @{{instagram_handle}}
+      </a>
+      <p style="margin-top:20px; font-size:11px; color:var(--gray); letter-spacing:0.15em;">最新のスタイルはInstagramでチェック</p>
+    </div>
   </div>
 </section>
 
@@ -1196,6 +1226,36 @@
 </section>
 
 <!-- ============================================================
+     COMMITMENT
+============================================================ -->
+<section id="commitment">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">COMMITMENT</span>
+      <h2 class="section-title on-dark">私たちが大切にすること</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="commitment-card fi fi-d1">
+        <p class="commitment-num">01</p>
+        <h3 class="commitment-title">{{commitment1_title}}</h3>
+        <p class="commitment-desc">{{commitment1_description}}</p>
+      </div>
+      <div class="commitment-card fi fi-d2">
+        <p class="commitment-num">02</p>
+        <h3 class="commitment-title">{{commitment2_title}}</h3>
+        <p class="commitment-desc">{{commitment2_description}}</p>
+      </div>
+      <div class="commitment-card fi fi-d3">
+        <p class="commitment-num">03</p>
+        <h3 class="commitment-title">{{commitment3_title}}</h3>
+        <p class="commitment-desc">{{commitment3_description}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
      FOOTER
 ============================================================ -->
 <footer id="footer">
@@ -1211,10 +1271,10 @@
       </p>
     </div>
     <nav class="footer-nav flex justify-center gap-8 flex-wrap" style="margin-bottom:40px;">
-      <a href="#concept">CONCEPT</a>
-      <a href="#commitment">COMMITMENT</a>
-      <a href="#menu">MENU</a>
       <a href="#catalog">GALLERY</a>
+      <a href="#menu">MENU</a>
+      <a href="#vacancy">VACANCY</a>
+      <a href="#instagram">INSTAGRAM</a>
       <a href="#staff">STAFF</a>
       <a href="#testimonials">VOICE</a>
       <a href="#access">ACCESS</a>
