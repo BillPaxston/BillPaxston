@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{restaurant_name}}</title>
+  <title>{{restaurant_name}} | {{restaurant_genre}}</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
@@ -186,7 +186,7 @@
     .hero-bg {
       position: absolute; inset: 0;
       background:
-        url('https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=1600')
+        url('{{hero_image}}')
         center/cover no-repeat;
       background-color: #1a1a1a;
     }
@@ -663,7 +663,7 @@
       <a href="#dishes">MENU</a>
       <a href="#gallery">GALLERY</a>
       <a href="#reserve">RESERVE</a>
-      <a href="#chef">CHEF</a>
+      <a href="#instagram">INSTAGRAM</a>
       <a href="#access">ACCESS</a>
     </nav>
     <div style="display:flex; align-items:center; gap:16px;">
@@ -691,7 +691,6 @@
     <a href="#gallery"      class="mnav-link">GALLERY</a>
     <a href="#reserve"      class="mnav-link">RESERVE / 予約</a>
     <a href="#instagram"    class="mnav-link">INSTAGRAM</a>
-    <a href="#chef"         class="mnav-link">CHEF</a>
     <a href="#testimonials" class="mnav-link">VOICE</a>
     <a href="#access"       class="mnav-link">ACCESS</a>
     <a href="#contact"      class="mnav-link">CONTACT</a>
@@ -761,7 +760,7 @@
 
     <!-- Dish 1 -->
     <div class="dish-card fi">
-      <img class="dish-img" src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{dish1_name}}" loading="lazy">
+      <img class="dish-img" src="{{dish1_image}}" alt="{{dish1_name}}" loading="lazy">
       <div>
         <p class="dish-num">01</p>
         <h3 class="dish-name">{{dish1_name}}</h3>
@@ -775,7 +774,7 @@
 
     <!-- Dish 2 -->
     <div class="dish-card reverse fi">
-      <img class="dish-img" src="https://images.pexels.com/photos/2097090/pexels-photo-2097090.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{dish2_name}}" loading="lazy">
+      <img class="dish-img" src="{{dish2_image}}" alt="{{dish2_name}}" loading="lazy">
       <div>
         <p class="dish-num">02</p>
         <h3 class="dish-name">{{dish2_name}}</h3>
@@ -789,7 +788,7 @@
 
     <!-- Dish 3 -->
     <div class="dish-card fi">
-      <img class="dish-img" src="https://images.pexels.com/photos/1279330/pexels-photo-1279330.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{dish3_name}}" loading="lazy">
+      <img class="dish-img" src="{{dish3_image}}" alt="{{dish3_name}}" loading="lazy">
       <div>
         <p class="dish-num">03</p>
         <h3 class="dish-name">{{dish3_name}}</h3>
@@ -815,27 +814,27 @@
     </div>
     <div class="gallery-grid">
       <div class="gallery-item fi fi-d1">
-        <img class="gallery-img" src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{gallery1_title}}" loading="lazy">
+        <img class="gallery-img" src="{{gallery1_image}}" alt="{{gallery1_title}}" loading="lazy">
         <p class="gallery-caption">{{gallery1_title}}</p>
       </div>
       <div class="gallery-item fi fi-d2">
-        <img class="gallery-img" src="https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{gallery2_title}}" loading="lazy">
+        <img class="gallery-img" src="{{gallery2_image}}" alt="{{gallery2_title}}" loading="lazy">
         <p class="gallery-caption">{{gallery2_title}}</p>
       </div>
       <div class="gallery-item fi fi-d3">
-        <img class="gallery-img" src="https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{gallery3_title}}" loading="lazy">
+        <img class="gallery-img" src="{{gallery3_image}}" alt="{{gallery3_title}}" loading="lazy">
         <p class="gallery-caption">{{gallery3_title}}</p>
       </div>
       <div class="gallery-item fi fi-d1">
-        <img class="gallery-img" src="https://images.pexels.com/photos/784633/pexels-photo-784633.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{gallery4_title}}" loading="lazy">
+        <img class="gallery-img" src="{{gallery4_image}}" alt="{{gallery4_title}}" loading="lazy">
         <p class="gallery-caption">{{gallery4_title}}</p>
       </div>
       <div class="gallery-item fi fi-d2">
-        <img class="gallery-img" src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{gallery5_title}}" loading="lazy">
+        <img class="gallery-img" src="{{gallery5_image}}" alt="{{gallery5_title}}" loading="lazy">
         <p class="gallery-caption">{{gallery5_title}}</p>
       </div>
       <div class="gallery-item fi fi-d3">
-        <img class="gallery-img" src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800" alt="{{gallery6_title}}" loading="lazy">
+        <img class="gallery-img" src="{{gallery6_image}}" alt="{{gallery6_title}}" loading="lazy">
         <p class="gallery-caption">{{gallery6_title}}</p>
       </div>
     </div>
@@ -893,28 +892,6 @@
         @{{instagram_handle}}
       </a>
       <p style="margin-top:20px; font-size:11px; color:var(--gray); letter-spacing:0.15em;">最新メニューや店内の様子はInstagramでチェック</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================
-     CHEF
-============================================================ -->
-<section id="chef">
-  <div class="c">
-    <div class="text-center fi">
-      <span class="section-en">CHEF</span>
-      <h2 class="section-title">シェフ紹介</h2>
-      <div class="gold-line"></div>
-    </div>
-    <div class="chef-grid fi">
-      <img class="chef-photo" src="https://images.pexels.com/photos/3814446/pexels-photo-3814446.jpeg?auto=compress&cs=tinysrgb&w=600" alt="{{chef_name}}" loading="lazy">
-      <div>
-        <p class="chef-role">{{chef_title}}</p>
-        <h3 class="chef-name">{{chef_name}}</h3>
-        <p class="chef-name-en">{{chef_name_en}}</p>
-        <p class="chef-bio">{{chef_description}}</p>
-      </div>
     </div>
   </div>
 </section>
@@ -983,7 +960,7 @@
         </div>
       </div>
       <div class="map-wrap">
-        <iframe src="{{map_embed}}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25934.36!2d139.6917!3d35.6895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b563b00109f%3A0x337328ef7bdd7c0!2z5riL6LC35Y2X!5e0!3m2!1sja!2sjp!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
@@ -1075,7 +1052,7 @@
       <a href="#dishes">MENU</a>
       <a href="#gallery">GALLERY</a>
       <a href="#reserve">RESERVE</a>
-      <a href="#chef">CHEF</a>
+      <a href="#instagram">INSTAGRAM</a>
       <a href="#testimonials">VOICE</a>
       <a href="#access">ACCESS</a>
       <a href="#contact">CONTACT</a>
