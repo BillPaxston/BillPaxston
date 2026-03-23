@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{shop_name}} | {{tagline}}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --green:#2E7D5E; --green-lt:#E8F5EF; --green-dk:#1A5C44; }
+    body { font-family:'Noto Sans JP',sans-serif; background:#fff; padding-bottom:56px; }
+    .font-serif { font-family:'Noto Serif JP',serif; }
+    .section-label { font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:var(--green); }
+    .card-hover { transition:box-shadow .3s,transform .3s; }
+    .card-hover:hover { box-shadow:0 12px 32px rgba(46,125,94,.15); transform:translateY(-2px); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-green-100">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div>
+      <div class="font-serif text-xl font-bold text-[#1A5C44]">{{shop_name}}</div>
+      <div class="text-[10px] tracking-[.15em] text-[#2E7D5E]">{{shop_subtitle}}</div>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#treatment" class="text-xs tracking-widest text-gray-600 hover:text-[#2E7D5E] transition">施術メニュー</a>
+      <a href="#therapist" class="text-xs tracking-widest text-gray-600 hover:text-[#2E7D5E] transition">施術者</a>
+      <a href="#access" class="text-xs tracking-widest text-gray-600 hover:text-[#2E7D5E] transition">アクセス</a>
+      <a href="#reserve" class="bg-[#2E7D5E] hover:bg-[#1A5C44] text-white text-xs tracking-widest px-5 py-2.5 rounded-full transition">ご予約</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="top" class="relative h-screen flex items-center">
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('{{hero_image}}')"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-[#1A5C44]/85 via-[#1A5C44]/50 to-transparent"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-8 text-white">
+    <p class="text-xs tracking-[.25em] text-green-200 mb-4 uppercase">{{shop_name}}</p>
+    <h1 class="font-serif text-5xl md:text-6xl font-bold leading-tight mb-5">{{tagline}}</h1>
+    <p class="text-sm text-white/80 mb-10 max-w-md leading-relaxed">{{sub_tagline}}</p>
+    <div class="flex flex-wrap gap-4">
+      <a href="#reserve" class="bg-white text-[#2E7D5E] hover:bg-green-50 px-8 py-3.5 rounded-full text-sm font-bold tracking-wide transition">今すぐ予約する</a>
+      <a href="#treatment" class="border border-white/60 hover:bg-white/10 text-white px-8 py-3.5 rounded-full text-sm font-medium transition">施術メニューを見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="py-12 bg-[#E8F5EF]">
+  <div class="max-w-3xl mx-auto px-6">
+    <p class="section-label mb-5">News</p>
+    <div class="divide-y divide-green-100 bg-white rounded-2xl px-6">
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#2E7D5E] w-28 shrink-0 font-light">{{news1_date}}</span><span class="text-gray-700">{{news1_text}}</span></div>
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#2E7D5E] w-28 shrink-0 font-light">{{news2_date}}</span><span class="text-gray-700">{{news2_text}}</span></div>
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#2E7D5E] w-28 shrink-0 font-light">{{news3_date}}</span><span class="text-gray-700">{{news3_text}}</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENT MENU -->
+<section id="treatment" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Treatment</p>
+      <h2 class="font-serif text-4xl text-[#1A5C44]">{{treatment_heading}}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="rounded-2xl overflow-hidden border border-green-100 card-hover">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="{{treatment1_image}}" alt="{{treatment1_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+        </div>
+        <div class="p-7">
+          <h3 class="font-serif text-xl text-[#1A5C44] mb-2">{{treatment1_name}}</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">{{treatment1_desc}}</p>
+          <div class="flex items-baseline gap-2"><span class="text-[#2E7D5E] font-bold text-lg">{{treatment1_price}}</span><span class="text-gray-400 text-xs">/ {{treatment1_time}}</span></div>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-green-100 card-hover">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="{{treatment2_image}}" alt="{{treatment2_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+        </div>
+        <div class="p-7">
+          <h3 class="font-serif text-xl text-[#1A5C44] mb-2">{{treatment2_name}}</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">{{treatment2_desc}}</p>
+          <div class="flex items-baseline gap-2"><span class="text-[#2E7D5E] font-bold text-lg">{{treatment2_price}}</span><span class="text-gray-400 text-xs">/ {{treatment2_time}}</span></div>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-green-100 card-hover">
+        <div class="aspect-[4/3] overflow-hidden">
+          <img src="{{treatment3_image}}" alt="{{treatment3_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+        </div>
+        <div class="p-7">
+          <h3 class="font-serif text-xl text-[#1A5C44] mb-2">{{treatment3_name}}</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">{{treatment3_desc}}</p>
+          <div class="flex items-baseline gap-2"><span class="text-[#2E7D5E] font-bold text-lg">{{treatment3_price}}</span><span class="text-gray-400 text-xs">/ {{treatment3_time}}</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="py-20 bg-[#2E7D5E] text-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="text-[.65rem] tracking-[.18em] uppercase text-green-200 mb-3">Why Choose Us</p>
+      <h2 class="font-serif text-4xl">{{feature_heading}}</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-10 text-center">
+      <div>
+        <div class="text-5xl mb-5">{{feature1_icon}}</div>
+        <h3 class="font-bold text-base mb-3">{{feature1_title}}</h3>
+        <p class="text-white/65 text-xs leading-relaxed">{{feature1_desc}}</p>
+      </div>
+      <div>
+        <div class="text-5xl mb-5">{{feature2_icon}}</div>
+        <h3 class="font-bold text-base mb-3">{{feature2_title}}</h3>
+        <p class="text-white/65 text-xs leading-relaxed">{{feature2_desc}}</p>
+      </div>
+      <div>
+        <div class="text-5xl mb-5">{{feature3_icon}}</div>
+        <h3 class="font-bold text-base mb-3">{{feature3_title}}</h3>
+        <p class="text-white/65 text-xs leading-relaxed">{{feature3_desc}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THERAPIST -->
+<section id="therapist" class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Therapist</p>
+      <h2 class="font-serif text-4xl text-[#1A5C44]">施術者紹介</h2>
+    </div>
+    <div class="flex flex-col md:flex-row gap-12 items-center">
+      <div class="w-full md:w-64 shrink-0">
+        <div class="aspect-square rounded-3xl overflow-hidden shadow-lg">
+          <img src="{{therapist_image}}" alt="{{therapist_name}}" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+      <div>
+        <p class="section-label mb-2">{{therapist_title}}</p>
+        <h3 class="font-serif text-3xl text-[#1A5C44] mb-5">{{therapist_name}}</h3>
+        <p class="text-gray-600 leading-loose text-sm mb-6">{{therapist_bio}}</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-[#E8F5EF] text-[#2E7D5E] text-xs px-3 py-1 rounded-full">{{therapist_cert1}}</span>
+          <span class="bg-[#E8F5EF] text-[#2E7D5E] text-xs px-3 py-1 rounded-full">{{therapist_cert2}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="py-20 bg-[#E8F5EF]">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Flow</p>
+      <h2 class="font-serif text-4xl text-[#1A5C44]">ご来院の流れ</h2>
+    </div>
+    <div class="space-y-6">
+      <div class="flex gap-5 items-start bg-white rounded-2xl p-5 shadow-sm"><div class="w-10 h-10 shrink-0 bg-[#2E7D5E] rounded-full flex items-center justify-center font-bold text-white text-sm">1</div><div><h3 class="font-bold text-[#1A5C44] mb-1">{{flow1_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow1_desc}}</p></div></div>
+      <div class="flex gap-5 items-start bg-white rounded-2xl p-5 shadow-sm"><div class="w-10 h-10 shrink-0 bg-[#2E7D5E] rounded-full flex items-center justify-center font-bold text-white text-sm">2</div><div><h3 class="font-bold text-[#1A5C44] mb-1">{{flow2_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow2_desc}}</p></div></div>
+      <div class="flex gap-5 items-start bg-white rounded-2xl p-5 shadow-sm"><div class="w-10 h-10 shrink-0 bg-[#2E7D5E] rounded-full flex items-center justify-center font-bold text-white text-sm">3</div><div><h3 class="font-bold text-[#1A5C44] mb-1">{{flow3_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow3_desc}}</p></div></div>
+      <div class="flex gap-5 items-start bg-white rounded-2xl p-5 shadow-sm"><div class="w-10 h-10 shrink-0 bg-[#2E7D5E] rounded-full flex items-center justify-center font-bold text-white text-sm">4</div><div><h3 class="font-bold text-[#1A5C44] mb-1">{{flow4_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow4_desc}}</p></div></div>
+      <div class="flex gap-5 items-start bg-white rounded-2xl p-5 shadow-sm"><div class="w-10 h-10 shrink-0 bg-[#2E7D5E] rounded-full flex items-center justify-center font-bold text-white text-sm">5</div><div><h3 class="font-bold text-[#1A5C44] mb-1">{{flow5_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow5_desc}}</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Voice</p>
+      <h2 class="font-serif text-4xl text-[#1A5C44]">患者様の声</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="border border-green-100 rounded-2xl p-7">
+        <p class="text-[#2E7D5E] text-lg tracking-wide mb-4">★★★★★</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">{{voice1_text}}</p>
+        <p class="text-xs text-gray-400">{{voice1_name}} 様・{{voice1_age}}</p>
+      </div>
+      <div class="border border-green-100 rounded-2xl p-7">
+        <p class="text-[#2E7D5E] text-lg tracking-wide mb-4">★★★★★</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">{{voice2_text}}</p>
+        <p class="text-xs text-gray-400">{{voice2_name}} 様・{{voice2_age}}</p>
+      </div>
+      <div class="border border-green-100 rounded-2xl p-7">
+        <p class="text-[#2E7D5E] text-lg tracking-wide mb-4">★★★★★</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">{{voice3_text}}</p>
+        <p class="text-xs text-gray-400">{{voice3_name}} 様・{{voice3_age}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access" class="py-20 bg-[#E8F5EF]">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Access</p>
+      <h2 class="font-serif text-4xl text-[#1A5C44]">アクセス・診療時間</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10 items-start">
+      <div class="bg-white rounded-2xl p-6 shadow-sm">
+        <table class="w-full text-sm">
+          <tbody class="divide-y divide-gray-100">
+            <tr><td class="py-3.5 text-[#2E7D5E] font-medium w-24 align-top">院名</td><td class="py-3.5 text-gray-700">{{shop_name}}</td></tr>
+            <tr><td class="py-3.5 text-[#2E7D5E] font-medium align-top">住所</td><td class="py-3.5 text-gray-700">{{address}}</td></tr>
+            <tr><td class="py-3.5 text-[#2E7D5E] font-medium align-top">電話</td><td class="py-3.5 text-gray-700"><a href="tel:{{tel}}" class="hover:text-[#2E7D5E]">{{tel}}</a></td></tr>
+            <tr><td class="py-3.5 text-[#2E7D5E] font-medium align-top">診療時間</td><td class="py-3.5 text-gray-700">{{hours}}</td></tr>
+            <tr><td class="py-3.5 text-[#2E7D5E] font-medium align-top">休診日</td><td class="py-3.5 text-gray-700">{{closed}}</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="h-64 rounded-2xl overflow-hidden shadow-sm">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7!2d139.6980!3d35.6598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM5JzM1IiAxMznCsDQxJzUzIkU!5e0!3m2!1sja!2sjp!4v1700000000" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section id="reserve" class="py-20 bg-[#2E7D5E] text-white text-center">
+  <div class="max-w-xl mx-auto px-6">
+    <p class="text-[.65rem] tracking-[.18em] uppercase text-green-200 mb-3">Reserve</p>
+    <h2 class="font-serif text-5xl mb-5">ご予約・お問い合わせ</h2>
+    <p class="text-white/75 text-sm mb-10 leading-relaxed">お電話またはLINEにて24時間受付中。<br>初回はカウンセリング無料です。</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="https://line.me/R/ti/p/@{{line_id}}" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-8 py-4 rounded-full text-sm font-medium transition">LINE で予約する</a>
+      <a href="tel:{{tel}}" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-full text-sm font-medium transition">{{tel}}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#1A5C44] text-white/55 py-10">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="font-serif text-xl text-white mb-1">{{shop_name}}</p>
+    <p class="text-xs mb-6">{{address}}</p>
+    <div class="flex justify-center gap-8 text-xs mb-6">
+      <a href="#treatment" class="hover:text-white transition">施術メニュー</a>
+      <a href="#therapist" class="hover:text-white transition">施術者</a>
+      <a href="#access" class="hover:text-white transition">アクセス</a>
+      <a href="#reserve" class="hover:text-white transition">ご予約</a>
+    </div>
+    <p class="text-xs">© 2025 {{shop_name}}. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- FIXED CTA BAR (mobile) -->
+<div class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden shadow-lg">
+  <a href="https://line.me/R/ti/p/@{{line_id}}" class="flex-1 flex items-center justify-center bg-[#06C755] text-white py-4 text-sm font-medium">LINE 予約</a>
+  <a href="tel:{{tel}}" class="flex-1 flex items-center justify-center bg-[#2E7D5E] text-white py-4 text-sm font-medium">電話する</a>
+</div>
+
+</body>
+</html>

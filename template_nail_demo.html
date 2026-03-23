@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nail atelier miel | 爪先から、自分を好きになる。</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root { --rose:#D4718A; --rose-lt:#FDF0F3; --rose-dk:#B85478; --pink-pale:#FBE8ED; }
+    body { font-family:'Noto Sans JP',sans-serif; background:#fff; padding-bottom:56px; }
+    .font-disp { font-family:'Cormorant Garamond',serif; }
+    .section-label { font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:var(--rose); }
+    .card-hover { transition:box-shadow .3s,transform .3s; }
+    .card-hover:hover { box-shadow:0 12px 32px rgba(212,113,138,.15); transform:translateY(-2px); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-sm border-b border-pink-100">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div>
+      <div class="font-disp text-2xl text-[#B85478]">nail atelier miel</div>
+      <div class="text-[10px] tracking-[.2em] text-[#D4718A]">nail atelier miel</div>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#menu" class="text-xs tracking-widest text-gray-500 hover:text-[#D4718A] transition">メニュー</a>
+      <a href="#gallery" class="text-xs tracking-widest text-gray-500 hover:text-[#D4718A] transition">ギャラリー</a>
+      <a href="#access" class="text-xs tracking-widest text-gray-500 hover:text-[#D4718A] transition">アクセス</a>
+      <a href="#reserve" class="bg-[#D4718A] hover:bg-[#B85478] text-white text-xs tracking-widest px-5 py-2.5 rounded-full transition">ご予約</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="top" class="relative h-screen flex items-end pb-24">
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.pexels.com/photos/3997390/pexels-photo-3997390.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+  <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-8 text-white">
+    <p class="font-disp italic text-xl mb-2 text-[#F0AABA]">nail atelier miel</p>
+    <h1 class="font-disp text-6xl md:text-8xl font-semibold mb-4 leading-tight">nail atelier miel</h1>
+    <p class="text-base md:text-lg mb-8 text-white/85 max-w-md">爪先から、自分を好きになる。</p>
+    <div class="flex flex-wrap gap-4">
+      <a href="#reserve" class="bg-[#D4718A] hover:bg-[#B85478] text-white px-8 py-3.5 rounded-full text-sm tracking-wide transition">ご予約はこちら</a>
+      <a href="#menu" class="border border-white/60 hover:bg-white/10 text-white px-8 py-3.5 rounded-full text-sm tracking-wide transition">メニューを見る</a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section class="py-12 bg-[#FDF0F3]">
+  <div class="max-w-3xl mx-auto px-6">
+    <p class="section-label mb-5">News</p>
+    <div class="divide-y divide-pink-100 bg-white rounded-2xl px-6">
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#D4718A] w-28 shrink-0 font-light">2025.03.01</span><span class="text-gray-700">春のデザインカタログを更新しました</span></div>
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#D4718A] w-28 shrink-0 font-light">2025.02.05</span><span class="text-gray-700">ホワイトデー限定ネイルデザイン受付中</span></div>
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#D4718A] w-28 shrink-0 font-light">2025.01.15</span><span class="text-gray-700">3月の予約受付を開始しました（残りわずか）</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Menu</p>
+      <h2 class="font-disp text-5xl text-[#B85478]">メニュー</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="rounded-2xl overflow-hidden border border-pink-100 card-hover">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://images.pexels.com/photos/5871831/pexels-photo-5871831.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ジェルネイル" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+        </div>
+        <div class="p-7">
+          <h3 class="font-disp text-2xl text-[#B85478] mb-2">ジェルネイル</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">持ちが良く美しい仕上がり。豊富なカラーとデザインからお選びいただけます。</p>
+          <div class="flex items-baseline gap-2"><span class="text-[#D4718A] font-bold">¥8,800〜</span><span class="text-gray-400 text-xs">/ 90分〜</span></div>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-pink-100 card-hover">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://images.pexels.com/photos/6429663/pexels-photo-6429663.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ネイルアート" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+        </div>
+        <div class="p-7">
+          <h3 class="font-disp text-2xl text-[#B85478] mb-2">ネイルアート</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">繊細なアートからトレンドデザインまで。お客様の「なりたいイメージ」を形に。</p>
+          <div class="flex items-baseline gap-2"><span class="text-[#D4718A] font-bold">¥11,000〜</span><span class="text-gray-400 text-xs">/ 120分〜</span></div>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden border border-pink-100 card-hover">
+        <div class="aspect-square overflow-hidden">
+          <img src="https://images.pexels.com/photos/3997384/pexels-photo-3997384.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ハンドケア" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+        </div>
+        <div class="p-7">
+          <h3 class="font-disp text-2xl text-[#B85478] mb-2">ハンドケア</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">甘皮ケア・保湿・爪の形整えを丁寧に。素のままで美しい手元を目指します。</p>
+          <div class="flex items-baseline gap-2"><span class="text-[#D4718A] font-bold">¥4,400</span><span class="text-gray-400 text-xs">/ 45分</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="py-20 bg-[#FDF0F3]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Gallery</p>
+      <h2 class="font-disp text-5xl text-[#B85478]">ネイルギャラリー</h2>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+      <div class="aspect-square rounded-xl overflow-hidden"><img src="https://images.pexels.com/photos/5871831/pexels-photo-5871831.jpeg?auto=compress&cs=tinysrgb&w=800" alt="nail gallery" class="w-full h-full object-cover hover:scale-105 transition duration-700"></div>
+      <div class="aspect-square rounded-xl overflow-hidden"><img src="https://images.pexels.com/photos/6429663/pexels-photo-6429663.jpeg?auto=compress&cs=tinysrgb&w=800" alt="nail gallery" class="w-full h-full object-cover hover:scale-105 transition duration-700"></div>
+      <div class="aspect-square rounded-xl overflow-hidden"><img src="https://images.pexels.com/photos/3997384/pexels-photo-3997384.jpeg?auto=compress&cs=tinysrgb&w=800" alt="nail gallery" class="w-full h-full object-cover hover:scale-105 transition duration-700"></div>
+      <div class="aspect-square rounded-xl overflow-hidden"><img src="https://images.pexels.com/photos/3997390/pexels-photo-3997390.jpeg?auto=compress&cs=tinysrgb&w=800" alt="nail gallery" class="w-full h-full object-cover hover:scale-105 transition duration-700"></div>
+      <div class="aspect-square rounded-xl overflow-hidden"><img src="https://images.pexels.com/photos/4051843/pexels-photo-4051843.jpeg?auto=compress&cs=tinysrgb&w=800" alt="nail gallery" class="w-full h-full object-cover hover:scale-105 transition duration-700"></div>
+      <div class="aspect-square rounded-xl overflow-hidden"><img src="https://images.pexels.com/photos/4735139/pexels-photo-4735139.jpeg?auto=compress&cs=tinysrgb&w=800" alt="nail gallery" class="w-full h-full object-cover hover:scale-105 transition duration-700"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="py-20 bg-[#D4718A] text-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="text-[.65rem] tracking-[.18em] uppercase text-[#F7C5D0] mb-3">Our Promise</p>
+      <h2 class="font-disp text-5xl">nail atelier miel のこだわり</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-12 text-center">
+      <div>
+        <div class="text-5xl mb-5">💅</div>
+        <h3 class="font-medium text-base mb-3">お客様一人ひとりに寄り添うデザイン</h3>
+        <p class="text-white/65 text-xs leading-relaxed">ライフスタイルや職場環境に合わせた、「その人らしい」デザインをご提案します。</p>
+      </div>
+      <div>
+        <div class="text-5xl mb-5">✨</div>
+        <h3 class="font-medium text-base mb-3">最高品質のジェル材料</h3>
+        <p class="text-white/65 text-xs leading-relaxed">肌に優しく持ちが良い、国内外の高品質ジェルのみを使用しています。</p>
+      </div>
+      <div>
+        <div class="text-5xl mb-5">🛡️</div>
+        <h3 class="font-medium text-base mb-3">徹底した衛生管理</h3>
+        <p class="text-white/65 text-xs leading-relaxed">使い捨て用品の使用・器具の高圧滅菌処理で安心・清潔な環境を維持。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NAIL ARTIST -->
+<section class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Nail Artist</p>
+      <h2 class="font-disp text-5xl text-[#B85478]">ネイリスト紹介</h2>
+    </div>
+    <div class="flex flex-col md:flex-row gap-12 items-center">
+      <div class="w-full md:w-64 shrink-0">
+        <div class="aspect-square rounded-3xl overflow-hidden shadow-lg">
+          <img src="https://images.pexels.com/photos/3998469/pexels-photo-3998469.jpeg?auto=compress&cs=tinysrgb&w=800" alt="木村 さくら" class="w-full h-full object-cover object-top">
+        </div>
+      </div>
+      <div>
+        <p class="section-label mb-2">オーナーネイリスト</p>
+        <h3 class="font-disp text-4xl text-[#B85478] mb-5">木村 さくら</h3>
+        <p class="text-gray-600 leading-loose text-sm mb-6">ネイルスクール卒業後、都内有名サロンで5年間勤務。「お客様の爪の悩みに全力で向き合う」をモットーに独立。繊細なアートと丁寧なケアが好評で、多くのリピーターに恵まれています。</p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-[#FDF0F3] text-[#D4718A] text-xs px-3 py-1 rounded-full">JNECネイリスト技能検定1級</span>
+          <span class="bg-[#FDF0F3] text-[#D4718A] text-xs px-3 py-1 rounded-full">ジェルネイル技能検定上級</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="py-20 bg-[#FDF0F3]">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Voice</p>
+      <h2 class="font-disp text-5xl text-[#B85478]">お客様の声</h2>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-2xl p-7 shadow-sm">
+        <p class="text-[#D4718A] text-lg tracking-wide mb-4">★★★★★</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">繊細なアートが得意なサロンです。希望を伝えると想像以上のデザインに仕上げてくれます。絶対また来ます！</p>
+        <p class="text-xs text-gray-400">R.T 様</p>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-sm">
+        <p class="text-[#D4718A] text-lg tracking-wide mb-4">★★★★★</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">爪が薄くて他のサロンで断られた経験があったのですが、ここでは丁寧に対応してもらえました。本当に感謝です。</p>
+        <p class="text-xs text-gray-400">M.K 様</p>
+      </div>
+      <div class="bg-white rounded-2xl p-7 shadow-sm">
+        <p class="text-[#D4718A] text-lg tracking-wide mb-4">★★★★★</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">毎月通っています。施術中の会話も楽しくて、来るたびリフレッシュできます。ケアも丁寧で爪が健康になりました。</p>
+        <p class="text-xs text-gray-400">Y.O 様</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access" class="py-20 bg-white">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-14">
+      <p class="section-label mb-3">Access</p>
+      <h2 class="font-disp text-5xl text-[#B85478]">アクセス</h2>
+    </div>
+    <div class="grid md:grid-cols-2 gap-10 items-start">
+      <table class="w-full text-sm">
+        <tbody class="divide-y divide-gray-100">
+          <tr><td class="py-4 text-[#D4718A] font-medium w-24 align-top">店名</td><td class="py-4 text-gray-700">nail atelier miel</td></tr>
+          <tr><td class="py-4 text-[#D4718A] font-medium align-top">住所</td><td class="py-4 text-gray-700">東京都渋谷区神宮前3-7-2 プレミアビル 2F</td></tr>
+          <tr><td class="py-4 text-[#D4718A] font-medium align-top">電話</td><td class="py-4 text-gray-700"><a href="tel:03-4567-8901" class="hover:text-[#D4718A]">03-4567-8901</a></td></tr>
+          <tr><td class="py-4 text-[#D4718A] font-medium align-top">営業時間</td><td class="py-4 text-gray-700">10:00〜19:00（最終受付 18:00）</td></tr>
+          <tr><td class="py-4 text-[#D4718A] font-medium align-top">定休日</td><td class="py-4 text-gray-700">月曜日</td></tr>
+        </tbody>
+      </table>
+      <div class="h-64 rounded-2xl overflow-hidden shadow-sm">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.7!2d139.6980!3d35.6598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM5JzM1IiAxMznCsDQxJzUzIkU!5e0!3m2!1sja!2sjp!4v1700000000" width="100%" height="100%" style="border:0" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section id="reserve" class="py-20 bg-[#D4718A] text-white text-center">
+  <div class="max-w-xl mx-auto px-6">
+    <p class="text-[.65rem] tracking-[.18em] uppercase text-[#F7C5D0] mb-3">Reserve</p>
+    <h2 class="font-disp text-5xl mb-5">ご予約・お問い合わせ</h2>
+    <p class="text-white/75 text-sm mb-10 leading-relaxed">LINEまたはInstagramのDMよりご予約を承っております。<br>お気軽にご連絡ください。</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="https://line.me/R/ti/p/@nail_miel" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-8 py-4 rounded-full text-sm font-medium transition">LINE で予約する</a>
+      <a href="https://instagram.com/nail_atelier_miel" class="flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-8 py-4 rounded-full text-sm font-medium transition">Instagram DM</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-[#B85478] text-white/55 py-10">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <p class="font-disp text-2xl text-white mb-1">nail atelier miel</p>
+    <p class="text-xs mb-6">東京都渋谷区神宮前3-7-2 プレミアビル 2F</p>
+    <div class="flex justify-center gap-8 text-xs mb-6">
+      <a href="#menu" class="hover:text-white transition">メニュー</a>
+      <a href="#gallery" class="hover:text-white transition">ギャラリー</a>
+      <a href="#access" class="hover:text-white transition">アクセス</a>
+      <a href="#reserve" class="hover:text-white transition">ご予約</a>
+    </div>
+    <p class="text-xs">© 2025 nail atelier miel. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- FIXED CTA BAR (mobile) -->
+<div class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden shadow-lg">
+  <a href="https://line.me/R/ti/p/@nail_miel" class="flex-1 flex items-center justify-center bg-[#06C755] text-white py-4 text-sm font-medium">LINE 予約</a>
+  <a href="https://instagram.com/nail_atelier_miel" class="flex-1 flex items-center justify-center bg-[#D4718A] text-white py-4 text-sm font-medium">Instagram</a>
+</div>
+
+</body>
+</html>
