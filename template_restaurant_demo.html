@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>旬 -SHUN- | 渋谷 創作和食</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold:    #c9a84c;
+      --gold-lt: #e2c97e;
+      --gold-dk: #9a7a2e;
+      --black:   #0a0a0a;
+      --dark:    #1a1a1a;
+      --gray:    #555555;
+      --light:   #f7f5f2;
+      --white:   #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .serif     { font-family: 'Noto Serif JP', serif; }
+    .cormorant { font-family: 'Cormorant Garamond', serif; }
+
+    .section-en {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11px;
+      letter-spacing: 0.4em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      line-height: 1.4;
+    }
+    .section-title.on-dark { color: #fff; }
+
+    .gold-line {
+      width: 40px; height: 1px;
+      background: var(--gold);
+      margin: 20px auto 48px;
+    }
+    .gold-line.left { margin-left: 0; }
+
+    .c { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    @media (max-width: 768px) { .c { padding: 0 20px; } }
+
+    #header {
+      position: fixed; inset: 0 0 auto; z-index: 100;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    #header.is-top    { background: transparent; }
+    #header.is-scroll {
+      background: rgba(10,10,10,0.96);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 1px 0 rgba(201,168,76,0.18);
+    }
+    .header-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 68px; gap: 16px;
+    }
+    .logo-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(16px, 2vw, 24px); font-weight: 300;
+      color: #fff; letter-spacing: 0.2em; text-decoration: none;
+      word-break: break-word; line-height: 1.2;
+      max-width: clamp(160px, 30vw, 320px); flex-shrink: 0;
+    }
+    .header-nav { display: flex; align-items: center; gap: 28px; }
+    .header-nav a {
+      font-size: 10px; letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      white-space: nowrap; transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--gold); }
+    .btn-reserve-hd {
+      font-size: 10px; letter-spacing: 0.25em; color: var(--gold);
+      border: 1px solid var(--gold); padding: 10px 22px;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.3s, color 0.3s; flex-shrink: 0;
+    }
+    .btn-reserve-hd:hover { background: var(--gold); color: #000; }
+    #hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      align-items: center; gap: 5px; width: 30px; height: 30px;
+      background: none; border: none; cursor: pointer; padding: 0; flex-shrink: 0;
+    }
+    #hamburger span { width: 22px; height: 1px; background: #fff; display: block; transition: transform 0.3s, opacity 0.3s; }
+
+    #mobile-nav {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,10,10,0.98); flex-direction: column;
+      overflow-y: auto; opacity: 0; transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none;
+    }
+    #mobile-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .mnav-link {
+      display: block; padding: 18px 24px; font-size: 12px; letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.05); transition: color 0.2s, background 0.2s;
+    }
+    .mnav-link:hover { color: var(--gold); }
+
+    #hero {
+      position: relative; height: 100vh; min-height: 600px;
+      display: flex; align-items: center; justify-content: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.pexels.com/photos/2816967/pexels-photo-2816967.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
+      background-color: #1a1a1a;
+    }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.58); }
+    .hero-content { position: relative; z-index: 1; text-align: center; padding: 0 24px; }
+    .hero-scroll-line {
+      width: 1px; height: 80px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.8), transparent);
+      margin: 0 auto 24px;
+    }
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 8vw, 96px); font-weight: 300; color: #fff;
+      letter-spacing: 0.35em; line-height: 1; margin-bottom: 20px; word-break: break-word;
+    }
+    .hero-catch {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(13px, 1.4vw, 17px); font-weight: 300;
+      color: rgba(255,255,255,0.7); letter-spacing: 0.25em; margin-bottom: 48px; line-height: 1.9;
+    }
+    .btn-hero {
+      display: inline-block; font-size: 10px; letter-spacing: 0.3em; color: var(--gold);
+      border: 1px solid var(--gold); padding: 14px 40px; text-decoration: none;
+      transition: background 0.3s, color 0.3s;
+    }
+    .btn-hero:hover { background: var(--gold); color: #000; }
+    .scroll-indicator {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .scroll-indicator span {
+      font-family: 'Cormorant Garamond', serif; font-size: 9px;
+      letter-spacing: 0.35em; color: rgba(255,255,255,0.45);
+    }
+
+    #news { background: var(--light); padding: 88px 0; }
+    .news-row {
+      display: flex; align-items: baseline; gap: 20px; padding: 22px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07); flex-wrap: wrap;
+    }
+    .news-date { font-family: 'Cormorant Garamond', serif; font-size: 14px; letter-spacing: 0.08em; color: var(--gray); white-space: nowrap; }
+    .news-cat { font-size: 9px; letter-spacing: 0.2em; color: var(--gold); border: 1px solid var(--gold); padding: 3px 10px; white-space: nowrap; flex-shrink: 0; }
+    .news-ttl { font-size: 14px; color: var(--dark); letter-spacing: 0.06em; line-height: 1.7; }
+
+    #dishes { background: var(--black); padding: 100px 0; }
+    .dish-card {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+      padding: 60px 0; border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .dish-card:last-child { border-bottom: none; }
+    .dish-card.reverse { direction: rtl; }
+    .dish-card.reverse > * { direction: ltr; }
+    @media (max-width: 768px) { .dish-card { grid-template-columns: 1fr; gap: 32px; } .dish-card.reverse { direction: ltr; } }
+    .dish-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .dish-num { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.35em; color: var(--gold); margin-bottom: 20px; }
+    .dish-name { font-family: 'Noto Serif JP', serif; font-size: clamp(20px, 2.5vw, 28px); font-weight: 400; color: #fff; letter-spacing: 0.1em; margin-bottom: 8px; line-height: 1.5; }
+    .dish-name-en { font-family: 'Cormorant Garamond', serif; font-size: 13px; font-style: italic; color: rgba(255,255,255,0.35); letter-spacing: 0.1em; margin-bottom: 28px; }
+    .dish-divider { width: 32px; height: 1px; background: var(--gold); margin-bottom: 28px; }
+    .dish-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 2.1; letter-spacing: 0.07em; margin-bottom: 28px; }
+    .dish-price { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 300; color: var(--gold); letter-spacing: 0.05em; }
+    .dish-price-sub { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 4px; letter-spacing: 0.1em; }
+
+    #gallery { background: var(--light); padding: 100px 0; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    @media (max-width: 768px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+    .gallery-item { overflow: hidden; cursor: default; }
+    .gallery-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.7s ease; }
+    .gallery-item:hover .gallery-img { transform: scale(1.05); }
+    .gallery-caption { font-size: 12px; color: var(--gray); letter-spacing: 0.1em; padding: 12px 0 4px; }
+
+    #reserve { background: var(--white); padding: 88px 0; }
+    #instagram { background: var(--light); padding: 88px 0; }
+
+    #testimonials { background: var(--black); padding: 100px 0; }
+    .voice-card { border-top: 1px solid rgba(201,168,76,0.25); padding-top: 36px; }
+    .voice-stars { font-size: 13px; letter-spacing: 5px; color: var(--gold); margin-bottom: 20px; }
+    .voice-text { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.78); line-height: 2.1; letter-spacing: 0.08em; margin-bottom: 20px; }
+    .voice-author { font-size: 11px; color: var(--gold); letter-spacing: 0.18em; }
+
+    #access { background: var(--white); padding: 100px 0; }
+    .info-lbl { font-size: 9px; letter-spacing: 0.28em; color: var(--gold); margin-bottom: 8px; }
+    .info-val { font-size: 15px; color: var(--dark); line-height: 1.75; letter-spacing: 0.05em; }
+    .map-wrap { width: 100%; height: 420px; overflow: hidden; }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+    @media (max-width: 768px) { .map-wrap { height: 280px; } }
+
+    #contact { background: var(--light); padding: 100px 0; }
+    .form-field { margin-bottom: 28px; }
+    .form-lbl { display: block; font-size: 10px; letter-spacing: 0.2em; color: var(--gray); margin-bottom: 10px; }
+    .form-ctrl { width: 100%; border: none; border-bottom: 1px solid #ccc; background: transparent; padding: 12px 0; font-size: 15px; font-family: 'Noto Sans JP', sans-serif; color: var(--dark); outline: none; -webkit-appearance: none; transition: border-color 0.3s; }
+    .form-ctrl:focus { border-color: var(--gold); }
+    textarea.form-ctrl { resize: vertical; min-height: 100px; }
+    .btn-submit { display: inline-flex; align-items: center; gap: 14px; background: var(--gold); color: #000; font-size: 11px; letter-spacing: 0.3em; padding: 18px 52px; border: none; cursor: pointer; font-family: 'Noto Sans JP', sans-serif; transition: background 0.3s; }
+    .btn-submit:hover { background: var(--gold-dk); }
+
+    #commitment { background: var(--black); padding: 100px 0; }
+    .commitment-card { border-left: 1px solid rgba(201,168,76,0.4); padding: 8px 0 8px 32px; transition: border-color 0.3s; }
+    .commitment-card:hover { border-color: var(--gold); }
+    .commitment-num { font-family: 'Cormorant Garamond', serif; font-size: 11px; letter-spacing: 0.35em; color: var(--gold); margin-bottom: 16px; }
+    .commitment-title { font-family: 'Noto Serif JP', serif; font-size: 18px; font-weight: 400; color: #fff; letter-spacing: 0.1em; margin-bottom: 16px; }
+    .commitment-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 2; letter-spacing: 0.06em; }
+
+    #footer { background: var(--black); padding: 72px 0 96px; }
+    .footer-logo-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(22px, 3vw, 32px); font-weight: 300; color: #fff; letter-spacing: 0.3em; text-decoration: none; word-break: break-word; }
+    .footer-nav a { font-size: 9px; letter-spacing: 0.25em; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--gold); }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 0.1em; }
+
+    #cta-bar { position: fixed; bottom: 0; left: 0; right: 0; z-index: 99; display: flex; transform: translateY(100%); transition: transform 0.4s ease; }
+    #cta-bar.show { transform: translateY(0); }
+    .cta-tel { flex: 1; background: var(--dark); border-top: 1px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px; text-decoration: none; transition: background 0.2s; }
+    .cta-tel:hover { background: #2a2a2a; }
+    .cta-book { flex: 1; background: var(--gold); display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px; text-decoration: none; transition: background 0.2s; }
+    .cta-book:hover { background: var(--gold-dk); }
+
+    .fi { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fi.on { opacity: 1; transform: translateY(0); }
+    .fi-d1 { transition-delay: 0.1s; }
+    .fi-d2 { transition-delay: 0.2s; }
+    .fi-d3 { transition-delay: 0.3s; }
+
+    @media (max-width: 768px) {
+      .header-nav { display: none !important; }
+      .btn-reserve-hd { display: none !important; }
+      #hamburger { display: flex !important; }
+      .hero-name { letter-spacing: 0.15em; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header" class="is-top">
+  <div class="c header-inner">
+    <a href="#" class="logo-text">旬 -SHUN-</a>
+    <nav class="header-nav">
+      <a href="#dishes">MENU</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#reserve">RESERVE</a>
+      <a href="#instagram">INSTAGRAM</a>
+      <a href="#access">ACCESS</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="#reserve" class="btn-reserve-hd">RESERVE</a>
+      <button id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobile-nav">
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:68px; border-bottom:1px solid rgba(255,255,255,0.05); flex-shrink:0;">
+    <span class="logo-text" style="font-size:clamp(14px,4vw,20px);">旬 -SHUN-</span>
+    <button id="mnav-close" aria-label="閉じる" style="width:30px;height:30px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="18" height="18" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav style="flex:1; padding:16px 0;">
+    <a href="#news"         class="mnav-link">NEWS</a>
+    <a href="#dishes"       class="mnav-link">SIGNATURE DISH</a>
+    <a href="#gallery"      class="mnav-link">GALLERY</a>
+    <a href="#reserve"      class="mnav-link">RESERVE / 予約</a>
+    <a href="#instagram"    class="mnav-link">INSTAGRAM</a>
+    <a href="#testimonials" class="mnav-link">VOICE</a>
+    <a href="#access"       class="mnav-link">ACCESS</a>
+    <a href="#contact"      class="mnav-link">CONTACT</a>
+  </nav>
+  <div style="padding:24px; flex-shrink:0;">
+    <a href="#reserve" class="btn-reserve-hd" style="display:block; text-align:center; padding:16px;">RESERVE</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-scroll-line"></div>
+    <h1 class="hero-name">旬 -SHUN-</h1>
+    <p class="hero-catch">季節の恵みを、一皿に。</p>
+    <a href="#reserve" class="btn-hero">RESERVE</a>
+  </div>
+  <div class="scroll-indicator">
+    <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(201,168,76,0.6),transparent);"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="c">
+    <div class="fi">
+      <span class="section-en">NEWS</span>
+      <h2 class="section-title">お知らせ</h2>
+      <div class="gold-line left"></div>
+    </div>
+    <div class="fi fi-d1">
+      <div class="news-row">
+        <span class="news-date">2025.12.01</span>
+        <span class="news-cat">NEW MENU</span>
+        <span class="news-ttl">冬の新メニューを公開しました。今季の食材を活かした限定コースをご用意しています。</span>
+      </div>
+      <div class="news-row">
+        <span class="news-date">2025.11.15</span>
+        <span class="news-cat">EVENT</span>
+        <span class="news-ttl">忘年会・新年会の個室ご予約受付中。少人数から20名様まで対応いたします。</span>
+      </div>
+      <div class="news-row">
+        <span class="news-date">2025.10.01</span>
+        <span class="news-cat">INFO</span>
+        <span class="news-ttl">食べログ「東京 和食 百名店」に選出されました。</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE DISH -->
+<section id="dishes">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">SIGNATURE DISH</span>
+      <h2 class="section-title on-dark">看板メニュー</h2>
+      <div class="gold-line"></div>
+    </div>
+
+    <div class="dish-card fi">
+      <img class="dish-img"
+        src="https://images.pexels.com/photos/2098143/pexels-photo-2098143.jpeg?auto=compress&cs=tinysrgb&w=800"
+        alt="天然真鯛の造り" loading="lazy">
+      <div>
+        <p class="dish-num">01</p>
+        <h3 class="dish-name">天然真鯛の造り</h3>
+        <p class="dish-name-en">Snapper Sashimi</p>
+        <div class="dish-divider"></div>
+        <p class="dish-desc">瀬戸内産の天然真鯛を薄切りにし、柚子胡椒と特製醤油で。脂の甘みと磯の香りが口いっぱいに広がる、当店の一番人気です。</p>
+        <p class="dish-price">¥2,200</p>
+        <p class="dish-price-sub">税込</p>
+      </div>
+    </div>
+
+    <div class="dish-card reverse fi">
+      <img class="dish-img"
+        src="https://images.pexels.com/photos/3535391/pexels-photo-3535391.jpeg?auto=compress&cs=tinysrgb&w=800"
+        alt="黒毛和牛の炭火焼き" loading="lazy">
+      <div>
+        <p class="dish-num">02</p>
+        <h3 class="dish-name">黒毛和牛の炭火焼き</h3>
+        <p class="dish-name-en">Wagyu Charcoal Grill</p>
+        <div class="dish-divider"></div>
+        <p class="dish-desc">厳選した黒毛和牛のサーロインを備長炭で丁寧に焼き上げます。山葵と粗塩でシンプルに。素材が持つ本来の旨みをそのままに。</p>
+        <p class="dish-price">¥4,800</p>
+        <p class="dish-price-sub">税込</p>
+      </div>
+    </div>
+
+    <div class="dish-card fi">
+      <img class="dish-img"
+        src="https://images.pexels.com/photos/884600/pexels-photo-884600.jpeg?auto=compress&cs=tinysrgb&w=800"
+        alt="季節野菜の天ぷら" loading="lazy">
+      <div>
+        <p class="dish-num">03</p>
+        <h3 class="dish-name">季節野菜の天ぷら盛り合わせ</h3>
+        <p class="dish-name-en">Seasonal Tempura</p>
+        <div class="dish-divider"></div>
+        <p class="dish-desc">契約農家から毎朝届く旬の野菜を、軽い衣でさっくりと揚げました。抹茶塩とともにお召し上がりください。季節ごとに内容が変わります。</p>
+        <p class="dish-price">¥1,800</p>
+        <p class="dish-price-sub">税込</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">GALLERY</span>
+      <h2 class="section-title">フォトギャラリー</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item fi fi-d1">
+        <img class="gallery-img" src="https://images.pexels.com/photos/67468/pexels-photo-67468.jpeg?auto=compress&cs=tinysrgb&w=800" alt="カウンター席" loading="lazy">
+        <p class="gallery-caption">カウンター席</p>
+      </div>
+      <div class="gallery-item fi fi-d2">
+        <img class="gallery-img" src="https://images.pexels.com/photos/1199957/pexels-photo-1199957.jpeg?auto=compress&cs=tinysrgb&w=800" alt="旬の食材" loading="lazy">
+        <p class="gallery-caption">旬の食材</p>
+      </div>
+      <div class="gallery-item fi fi-d3">
+        <img class="gallery-img" src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=800" alt="個室" loading="lazy">
+        <p class="gallery-caption">個室</p>
+      </div>
+      <div class="gallery-item fi fi-d1">
+        <img class="gallery-img" src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800" alt="季節のひと皿" loading="lazy">
+        <p class="gallery-caption">季節のひと皿</p>
+      </div>
+      <div class="gallery-item fi fi-d2">
+        <img class="gallery-img" src="https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=800" alt="日本酒セレクション" loading="lazy">
+        <p class="gallery-caption">日本酒セレクション</p>
+      </div>
+      <div class="gallery-item fi fi-d3">
+        <img class="gallery-img" src="https://images.pexels.com/photos/941861/pexels-photo-941861.jpeg?auto=compress&cs=tinysrgb&w=800" alt="店内" loading="lazy">
+        <p class="gallery-caption">店内</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section id="reserve">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">RESERVE</span>
+      <h2 class="section-title">ご予約</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="text-center fi" style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+      <a href="#" target="_blank" rel="noopener"
+        style="display:inline-flex; align-items:center; gap:12px; background:var(--dark); color:var(--gold); border:1px solid var(--gold); padding:18px 48px; font-size:11px; letter-spacing:0.3em; text-decoration:none; transition:background 0.3s, color 0.3s; width:fit-content;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+        ホットペッパーで予約する
+      </a>
+      <a href="#" target="_blank" rel="noopener"
+        style="display:inline-flex; align-items:center; gap:12px; background:var(--dark); color:var(--gold); border:1px solid rgba(201,168,76,0.4); padding:18px 48px; font-size:11px; letter-spacing:0.3em; text-decoration:none; transition:border-color 0.3s; width:fit-content;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        食べログで予約する
+      </a>
+      <a href="#" target="_blank" rel="noopener"
+        style="display:inline-flex; align-items:center; gap:12px; background:#06C755; color:#fff; padding:18px 48px; font-size:11px; letter-spacing:0.3em; text-decoration:none; transition:opacity 0.2s; width:fit-content;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.93 2 10.77c0 2.72 1.38 5.15 3.55 6.78-.15.54-.57 1.96-.65 2.27-.1.38.14.38.29.28.12-.08 1.96-1.3 2.76-1.83.62.09 1.26.14 1.91.14 5.52 0 10-3.93 10-8.77S17.52 2 12 2z"/></svg>
+        LINEで相談・予約する
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">INSTAGRAM</span>
+      <h2 class="section-title">インスタグラム</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="text-center fi">
+      <a href="#" target="_blank" rel="noopener"
+        style="display:inline-flex; align-items:center; gap:10px; color:var(--dark); font-size:13px; letter-spacing:0.2em; text-decoration:none; border:1px solid rgba(0,0,0,0.12); padding:14px 36px; transition:border-color 0.2s, color 0.2s;">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+        </svg>
+        @shun_shibuya
+      </a>
+      <p style="margin-top:20px; font-size:11px; color:var(--gray); letter-spacing:0.15em;">最新メニューや店内の様子はInstagramでチェック</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">VOICE</span>
+      <h2 class="section-title on-dark">お客様の声</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="voice-card fi fi-d1">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">食材の質の高さが一口でわかります。カウンターで料理人の仕事を間近で見ながら食べる体験が最高でした。季節ごとにまた来たいと思えるお店です。</p>
+        <p class="voice-author">— 30代 女性</p>
+      </div>
+      <div class="voice-card fi fi-d2">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">接待で利用しました。個室もあり、料理のクオリティも申し分なし。お酒のセレクトも素晴らしく、お客様にも大変喜んでいただけました。</p>
+        <p class="voice-author">— 40代 男性</p>
+      </div>
+      <div class="voice-card fi fi-d3">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">季節ごとにメニューが変わるので、何度来ても飽きません。日本酒のラインナップも充実していて、ついつい飲みすぎてしまいます（笑）。</p>
+        <p class="voice-author">— 30代 男性</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">ACCESS</span>
+      <h2 class="section-title">アクセス・営業時間</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 fi" style="margin-bottom:52px;">
+      <div style="display:flex; flex-direction:column; gap:32px;">
+        <div>
+          <p class="info-lbl">RESTAURANT NAME</p>
+          <p class="info-val">旬 -SHUN-</p>
+        </div>
+        <div>
+          <p class="info-lbl">ADDRESS</p>
+          <p class="info-val">東京都渋谷区神南1-12-3 渋谷STビル 3F<br>JR渋谷駅 ハチ公口より徒歩5分</p>
+        </div>
+        <div>
+          <p class="info-lbl">TEL</p>
+          <p class="info-val"><a href="tel:03-1234-5678" style="color:var(--dark);text-decoration:none;">03-1234-5678</a></p>
+        </div>
+        <div>
+          <p class="info-lbl">HOURS</p>
+          <p class="info-val">
+            ランチ　11:30 〜 14:00（L.O. 13:30）<br>
+            ディナー　18:00 〜 23:00（L.O. 22:00）
+          </p>
+        </div>
+        <div>
+          <p class="info-lbl">CLOSED</p>
+          <p class="info-val">月曜日定休（祝日の場合は翌火曜）</p>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.748023809469!2d139.69716!3d35.65918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca6f89f61e1%3A0x7d104bc70a37c9de!2z5riL6LC35Y2X!5e0!3m2!1sja!2sjp!4v1700000000000"
+          allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">CONTACT</span>
+      <h2 class="section-title">お問い合わせ</h2>
+      <div class="gold-line"></div>
+    </div>
+    <form style="max-width:640px; margin:0 auto;" class="fi">
+      <div class="form-field">
+        <label class="form-lbl">お名前</label>
+        <input type="text" class="form-ctrl" placeholder="山田 太郎">
+      </div>
+      <div class="form-field">
+        <label class="form-lbl">メールアドレス</label>
+        <input type="email" class="form-ctrl" placeholder="example@email.com">
+      </div>
+      <div class="form-field">
+        <label class="form-lbl">件名</label>
+        <input type="text" class="form-ctrl" placeholder="ご予約・お問い合わせ内容">
+      </div>
+      <div class="form-field">
+        <label class="form-lbl">メッセージ</label>
+        <textarea class="form-ctrl" placeholder="お気軽にご記入ください"></textarea>
+      </div>
+      <div class="text-center" style="margin-top:40px;">
+        <button type="submit" class="btn-submit">
+          SEND
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- COMMITMENT -->
+<section id="commitment">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-en">COMMITMENT</span>
+      <h2 class="section-title on-dark">私たちのこだわり</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div class="commitment-card fi fi-d1">
+        <p class="commitment-num">01</p>
+        <h3 class="commitment-title">産地直送の食材</h3>
+        <p class="commitment-desc">全国の契約農家・漁師から毎朝届く食材のみを使用します。鮮度と品質にこだわり、最高の状態でお届けします。</p>
+      </div>
+      <div class="commitment-card fi fi-d2">
+        <p class="commitment-num">02</p>
+        <h3 class="commitment-title">無添加・自家製</h3>
+        <p class="commitment-desc">タレや出汁はすべて自家製。添加物は一切使用しません。素材本来の味を最大限に引き出すシンプルな調理を心がけています。</p>
+      </div>
+      <div class="commitment-card fi fi-d3">
+        <p class="commitment-num">03</p>
+        <h3 class="commitment-title">季節を感じる一皿</h3>
+        <p class="commitment-desc">旬を超えた食材は使いません。季節の移ろいをお皿の上で表現し、来るたびに新しい発見があるお店でありたいと考えています。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="c">
+    <div class="text-center" style="margin-bottom:40px;">
+      <a href="#" class="footer-logo-text">旬 -SHUN-</a>
+      <div class="gold-line" style="margin:24px auto 32px;"></div>
+      <p style="font-size:12px; color:rgba(255,255,255,0.35); letter-spacing:0.08em; line-height:2.2;">
+        東京都渋谷区神南1-12-3 渋谷STビル 3F<br>
+        TEL: <a href="tel:03-1234-5678" style="color:rgba(255,255,255,0.35); text-decoration:none;">03-1234-5678</a>
+        &nbsp;／&nbsp;
+        <a href="mailto:info@shun-shibuya.jp" style="color:rgba(255,255,255,0.35); text-decoration:none;">info@shun-shibuya.jp</a>
+      </p>
+    </div>
+    <nav class="footer-nav flex justify-center gap-8 flex-wrap" style="margin-bottom:40px;">
+      <a href="#dishes">MENU</a>
+      <a href="#gallery">GALLERY</a>
+      <a href="#reserve">RESERVE</a>
+      <a href="#instagram">INSTAGRAM</a>
+      <a href="#testimonials">VOICE</a>
+      <a href="#access">ACCESS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+    <p class="footer-copy text-center">© 2025 旬 -SHUN-. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<!-- FIXED CTA BAR -->
+<div id="cta-bar">
+  <a href="tel:03-1234-5678" class="cta-tel">
+    <svg width="18" height="18" fill="none" stroke="var(--gold)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+    <div>
+      <div style="font-size:9px; color:rgba(255,255,255,0.45); letter-spacing:0.15em; line-height:1;">TEL</div>
+      <div style="font-family:'Cormorant Garamond',serif; font-size:17px; color:#fff; letter-spacing:0.06em; line-height:1.3;">03-1234-5678</div>
+    </div>
+  </a>
+  <a href="#reserve" class="cta-book">
+    <svg width="17" height="17" fill="none" stroke="#000" stroke-width="1.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+    <div>
+      <div style="font-size:9px; color:rgba(0,0,0,0.55); letter-spacing:0.15em; line-height:1;">WEB</div>
+      <div style="font-size:13px; font-weight:600; color:#000; letter-spacing:0.18em; line-height:1.3;">RESERVE</div>
+    </div>
+  </a>
+</div>
+
+<script>
+  const header = document.getElementById('header');
+  const ctaBar = document.getElementById('cta-bar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header.classList.remove('is-top');
+      header.classList.add('is-scroll');
+      ctaBar.classList.add('show');
+    } else {
+      header.classList.add('is-top');
+      header.classList.remove('is-scroll');
+      ctaBar.classList.remove('show');
+    }
+  }, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mnavClose = document.getElementById('mnav-close');
+  hamburger.addEventListener('click', () => {
+    mobileNav.style.display = 'flex';
+    requestAnimationFrame(() => mobileNav.classList.add('is-open'));
+  });
+  function closeMNav() {
+    mobileNav.classList.remove('is-open');
+    setTimeout(() => { mobileNav.style.display = 'none'; }, 300);
+  }
+  mnavClose.addEventListener('click', closeMNav);
+  mobileNav.querySelectorAll('.mnav-link, [href="#reserve"]').forEach(a => a.addEventListener('click', closeMNav));
+
+  const fiObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); fiObs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fi').forEach(el => fiObs.observe(el));
+</script>
+</body>
+</html>
