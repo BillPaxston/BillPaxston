@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{shop_name}} | {{shop_genre}}</title>
+  <title>ほぐし処 和らぎ | リラクゼーション・整体</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -115,7 +115,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('{{hero_image}}') center/cover no-repeat;
+      background: url('https://images.pexels.com/photos/3764568/pexels-photo-3764568.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
       background-color: #c8bfb0;
     }
     .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(20,16,12,0.48); }
@@ -336,8 +336,8 @@
 <header id="header" class="is-top">
   <div class="c header-inner">
     <a href="#" class="logo-wrap">
-      <span class="logo-name">{{shop_name}}</span>
-      <span class="logo-sub">{{shop_genre}}</span>
+      <span class="logo-name">ほぐし処 和らぎ</span>
+      <span class="logo-sub">リラクゼーション・整体</span>
     </a>
     <nav class="header-nav">
       <a href="#menu">メニュー</a>
@@ -357,7 +357,7 @@
 
 <div id="mobile-nav">
   <div style="display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:64px; border-bottom:1px solid var(--border); flex-shrink:0;">
-    <span class="logo-name">{{shop_name}}</span>
+    <span class="logo-name">ほぐし処 和らぎ</span>
     <button id="mnav-close" aria-label="閉じる" style="width:30px;height:30px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
       <svg width="18" height="18" fill="none" stroke="var(--gray)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
@@ -381,9 +381,11 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-label">{{shop_genre}}</p>
-    <h1 class="hero-title serif">{{hero_title}}</h1>
-    <p class="hero-sub">{{hero_sub}}</p>
+    <p class="hero-label">リラクゼーション・整体</p>
+    <h1 class="hero-title serif">心とからだを、
+ほぐす時間。</h1>
+    <p class="hero-sub">渋谷駅徒歩3分。経験豊富なセラピストが
+あなたの疲れに寄り添います。</p>
     <a href="#reserve" class="btn-hero">ご予約・メニューを見る</a>
   </div>
   <div class="scroll-indicator">
@@ -402,19 +404,19 @@
     </div>
     <div class="fi fi-d1">
       <div class="news-row">
-        <span class="news-date">{{news1_date}}</span>
-        <span class="news-cat">{{news1_cat}}</span>
-        <span class="news-ttl">{{news1_text}}</span>
+        <span class="news-date">2025.12.01</span>
+        <span class="news-cat">お知らせ</span>
+        <span class="news-ttl">年末年始の営業時間についてご案内します。12月31日〜1月2日は休業、1月3日より通常営業いたします。</span>
       </div>
       <div class="news-row">
-        <span class="news-date">{{news2_date}}</span>
-        <span class="news-cat">{{news2_cat}}</span>
-        <span class="news-ttl">{{news2_text}}</span>
+        <span class="news-date">2025.11.15</span>
+        <span class="news-cat">新メニュー</span>
+        <span class="news-ttl">冬の冷え対策に「温活フットバス＋リフレクソロジー」コースを新設しました。ご好評につき限定受付中です。</span>
       </div>
       <div class="news-row">
-        <span class="news-date">{{news3_date}}</span>
-        <span class="news-cat">{{news3_cat}}</span>
-        <span class="news-ttl">{{news3_text}}</span>
+        <span class="news-date">2025.10.01</span>
+        <span class="news-cat">キャンペーン</span>
+        <span class="news-ttl">初回限定20%OFFキャンペーン実施中。ご新規のお客様はLINEからご予約でさらにお得にご利用いただけます。</span>
       </div>
     </div>
   </div>
@@ -430,47 +432,47 @@
     </div>
     <div class="menu-grid">
       <div class="menu-card fi fi-d1">
-        <img class="menu-img" src="{{menu1_image}}" alt="{{menu1_name}}" loading="lazy">
+        <img class="menu-img" src="https://images.pexels.com/photos/6187638/pexels-photo-6187638.jpeg?auto=compress&cs=tinysrgb&w=800" alt="全身リラクゼーション" loading="lazy">
         <div class="menu-body">
           <p class="menu-num">01</p>
-          <h3 class="menu-name">{{menu1_name}}</h3>
-          <p class="menu-time">{{menu1_time}}</p>
-          <p class="menu-desc">{{menu1_desc}}</p>
-          <p class="menu-price">{{menu1_price}}</p>
-          <p class="menu-price-sub">税込 / {{menu1_time}}</p>
+          <h3 class="menu-name">全身リラクゼーション</h3>
+          <p class="menu-time">60分 / 90分 / 120分</p>
+          <p class="menu-desc">全身の筋肉のコリや緊張をほぐし、深いリラックスへと導きます。肩・腰・脚など気になる部位を重点的にケアできます。</p>
+          <p class="menu-price">¥5,500〜</p>
+          <p class="menu-price-sub">税込 / 60分 / 90分 / 120分</p>
         </div>
       </div>
       <div class="menu-card fi fi-d2">
-        <img class="menu-img" src="{{menu2_image}}" alt="{{menu2_name}}" loading="lazy">
+        <img class="menu-img" src="https://images.pexels.com/photos/3865615/pexels-photo-3865615.jpeg?auto=compress&cs=tinysrgb&w=800" alt="アロマオイルトリートメント" loading="lazy">
         <div class="menu-body">
           <p class="menu-num">02</p>
-          <h3 class="menu-name">{{menu2_name}}</h3>
-          <p class="menu-time">{{menu2_time}}</p>
-          <p class="menu-desc">{{menu2_desc}}</p>
-          <p class="menu-price">{{menu2_price}}</p>
-          <p class="menu-price-sub">税込 / {{menu2_time}}</p>
+          <h3 class="menu-name">アロマオイルトリートメント</h3>
+          <p class="menu-time">60分 / 90分</p>
+          <p class="menu-desc">厳選した天然アロマオイルを使用したトリートメント。香りと手技のダブル効果で、心身のバランスを整えます。</p>
+          <p class="menu-price">¥7,700〜</p>
+          <p class="menu-price-sub">税込 / 60分 / 90分</p>
         </div>
       </div>
       <div class="menu-card fi fi-d1">
-        <img class="menu-img" src="{{menu3_image}}" alt="{{menu3_name}}" loading="lazy">
+        <img class="menu-img" src="https://images.pexels.com/photos/6187430/pexels-photo-6187430.jpeg?auto=compress&cs=tinysrgb&w=800" alt="整体・骨盤矯正" loading="lazy">
         <div class="menu-body">
           <p class="menu-num">03</p>
-          <h3 class="menu-name">{{menu3_name}}</h3>
-          <p class="menu-time">{{menu3_time}}</p>
-          <p class="menu-desc">{{menu3_desc}}</p>
-          <p class="menu-price">{{menu3_price}}</p>
-          <p class="menu-price-sub">税込 / {{menu3_time}}</p>
+          <h3 class="menu-name">整体・骨盤矯正</h3>
+          <p class="menu-time">60分 / 90分</p>
+          <p class="menu-desc">歪んだ骨格・骨盤を整え、姿勢改善や慢性的な痛みの根本改善を目指します。デスクワークや産後の方にもおすすめです。</p>
+          <p class="menu-price">¥6,600〜</p>
+          <p class="menu-price-sub">税込 / 60分 / 90分</p>
         </div>
       </div>
       <div class="menu-card fi fi-d2">
-        <img class="menu-img" src="{{menu4_image}}" alt="{{menu4_name}}" loading="lazy">
+        <img class="menu-img" src="https://images.pexels.com/photos/4599424/pexels-photo-4599424.jpeg?auto=compress&cs=tinysrgb&w=800" alt="フットリフレクソロジー" loading="lazy">
         <div class="menu-body">
           <p class="menu-num">04</p>
-          <h3 class="menu-name">{{menu4_name}}</h3>
-          <p class="menu-time">{{menu4_time}}</p>
-          <p class="menu-desc">{{menu4_desc}}</p>
-          <p class="menu-price">{{menu4_price}}</p>
-          <p class="menu-price-sub">税込 / {{menu4_time}}</p>
+          <h3 class="menu-name">フットリフレクソロジー</h3>
+          <p class="menu-time">30分 / 45分 / 60分</p>
+          <p class="menu-desc">足裏の反射区を丁寧に刺激し、全身の血行促進・疲労回復をサポートします。立ち仕事や歩き疲れた足に最適です。</p>
+          <p class="menu-price">¥3,300〜</p>
+          <p class="menu-price-sub">税込 / 30分 / 45分 / 60分</p>
         </div>
       </div>
     </div>
@@ -488,18 +490,18 @@
     <div class="feature-grid">
       <div class="feature-card fi fi-d1">
         <p class="feature-num">FEATURE 01</p>
-        <h3 class="feature-title">{{feature1_title}}</h3>
-        <p class="feature-desc">{{feature1_desc}}</p>
+        <h3 class="feature-title">国家資格保有のセラピスト</h3>
+        <p class="feature-desc">あん摩マッサージ指圧師・柔道整復師などの国家資格を持つスタッフが在籍。確かな技術と知識で安心・安全な施術を提供します。</p>
       </div>
       <div class="feature-card fi fi-d2">
         <p class="feature-num">FEATURE 02</p>
-        <h3 class="feature-title">{{feature2_title}}</h3>
-        <p class="feature-desc">{{feature2_desc}}</p>
+        <h3 class="feature-title">完全個室・プライベート空間</h3>
+        <p class="feature-desc">全施術室が完全個室。周囲を気にせずリラックスしていただけます。照明・BGM・アロマも好みに合わせて調整可能です。</p>
       </div>
       <div class="feature-card fi fi-d3">
         <p class="feature-num">FEATURE 03</p>
-        <h3 class="feature-title">{{feature3_title}}</h3>
-        <p class="feature-desc">{{feature3_desc}}</p>
+        <h3 class="feature-title">丁寧なカウンセリング</h3>
+        <p class="feature-desc">毎回のカウンセリングでお体の状態を確認。お一人おひとりの状態に合わせたオーダーメイドの施術で、確かな変化を実感いただけます。</p>
       </div>
     </div>
   </div>
@@ -514,17 +516,17 @@
       <div class="sage-line"></div>
     </div>
     <div class="staff-grid fi">
-      <img class="staff-img" src="{{staff_image}}" alt="{{staff_name}}" loading="lazy">
+      <img class="staff-img" src="images/staff/staff_massage.jpg" alt="佐藤 あかり" loading="lazy">
       <div>
-        <p class="staff-role">{{staff_role}}</p>
-        <h3 class="staff-name">{{staff_name}}</h3>
-        <p class="staff-name-en">{{staff_name_en}}</p>
+        <p class="staff-role">代表セラピスト</p>
+        <h3 class="staff-name">佐藤 あかり</h3>
+        <p class="staff-name-en">Akari Sato</p>
         <div class="staff-divider"></div>
-        <p class="staff-profile">{{staff_profile}}</p>
+        <p class="staff-profile">「触れることで、人は癒される」という信念のもと、10年以上にわたりセラピストとして活動。お客様一人ひとりの状態に真摯に向き合い、心と体が本当に楽になれる施術を追求しています。</p>
         <ul class="staff-qual">
-          <li>{{staff_qual1}}</li>
-          <li>{{staff_qual2}}</li>
-          <li>{{staff_qual3}}</li>
+          <li>あん摩マッサージ指圧師（国家資格）</li>
+          <li>リンパドレナージュ認定セラピスト</li>
+          <li>アロマテラピー検定1級</li>
         </ul>
       </div>
     </div>
@@ -590,18 +592,18 @@
     <div class="voice-grid">
       <div class="voice-card fi fi-d1">
         <p class="voice-stars">★★★★★</p>
-        <p class="voice-text">{{voice1_text}}</p>
-        <p class="voice-author">— {{voice1_author}}</p>
+        <p class="voice-text">肩こりと腰痛が慢性化していたのですが、定期的に通うようになってから劇的に楽になりました。先生の技術はもちろん、毎回の丁寧なカウンセリングがありがたいです。</p>
+        <p class="voice-author">— 40代 男性</p>
       </div>
       <div class="voice-card fi fi-d2">
         <p class="voice-stars">★★★★★</p>
-        <p class="voice-text">{{voice2_text}}</p>
-        <p class="voice-author">— {{voice2_author}}</p>
+        <p class="voice-text">産後の骨盤矯正でお世話になっています。体の歪みが整ってきたのか、腰の痛みがほとんどなくなりました。個室なので赤ちゃん連れでも安心して通えます。</p>
+        <p class="voice-author">— 30代 女性</p>
       </div>
       <div class="voice-card fi fi-d3">
         <p class="voice-stars">★★★★★</p>
-        <p class="voice-text">{{voice3_text}}</p>
-        <p class="voice-author">— {{voice3_author}}</p>
+        <p class="voice-text">アロマトリートメントが最高でした。施術中に眠ってしまうほどリラックスできて、翌日の体の軽さに驚きました。また絶対来ます。</p>
+        <p class="voice-author">— 20代 女性</p>
       </div>
     </div>
   </div>
@@ -619,27 +621,27 @@
       <div class="info-row">
         <div>
           <p class="info-lbl">SHOP NAME</p>
-          <p class="info-val">{{shop_name}}</p>
+          <p class="info-val">ほぐし処 和らぎ</p>
         </div>
         <div>
           <p class="info-lbl">ADDRESS</p>
-          <p class="info-val">{{address}}</p>
+          <p class="info-val">東京都渋谷区渋谷2-3-4 渋谷YKビル3F<br>JR渋谷駅 東口より徒歩3分</p>
         </div>
         <div>
           <p class="info-lbl">TEL</p>
-          <p class="info-val"><a href="tel:{{tel}}" style="color:var(--dark);text-decoration:none;">{{tel}}</a></p>
+          <p class="info-val"><a href="tel:03-1234-5678" style="color:var(--dark);text-decoration:none;">03-1234-5678</a></p>
         </div>
         <div>
           <p class="info-lbl">HOURS</p>
-          <p class="info-val">{{hours}}</p>
+          <p class="info-val">平日 11:00〜22:00（最終受付 21:00）<br>土日祝 10:00〜21:00（最終受付 20:00）</p>
         </div>
         <div>
           <p class="info-lbl">CLOSED</p>
-          <p class="info-val">{{holiday}}</p>
+          <p class="info-val">不定休（営業カレンダーをご確認ください）</p>
         </div>
       </div>
       <div class="map-wrap">
-        <iframe src="{{map_embed}}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.748023809469!2d139.69716!3d35.65918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca6f89f61e1%3A0x7d104bc70a37c9de!2z5riL6LC35Y2X!5e0!3m2!1sja!2sjp!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
@@ -656,17 +658,17 @@
     <div class="reserve-inner fi">
       <p class="reserve-desc">初めての方もお気軽にどうぞ。<br>LINE・ホットペッパー・お電話にてご予約を承っております。</p>
       <div class="reserve-btns">
-        <a href="{{line_url}}" target="_blank" rel="noopener" class="btn-line">
+        <a href="#" target="_blank" rel="noopener" class="btn-line">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.93 2 10.77c0 2.72 1.38 5.15 3.55 6.78-.15.54-.57 1.96-.65 2.27-.1.38.14.38.29.28.12-.08 1.96-1.3 2.76-1.83.62.09 1.26.14 1.91.14 5.52 0 10-3.93 10-8.77S17.52 2 12 2z"/></svg>
           LINEで予約する
         </a>
-        <a href="{{hotpepper_url}}" target="_blank" rel="noopener" class="btn-hotpepper">
+        <a href="#" target="_blank" rel="noopener" class="btn-hotpepper">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           ホットペッパーで予約する
         </a>
-        <a href="tel:{{tel}}" class="btn-tel-big">
+        <a href="tel:03-1234-5678" class="btn-tel-big">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-          {{tel}}
+          03-1234-5678
         </a>
       </div>
     </div>
@@ -677,10 +679,10 @@
 <footer id="footer">
   <div class="c">
     <div class="footer-inner">
-      <a href="#" class="footer-logo">{{shop_name}}</a>
+      <a href="#" class="footer-logo">ほぐし処 和らぎ</a>
       <p class="footer-info">
-        {{address}}<br>
-        TEL: <a href="tel:{{tel}}" style="color:rgba(255,255,255,0.35);text-decoration:none;">{{tel}}</a>
+        東京都渋谷区渋谷2-3-4 渋谷YKビル3F<br>JR渋谷駅 東口より徒歩3分<br>
+        TEL: <a href="tel:03-1234-5678" style="color:rgba(255,255,255,0.35);text-decoration:none;">03-1234-5678</a>
       </p>
       <nav class="footer-nav">
         <a href="#menu">メニュー</a>
@@ -691,18 +693,18 @@
         <a href="#access">アクセス</a>
         <a href="#reserve">ご予約</a>
       </nav>
-      <p class="footer-copy">© 2025 {{shop_name}}. All Rights Reserved.</p>
+      <p class="footer-copy">© 2025 ほぐし処 和らぎ. All Rights Reserved.</p>
     </div>
   </div>
 </footer>
 
 <!-- FIXED CTA BAR -->
 <div id="cta-bar">
-  <a href="tel:{{tel}}" class="cta-tel">
+  <a href="tel:03-1234-5678" class="cta-tel">
     <svg width="17" height="17" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
     <div>
       <div style="font-size:8px; color:rgba(255,255,255,0.4); letter-spacing:0.15em; line-height:1;">TEL</div>
-      <div style="font-size:15px; font-weight:500; color:#fff; letter-spacing:0.05em; line-height:1.3;">{{tel}}</div>
+      <div style="font-size:15px; font-weight:500; color:#fff; letter-spacing:0.05em; line-height:1.3;">03-1234-5678</div>
     </div>
   </a>
   <a href="#reserve" class="cta-reserve">

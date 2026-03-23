@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{gym_name}} | {{tagline}}</title>
+  <title>IRON WILL | 変わる覚悟が、
+結果を変える。</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <style>
@@ -19,8 +20,8 @@
 <nav class="fixed top-0 w-full z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
     <div>
-      <div class="text-xl font-black tracking-wider text-white">{{gym_name}}</div>
-      <div class="text-[10px] tracking-[.2em] text-[#E63030]">{{gym_name_en}}</div>
+      <div class="text-xl font-black tracking-wider text-white">IRON WILL</div>
+      <div class="text-[10px] tracking-[.2em] text-[#E63030]">PERSONAL GYM SHIBUYA</div>
     </div>
     <div class="hidden md:flex items-center gap-8">
       <a href="#programs" class="text-xs tracking-widest text-gray-300 hover:text-white transition">PROGRAM</a>
@@ -33,12 +34,13 @@
 
 <!-- HERO -->
 <section id="top" class="relative h-screen flex items-center">
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('{{hero_image}}')"></div>
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.pexels.com/photos/6389892/pexels-photo-6389892.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
   <div class="absolute inset-0 bg-black/65"></div>
   <div class="relative z-10 max-w-6xl mx-auto px-8 text-white">
-    <p class="text-xs tracking-[.3em] text-[#E63030] uppercase mb-4">{{gym_name_en}}</p>
-    <h1 class="text-5xl md:text-7xl font-black leading-tight mb-4 uppercase tracking-tight">{{tagline}}</h1>
-    <p class="text-base text-white/70 mb-10 max-w-lg">{{sub_tagline}}</p>
+    <p class="text-xs tracking-[.3em] text-[#E63030] uppercase mb-4">PERSONAL GYM SHIBUYA</p>
+    <h1 class="text-5xl md:text-7xl font-black leading-tight mb-4 uppercase tracking-tight">変わる覚悟が、
+結果を変える。</h1>
+    <p class="text-base text-white/70 mb-10 max-w-lg">完全個室・完全マンツーマンのパーソナルジム。あなただけのプログラムで、理想のボディを手に入れる。</p>
     <a href="#trial" class="inline-block bg-[#E63030] hover:bg-[#CC2020] text-white px-10 py-4 text-sm font-bold tracking-widest uppercase transition">無料体験を申し込む</a>
   </div>
 </section>
@@ -47,10 +49,10 @@
 <section class="py-12 bg-[#E63030]">
   <div class="max-w-5xl mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
-      <div><div class="text-4xl font-black">{{stat1_num}}</div><div class="text-xs tracking-widest mt-1 text-white/80">{{stat1_label}}</div></div>
-      <div><div class="text-4xl font-black">{{stat2_num}}</div><div class="text-xs tracking-widest mt-1 text-white/80">{{stat2_label}}</div></div>
-      <div><div class="text-4xl font-black">{{stat3_num}}</div><div class="text-xs tracking-widest mt-1 text-white/80">{{stat3_label}}</div></div>
-      <div><div class="text-4xl font-black">{{stat4_num}}</div><div class="text-xs tracking-widest mt-1 text-white/80">{{stat4_label}}</div></div>
+      <div><div class="text-4xl font-black">1,200+</div><div class="text-xs tracking-widest mt-1 text-white/80">累計会員数</div></div>
+      <div><div class="text-4xl font-black">98%</div><div class="text-xs tracking-widest mt-1 text-white/80">目標達成率</div></div>
+      <div><div class="text-4xl font-black">3ヶ月</div><div class="text-xs tracking-widest mt-1 text-white/80">平均変化期間</div></div>
+      <div><div class="text-4xl font-black">10年+</div><div class="text-xs tracking-widest mt-1 text-white/80">トレーナー経験</div></div>
     </div>
   </div>
 </section>
@@ -60,40 +62,40 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
       <p class="section-label mb-3">Program</p>
-      <h2 class="text-4xl font-black text-white">{{program_heading}}</h2>
+      <h2 class="text-4xl font-black text-white">プログラムラインアップ</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-[#1A1A1A] rounded-xl overflow-hidden card-hover border border-white/5">
         <div class="aspect-[4/3] overflow-hidden">
-          <img src="{{program1_image}}" alt="{{program1_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <img src="https://images.pexels.com/photos/1229356/pexels-photo-1229356.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ダイエットコース" class="w-full h-full object-cover hover:scale-105 transition duration-700">
         </div>
         <div class="p-6">
-          <div class="text-[10px] tracking-widest text-[#E63030] uppercase mb-2">{{program1_target}}</div>
-          <h3 class="text-lg font-bold text-white mb-2">{{program1_name}}</h3>
-          <p class="text-xs text-gray-400 mb-4 leading-relaxed">{{program1_desc}}</p>
-          <p class="text-[#E63030] font-bold text-sm">{{program1_price}}</p>
+          <div class="text-[10px] tracking-widest text-[#E63030] uppercase mb-2">FOR DIET</div>
+          <h3 class="text-lg font-bold text-white mb-2">ダイエットコース</h3>
+          <p class="text-xs text-gray-400 mb-4 leading-relaxed">食事管理と有酸素・筋トレを組み合わせ、リバウンドしない体づくりをサポートします。</p>
+          <p class="text-[#E63030] font-bold text-sm">¥44,000 / 月（週2回）</p>
         </div>
       </div>
       <div class="bg-[#1A1A1A] rounded-xl overflow-hidden card-hover border border-white/5">
         <div class="aspect-[4/3] overflow-hidden">
-          <img src="{{program2_image}}" alt="{{program2_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <img src="https://images.pexels.com/photos/4761795/pexels-photo-4761795.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ボディメイクコース" class="w-full h-full object-cover hover:scale-105 transition duration-700">
         </div>
         <div class="p-6">
-          <div class="text-[10px] tracking-widest text-[#E63030] uppercase mb-2">{{program2_target}}</div>
-          <h3 class="text-lg font-bold text-white mb-2">{{program2_name}}</h3>
-          <p class="text-xs text-gray-400 mb-4 leading-relaxed">{{program2_desc}}</p>
-          <p class="text-[#E63030] font-bold text-sm">{{program2_price}}</p>
+          <div class="text-[10px] tracking-widest text-[#E63030] uppercase mb-2">FOR BODY</div>
+          <h3 class="text-lg font-bold text-white mb-2">ボディメイクコース</h3>
+          <p class="text-xs text-gray-400 mb-4 leading-relaxed">引き締まったスタイルを目指す方に。筋肉量を増やしながら理想のシルエットへ。</p>
+          <p class="text-[#E63030] font-bold text-sm">¥44,000 / 月（週2回）</p>
         </div>
       </div>
       <div class="bg-[#1A1A1A] rounded-xl overflow-hidden card-hover border border-white/5">
         <div class="aspect-[4/3] overflow-hidden">
-          <img src="{{program3_image}}" alt="{{program3_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <img src="https://images.pexels.com/photos/5262299/pexels-photo-5262299.jpeg?auto=compress&cs=tinysrgb&w=800" alt="アスリートコース" class="w-full h-full object-cover hover:scale-105 transition duration-700">
         </div>
         <div class="p-6">
-          <div class="text-[10px] tracking-widest text-[#E63030] uppercase mb-2">{{program3_target}}</div>
-          <h3 class="text-lg font-bold text-white mb-2">{{program3_name}}</h3>
-          <p class="text-xs text-gray-400 mb-4 leading-relaxed">{{program3_desc}}</p>
-          <p class="text-[#E63030] font-bold text-sm">{{program3_price}}</p>
+          <div class="text-[10px] tracking-widest text-[#E63030] uppercase mb-2">FOR PERFORMANCE</div>
+          <h3 class="text-lg font-bold text-white mb-2">アスリートコース</h3>
+          <p class="text-xs text-gray-400 mb-4 leading-relaxed">競技力向上・怪我予防を目的とした専門的なトレーニングプログラムです。</p>
+          <p class="text-[#E63030] font-bold text-sm">¥55,000 / 月（週2回）</p>
         </div>
       </div>
     </div>
@@ -105,23 +107,23 @@
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-14">
       <p class="section-label mb-3">Why Choose Us</p>
-      <h2 class="text-4xl font-black text-white">{{feature_heading}}</h2>
+      <h2 class="text-4xl font-black text-white">IRON WILLが選ばれる理由</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-10 text-center">
       <div class="border border-white/10 rounded-xl p-8">
-        <div class="text-[#E63030] text-4xl font-black mb-4">{{feature1_num}}</div>
-        <h3 class="text-base font-bold text-white mb-3">{{feature1_title}}</h3>
-        <p class="text-gray-500 text-xs leading-relaxed">{{feature1_desc}}</p>
+        <div class="text-[#E63030] text-4xl font-black mb-4">01</div>
+        <h3 class="text-base font-bold text-white mb-3">完全個室・プライベート空間</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">他のお客様と顔を合わせることなく集中してトレーニングできます。</p>
       </div>
       <div class="border border-white/10 rounded-xl p-8">
-        <div class="text-[#E63030] text-4xl font-black mb-4">{{feature2_num}}</div>
-        <h3 class="text-base font-bold text-white mb-3">{{feature2_title}}</h3>
-        <p class="text-gray-500 text-xs leading-relaxed">{{feature2_desc}}</p>
+        <div class="text-[#E63030] text-4xl font-black mb-4">02</div>
+        <h3 class="text-base font-bold text-white mb-3">食事指導込みのプログラム</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">トレーニングだけでなく毎日の食事もサポート。LINEで24時間相談可能。</p>
       </div>
       <div class="border border-white/10 rounded-xl p-8">
-        <div class="text-[#E63030] text-4xl font-black mb-4">{{feature3_num}}</div>
-        <h3 class="text-base font-bold text-white mb-3">{{feature3_title}}</h3>
-        <p class="text-gray-500 text-xs leading-relaxed">{{feature3_desc}}</p>
+        <div class="text-[#E63030] text-4xl font-black mb-4">03</div>
+        <h3 class="text-base font-bold text-white mb-3">全額返金保証</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">3ヶ月コース終了時に満足いただけない場合は全額返金いたします。</p>
       </div>
     </div>
   </div>
@@ -137,17 +139,17 @@
     <div class="flex flex-col md:flex-row gap-12 items-center">
       <div class="w-full md:w-64 shrink-0">
         <div class="aspect-square rounded-2xl overflow-hidden">
-          <img src="{{trainer_image}}" alt="{{trainer_name}}" class="w-full h-full object-cover object-top">
+          <img src="https://images.pexels.com/photos/4164761/pexels-photo-4164761.jpeg?auto=compress&cs=tinysrgb&w=800" alt="佐藤 健太" class="w-full h-full object-cover object-top">
         </div>
       </div>
       <div>
-        <p class="text-[10px] tracking-widest text-[#E63030] uppercase mb-2">{{trainer_title}}</p>
-        <h3 class="text-3xl font-black text-white mb-5">{{trainer_name}}</h3>
-        <p class="text-gray-400 leading-loose text-sm">{{trainer_bio}}</p>
+        <p class="text-[10px] tracking-widest text-[#E63030] uppercase mb-2">HEAD TRAINER</p>
+        <h3 class="text-3xl font-black text-white mb-5">佐藤 健太</h3>
+        <p class="text-gray-400 leading-loose text-sm">NSCA認定パーソナルトレーナーとして10年以上のキャリア。元プロアスリートとしての経験を活かし、科学的根拠に基づいたトレーニング指導を行う。これまで1,000名以上の変身をサポート。</p>
         <div class="mt-6 flex flex-wrap gap-2">
-          <span class="border border-[#E63030]/40 text-[#E63030] text-xs px-3 py-1 rounded">{{trainer_cert1}}</span>
-          <span class="border border-[#E63030]/40 text-[#E63030] text-xs px-3 py-1 rounded">{{trainer_cert2}}</span>
-          <span class="border border-[#E63030]/40 text-[#E63030] text-xs px-3 py-1 rounded">{{trainer_cert3}}</span>
+          <span class="border border-[#E63030]/40 text-[#E63030] text-xs px-3 py-1 rounded">NSCA-CPT</span>
+          <span class="border border-[#E63030]/40 text-[#E63030] text-xs px-3 py-1 rounded">JATI-ATI</span>
+          <span class="border border-[#E63030]/40 text-[#E63030] text-xs px-3 py-1 rounded">栄養士</span>
         </div>
       </div>
     </div>
@@ -162,11 +164,11 @@
       <h2 class="text-4xl font-black text-white">ご利用の流れ</h2>
     </div>
     <div class="space-y-6">
-      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">1</div><div><h3 class="font-bold text-white mb-1">{{flow1_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow1_desc}}</p></div></div>
-      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">2</div><div><h3 class="font-bold text-white mb-1">{{flow2_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow2_desc}}</p></div></div>
-      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">3</div><div><h3 class="font-bold text-white mb-1">{{flow3_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow3_desc}}</p></div></div>
-      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">4</div><div><h3 class="font-bold text-white mb-1">{{flow4_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow4_desc}}</p></div></div>
-      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">5</div><div><h3 class="font-bold text-white mb-1">{{flow5_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow5_desc}}</p></div></div>
+      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">1</div><div><h3 class="font-bold text-white mb-1">無料体験申込</h3><p class="text-gray-500 text-xs leading-relaxed">LINEまたはお電話でお申し込みください。当日のご予約も可能です。</p></div></div>
+      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">2</div><div><h3 class="font-bold text-white mb-1">カウンセリング</h3><p class="text-gray-500 text-xs leading-relaxed">現在の状態・目標・生活習慣をヒアリング。最適なプログラムをご提案します。</p></div></div>
+      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">3</div><div><h3 class="font-bold text-white mb-1">体験トレーニング</h3><p class="text-gray-500 text-xs leading-relaxed">実際にトレーナーと一緒にトレーニング。強度や方向性を確認します。</p></div></div>
+      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">4</div><div><h3 class="font-bold text-white mb-1">プログラム決定・入会</h3><p class="text-gray-500 text-xs leading-relaxed">ご納得いただけた場合はご入会手続きへ。無理な勧誘は一切ありません。</p></div></div>
+      <div class="flex gap-5 items-start"><div class="w-10 h-10 shrink-0 bg-[#E63030] rounded-full flex items-center justify-center font-black text-white text-sm">5</div><div><h3 class="font-bold text-white mb-1">トレーニング開始</h3><p class="text-gray-500 text-xs leading-relaxed">専用アプリで進捗管理。毎回のセッション後にフィードバックをお渡しします。</p></div></div>
     </div>
   </div>
 </section>
@@ -181,18 +183,18 @@
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-[#1A1A1A] rounded-xl p-7 border border-white/5">
         <p class="text-[#E63030] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-gray-400 leading-relaxed mb-5">{{voice1_text}}</p>
-        <p class="text-xs text-gray-600">{{voice1_name}} 様 / {{voice1_result}}</p>
+        <p class="text-sm text-gray-400 leading-relaxed mb-5">3ヶ月で体重-8kg、体脂肪率-6%を達成。食事制限だけでなく筋肉もつけられて満足です。</p>
+        <p class="text-xs text-gray-600">Y.K 様 / 3ヶ月 -8kg</p>
       </div>
       <div class="bg-[#1A1A1A] rounded-xl p-7 border border-white/5">
         <p class="text-[#E63030] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-gray-400 leading-relaxed mb-5">{{voice2_text}}</p>
-        <p class="text-xs text-gray-600">{{voice2_name}} 様 / {{voice2_result}}</p>
+        <p class="text-sm text-gray-400 leading-relaxed mb-5">仕事が忙しくても続けられるよう柔軟にスケジュール調整してもらえます。トレーナーさんも熱心で心強い。</p>
+        <p class="text-xs text-gray-600">T.M 様 / 6ヶ月継続中</p>
       </div>
       <div class="bg-[#1A1A1A] rounded-xl p-7 border border-white/5">
         <p class="text-[#E63030] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-gray-400 leading-relaxed mb-5">{{voice3_text}}</p>
-        <p class="text-xs text-gray-600">{{voice3_name}} 様 / {{voice3_result}}</p>
+        <p class="text-sm text-gray-400 leading-relaxed mb-5">以前他のジムで挫折した経験があったので不安でしたが、ここなら続けられています。マンツーマンの安心感が違います。</p>
+        <p class="text-xs text-gray-600">A.H 様 / 4ヶ月 -6kg</p>
       </div>
     </div>
   </div>
@@ -208,11 +210,11 @@
     <div class="grid md:grid-cols-2 gap-10 items-start">
       <table class="w-full text-sm">
         <tbody class="divide-y divide-white/10">
-          <tr><td class="py-4 text-[#E63030] font-bold w-28 align-top">店名</td><td class="py-4 text-gray-300">{{gym_name}}</td></tr>
-          <tr><td class="py-4 text-[#E63030] font-bold align-top">住所</td><td class="py-4 text-gray-300">{{address}}</td></tr>
-          <tr><td class="py-4 text-[#E63030] font-bold align-top">電話</td><td class="py-4 text-gray-300"><a href="tel:{{tel}}" class="hover:text-white">{{tel}}</a></td></tr>
-          <tr><td class="py-4 text-[#E63030] font-bold align-top">営業時間</td><td class="py-4 text-gray-300">{{hours}}</td></tr>
-          <tr><td class="py-4 text-[#E63030] font-bold align-top">定休日</td><td class="py-4 text-gray-300">{{closed}}</td></tr>
+          <tr><td class="py-4 text-[#E63030] font-bold w-28 align-top">店名</td><td class="py-4 text-gray-300">IRON WILL</td></tr>
+          <tr><td class="py-4 text-[#E63030] font-bold align-top">住所</td><td class="py-4 text-gray-300">東京都渋谷区道玄坂1-5-8 センタービル 3F</td></tr>
+          <tr><td class="py-4 text-[#E63030] font-bold align-top">電話</td><td class="py-4 text-gray-300"><a href="tel:03-2345-6789" class="hover:text-white">03-2345-6789</a></td></tr>
+          <tr><td class="py-4 text-[#E63030] font-bold align-top">営業時間</td><td class="py-4 text-gray-300">7:00〜23:00</td></tr>
+          <tr><td class="py-4 text-[#E63030] font-bold align-top">定休日</td><td class="py-4 text-gray-300">年中無休</td></tr>
         </tbody>
       </table>
       <div class="h-64 rounded-xl overflow-hidden bg-gray-900">
@@ -229,8 +231,8 @@
     <h2 class="text-5xl font-black mb-5">無料体験受付中</h2>
     <p class="text-white/80 text-sm mb-10 leading-relaxed">まずは無料体験でトレーニングを体感してください。<br>完全個室・完全予約制でプライバシーを守ります。</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://line.me/R/ti/p/@{{line_id}}" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-8 py-4 rounded text-sm font-bold transition">LINE で申し込む</a>
-      <a href="tel:{{tel}}" class="flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-8 py-4 rounded text-sm font-bold transition">{{tel}}</a>
+      <a href="https://line.me/R/ti/p/@ironwill_gym" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-8 py-4 rounded text-sm font-bold transition">LINE で申し込む</a>
+      <a href="tel:03-2345-6789" class="flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white px-8 py-4 rounded text-sm font-bold transition">03-2345-6789</a>
     </div>
   </div>
 </section>
@@ -238,22 +240,22 @@
 <!-- FOOTER -->
 <footer class="bg-black text-white/50 py-10">
   <div class="max-w-6xl mx-auto px-6 text-center">
-    <p class="text-xl font-black text-white mb-1">{{gym_name}}</p>
-    <p class="text-xs mb-6">{{address}}</p>
+    <p class="text-xl font-black text-white mb-1">IRON WILL</p>
+    <p class="text-xs mb-6">東京都渋谷区道玄坂1-5-8 センタービル 3F</p>
     <div class="flex justify-center gap-8 text-xs mb-6">
       <a href="#programs" class="hover:text-white transition">プログラム</a>
       <a href="#trainer" class="hover:text-white transition">トレーナー</a>
       <a href="#access" class="hover:text-white transition">アクセス</a>
       <a href="#trial" class="hover:text-white transition">無料体験</a>
     </div>
-    <p class="text-xs">© 2025 {{gym_name}}. All rights reserved.</p>
+    <p class="text-xs">© 2025 IRON WILL. All rights reserved.</p>
   </div>
 </footer>
 
 <!-- FIXED CTA BAR (mobile) -->
 <div class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden shadow-lg">
-  <a href="https://line.me/R/ti/p/@{{line_id}}" class="flex-1 flex items-center justify-center bg-[#06C755] text-white py-4 text-sm font-bold">LINE 申込</a>
-  <a href="tel:{{tel}}" class="flex-1 flex items-center justify-center bg-[#E63030] text-white py-4 text-sm font-bold">電話する</a>
+  <a href="https://line.me/R/ti/p/@ironwill_gym" class="flex-1 flex items-center justify-center bg-[#06C755] text-white py-4 text-sm font-bold">LINE 申込</a>
+  <a href="tel:03-2345-6789" class="flex-1 flex items-center justify-center bg-[#E63030] text-white py-4 text-sm font-bold">電話する</a>
 </div>
 
 </body>

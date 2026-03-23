@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{clinic_name}} | {{clinic_genre}}</title>
+  <title>さくら歯科クリニック | 一般歯科・小児歯科・矯正・ホワイトニング</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -120,7 +120,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('{{hero_image}}') center/cover no-repeat;
+      background: url('https://images.pexels.com/photos/35438269/pexels-photo-35438269.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
       background-color: #d6e8f7;
     }
     .hero-bg::after { content: ''; position: absolute; inset: 0; background: rgba(15,40,80,0.42); }
@@ -346,8 +346,8 @@
 <header id="header" class="is-top">
   <div class="c header-inner">
     <a href="#" class="logo-wrap">
-      <span class="logo-name">{{clinic_name}}</span>
-      <span class="logo-sub">{{clinic_genre}}</span>
+      <span class="logo-name">さくら歯科クリニック</span>
+      <span class="logo-sub">一般歯科・小児歯科・矯正・ホワイトニング</span>
     </a>
     <nav class="header-nav">
       <a href="#treatment">診療メニュー</a>
@@ -357,9 +357,9 @@
       <a href="#access">アクセス</a>
     </nav>
     <div style="display:flex; align-items:center; gap:16px;">
-      <a href="tel:{{tel}}" class="btn-tel-hd">
+      <a href="tel:03-1234-5678" class="btn-tel-hd">
         <span class="tel-label">お電話でのご予約</span>
-        <span class="tel-num">{{tel}}</span>
+        <span class="tel-num">03-1234-5678</span>
       </a>
       <a href="#reserve" class="btn-reserve-hd">WEB予約</a>
       <button id="hamburger" aria-label="メニューを開く">
@@ -371,7 +371,7 @@
 
 <div id="mobile-nav">
   <div style="display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:64px; border-bottom:1px solid var(--border); flex-shrink:0;">
-    <span class="logo-name">{{clinic_name}}</span>
+    <span class="logo-name">さくら歯科クリニック</span>
     <button id="mnav-close" aria-label="閉じる" style="width:30px;height:30px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
       <svg width="18" height="18" fill="none" stroke="var(--gray)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
@@ -387,9 +387,9 @@
     <a href="#reserve"      class="mnav-link">ご予約</a>
   </nav>
   <div style="padding:20px; flex-shrink:0; display:flex; flex-direction:column; gap:12px;">
-    <a href="tel:{{tel}}" style="display:flex; align-items:center; justify-content:center; gap:10px; background:var(--dark); color:#fff; padding:14px; text-decoration:none; border-radius:2px; font-size:16px; font-weight:700; letter-spacing:0.05em;">
+    <a href="tel:03-1234-5678" style="display:flex; align-items:center; justify-content:center; gap:10px; background:var(--dark); color:#fff; padding:14px; text-decoration:none; border-radius:2px; font-size:16px; font-weight:700; letter-spacing:0.05em;">
       <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-      {{tel}}
+      03-1234-5678
     </a>
     <a href="#reserve" class="btn-reserve-hd" style="display:block; text-align:center; padding:14px;">WEB予約</a>
   </div>
@@ -399,9 +399,11 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-catch">{{clinic_genre}}</p>
-    <h1 class="hero-title serif">{{hero_title}}</h1>
-    <p class="hero-sub">{{hero_sub}}</p>
+    <p class="hero-catch">一般歯科・小児歯科・矯正・ホワイトニング</p>
+    <h1 class="hero-title serif">あなたの笑顔が、
+私たちの誇り。</h1>
+    <p class="hero-sub">渋谷駅徒歩3分。痛みの少ない治療と
+丁寧なカウンセリングで、お口の健康をサポートします。</p>
     <a href="#reserve" class="btn-hero">
       WEB予約はこちら
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -423,19 +425,19 @@
     </div>
     <div class="fi fi-d1">
       <div class="news-row">
-        <span class="news-date">{{news1_date}}</span>
-        <span class="news-cat">{{news1_cat}}</span>
-        <span class="news-ttl">{{news1_text}}</span>
+        <span class="news-date">2025.12.01</span>
+        <span class="news-cat">お知らせ</span>
+        <span class="news-ttl">年末年始の診療時間についてのご案内です。12月29日〜1月3日は休診となります。</span>
       </div>
       <div class="news-row">
-        <span class="news-date">{{news2_date}}</span>
-        <span class="news-cat">{{news2_cat}}</span>
-        <span class="news-ttl">{{news2_text}}</span>
+        <span class="news-date">2025.11.15</span>
+        <span class="news-cat">新メニュー</span>
+        <span class="news-ttl">マウスピース矯正（インビザライン）の無料カウンセリングを開始しました。お気軽にご相談ください。</span>
       </div>
       <div class="news-row">
-        <span class="news-date">{{news3_date}}</span>
-        <span class="news-cat">{{news3_cat}}</span>
-        <span class="news-ttl">{{news3_text}}</span>
+        <span class="news-date">2025.10.01</span>
+        <span class="news-cat">お知らせ</span>
+        <span class="news-ttl">WEB予約システムをリニューアルしました。24時間いつでもご予約いただけます。</span>
       </div>
     </div>
   </div>
@@ -451,35 +453,35 @@
     </div>
     <div class="treatment-grid">
       <div class="treatment-card fi fi-d1">
-        <img class="treatment-img" src="{{treatment1_image}}" alt="{{treatment1_name}}" loading="lazy">
+        <img class="treatment-img" src="https://images.pexels.com/photos/6627524/pexels-photo-6627524.jpeg?auto=compress&cs=tinysrgb&w=800" alt="一般歯科" loading="lazy">
         <div class="treatment-body">
           <p class="treatment-num">01</p>
-          <h3 class="treatment-name">{{treatment1_name}}</h3>
-          <p class="treatment-desc">{{treatment1_desc}}</p>
+          <h3 class="treatment-name">一般歯科</h3>
+          <p class="treatment-desc">虫歯・歯周病の治療から、欠けた歯の修復まで。痛みの少ない麻酔と最新機器で、できるだけ歯を残す治療を行います。</p>
         </div>
       </div>
       <div class="treatment-card fi fi-d2">
-        <img class="treatment-img" src="{{treatment2_image}}" alt="{{treatment2_name}}" loading="lazy">
+        <img class="treatment-img" src="https://images.pexels.com/photos/6627281/pexels-photo-6627281.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ホワイトニング" loading="lazy">
         <div class="treatment-body">
           <p class="treatment-num">02</p>
-          <h3 class="treatment-name">{{treatment2_name}}</h3>
-          <p class="treatment-desc">{{treatment2_desc}}</p>
+          <h3 class="treatment-name">ホワイトニング</h3>
+          <p class="treatment-desc">歯の黄ばみ・着色を専用薬剤でケアします。オフィスホワイトニングとホームホワイトニングから、ライフスタイルに合わせてご提案します。</p>
         </div>
       </div>
       <div class="treatment-card fi fi-d1">
-        <img class="treatment-img" src="{{treatment3_image}}" alt="{{treatment3_name}}" loading="lazy">
+        <img class="treatment-img" src="https://images.pexels.com/photos/6627346/pexels-photo-6627346.jpeg?auto=compress&cs=tinysrgb&w=800" alt="矯正歯科" loading="lazy">
         <div class="treatment-body">
           <p class="treatment-num">03</p>
-          <h3 class="treatment-name">{{treatment3_name}}</h3>
-          <p class="treatment-desc">{{treatment3_desc}}</p>
+          <h3 class="treatment-name">矯正歯科</h3>
+          <p class="treatment-desc">目立ちにくいマウスピース矯正（インビザライン）から従来のワイヤー矯正まで対応。無料カウンセリング実施中。</p>
         </div>
       </div>
       <div class="treatment-card fi fi-d2">
-        <img class="treatment-img" src="{{treatment4_image}}" alt="{{treatment4_name}}" loading="lazy">
+        <img class="treatment-img" src="https://images.pexels.com/photos/5622020/pexels-photo-5622020.jpeg?auto=compress&cs=tinysrgb&w=800" alt="予防歯科・クリーニング" loading="lazy">
         <div class="treatment-body">
           <p class="treatment-num">04</p>
-          <h3 class="treatment-name">{{treatment4_name}}</h3>
-          <p class="treatment-desc">{{treatment4_desc}}</p>
+          <h3 class="treatment-name">予防歯科・クリーニング</h3>
+          <p class="treatment-desc">定期的なクリーニングと検診で、虫歯・歯周病を未然に防ぎます。プロによるPMTCで歯本来の輝きを取り戻しましょう。</p>
         </div>
       </div>
     </div>
@@ -497,18 +499,18 @@
     <div class="feature-grid">
       <div class="feature-card fi fi-d1">
         <p class="feature-num">FEATURE 01</p>
-        <h3 class="feature-title">{{feature1_title}}</h3>
-        <p class="feature-desc">{{feature1_desc}}</p>
+        <h3 class="feature-title">痛みの少ない治療</h3>
+        <p class="feature-desc">表面麻酔を使ったあとに極細の針で麻酔を行うため、注射の痛みを最小限に抑えます。治療中の痛みが不安な方もご安心ください。</p>
       </div>
       <div class="feature-card fi fi-d2">
         <p class="feature-num">FEATURE 02</p>
-        <h3 class="feature-title">{{feature2_title}}</h3>
-        <p class="feature-desc">{{feature2_desc}}</p>
+        <h3 class="feature-title">最新の設備と技術</h3>
+        <p class="feature-desc">デジタルレントゲン・口腔内カメラ・マイクロスコープを完備。精密な診断と治療で、患者様の大切な歯を守ります。</p>
       </div>
       <div class="feature-card fi fi-d3">
         <p class="feature-num">FEATURE 03</p>
-        <h3 class="feature-title">{{feature3_title}}</h3>
-        <p class="feature-desc">{{feature3_desc}}</p>
+        <h3 class="feature-title">丁寧なカウンセリング</h3>
+        <p class="feature-desc">治療の内容・期間・費用をわかりやすくご説明します。納得した上で治療を開始していただくため、無理な押し付けは一切ありません。</p>
       </div>
     </div>
   </div>
@@ -523,17 +525,17 @@
       <div class="blue-line"></div>
     </div>
     <div class="doctor-grid fi">
-      <img class="doctor-img" src="{{doctor_image}}" alt="{{doctor_name}}" loading="lazy">
+      <img class="doctor-img" src="images/doctors/doctor_dental.jpg" alt="田中 誠司" loading="lazy">
       <div>
-        <p class="doctor-title">{{doctor_title}}</p>
-        <h3 class="doctor-name">{{doctor_name}}</h3>
-        <p class="doctor-name-en">{{doctor_name_en}}</p>
+        <p class="doctor-title">院長・歯科医師</p>
+        <h3 class="doctor-name">田中 誠司</h3>
+        <p class="doctor-name-en">Seiji Tanaka, DDS</p>
         <div class="doctor-divider"></div>
-        <p class="doctor-profile">{{doctor_profile}}</p>
+        <p class="doctor-profile">患者様一人ひとりに寄り添った診療を心がけています。「歯医者は怖い」というイメージを変えるべく、できるだけ痛みの少ない治療と丁寧なカウンセリングを大切にしています。</p>
         <ul class="doctor-qual">
-          <li>{{doctor_qual1}}</li>
-          <li>{{doctor_qual2}}</li>
-          <li>{{doctor_qual3}}</li>
+          <li>○○大学歯学部 卒業</li>
+          <li>日本歯科学会 会員</li>
+          <li>インビザライン認定医</li>
         </ul>
       </div>
     </div>
@@ -606,18 +608,18 @@
     <div class="voice-grid">
       <div class="voice-card fi fi-d1">
         <p class="voice-stars">★★★★★</p>
-        <p class="voice-text">{{voice1_text}}</p>
-        <p class="voice-author">— {{voice1_author}}</p>
+        <p class="voice-text">歯医者が苦手で長年通えていなかったのですが、先生の丁寧な説明と痛みの少ない治療のおかげで、今では定期検診が楽しみになりました。</p>
+        <p class="voice-author">— 30代 女性</p>
       </div>
       <div class="voice-card fi fi-d2">
         <p class="voice-stars">★★★★★</p>
-        <p class="voice-text">{{voice2_text}}</p>
-        <p class="voice-author">— {{voice2_author}}</p>
+        <p class="voice-text">子どもが歯医者を怖がっていたのですが、スタッフの方がとても優しく対応してくれて、今では自分から行きたいと言うようになりました。</p>
+        <p class="voice-author">— 40代 女性（お子様と来院）</p>
       </div>
       <div class="voice-card fi fi-d3">
         <p class="voice-stars">★★★★★</p>
-        <p class="voice-text">{{voice3_text}}</p>
-        <p class="voice-author">— {{voice3_author}}</p>
+        <p class="voice-text">ホワイトニングをお願いしました。仕上がりに大満足です。効果の持続方法も丁寧に教えていただき、安心して受けることができました。</p>
+        <p class="voice-author">— 20代 男性</p>
       </div>
     </div>
   </div>
@@ -635,15 +637,15 @@
       <div class="info-row">
         <div>
           <p class="info-lbl">CLINIC NAME</p>
-          <p class="info-val">{{clinic_name}}</p>
+          <p class="info-val">さくら歯科クリニック</p>
         </div>
         <div>
           <p class="info-lbl">ADDRESS</p>
-          <p class="info-val">{{address}}</p>
+          <p class="info-val">東京都渋谷区渋谷1-2-3 渋谷ビル4F<br>JR渋谷駅 東口より徒歩3分</p>
         </div>
         <div>
           <p class="info-lbl">TEL</p>
-          <p class="info-val"><a href="tel:{{tel}}" style="color:var(--dark);text-decoration:none;">{{tel}}</a></p>
+          <p class="info-val"><a href="tel:03-1234-5678" style="color:var(--dark);text-decoration:none;">03-1234-5678</a></p>
         </div>
         <div>
           <p class="info-lbl">HOURS</p>
@@ -655,20 +657,20 @@
             </thead>
             <tbody>
               <tr>
-                <td>{{hours_am}}</td>
+                <td>9:30〜13:00</td>
                 <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td class="closed">—</td>
               </tr>
               <tr>
-                <td>{{hours_pm}}</td>
+                <td>14:30〜18:30</td>
                 <td>○</td><td>○</td><td class="closed">—</td><td>○</td><td>○</td><td class="closed">—</td><td class="closed">—</td>
               </tr>
             </tbody>
           </table>
-          <p style="font-size:11px; color:var(--gray); margin-top:10px; letter-spacing:0.04em;">休診日：{{holiday}}</p>
+          <p style="font-size:11px; color:var(--gray); margin-top:10px; letter-spacing:0.04em;">休診日：水曜午後・日曜・祝日</p>
         </div>
       </div>
       <div class="map-wrap">
-        <iframe src="{{map_embed}}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.748023809469!2d139.69716!3d35.65918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca6f89f61e1%3A0x7d104bc70a37c9de!2z5riL6LC35Y2X!5e0!3m2!1sja!2sjp!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
@@ -685,17 +687,17 @@
     <div class="reserve-inner fi">
       <p class="reserve-desc">初診・急患の方もお気軽にどうぞ。<br>LINEまたはWEBフォームよりご予約いただけます。</p>
       <div class="reserve-btns">
-        <a href="{{line_url}}" target="_blank" rel="noopener" class="btn-line">
+        <a href="#" target="_blank" rel="noopener" class="btn-line">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 5.93 2 10.77c0 2.72 1.38 5.15 3.55 6.78-.15.54-.57 1.96-.65 2.27-.1.38.14.38.29.28.12-.08 1.96-1.3 2.76-1.83.62.09 1.26.14 1.91.14 5.52 0 10-3.93 10-8.77S17.52 2 12 2z"/></svg>
           LINEで予約・相談する
         </a>
-        <a href="{{web_reserve_url}}" target="_blank" rel="noopener" class="btn-web">
+        <a href="#" target="_blank" rel="noopener" class="btn-web">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
           WEBで予約する
         </a>
-        <a href="tel:{{tel}}" class="btn-tel-big">
+        <a href="tel:03-1234-5678" class="btn-tel-big">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-          {{tel}}
+          03-1234-5678
         </a>
       </div>
     </div>
@@ -706,10 +708,10 @@
 <footer id="footer">
   <div class="c">
     <div class="footer-inner">
-      <a href="#" class="footer-logo-name">{{clinic_name}}</a>
+      <a href="#" class="footer-logo-name">さくら歯科クリニック</a>
       <p class="footer-info">
-        {{address}}<br>
-        TEL: <a href="tel:{{tel}}" style="color:rgba(255,255,255,0.4);text-decoration:none;">{{tel}}</a>
+        東京都渋谷区渋谷1-2-3 渋谷ビル4F<br>JR渋谷駅 東口より徒歩3分<br>
+        TEL: <a href="tel:03-1234-5678" style="color:rgba(255,255,255,0.4);text-decoration:none;">03-1234-5678</a>
       </p>
       <nav class="footer-nav">
         <a href="#treatment">診療メニュー</a>
@@ -720,18 +722,18 @@
         <a href="#access">アクセス</a>
         <a href="#reserve">ご予約</a>
       </nav>
-      <p class="footer-copy">© 2025 {{clinic_name}}. All Rights Reserved.</p>
+      <p class="footer-copy">© 2025 さくら歯科クリニック. All Rights Reserved.</p>
     </div>
   </div>
 </footer>
 
 <!-- FIXED CTA BAR -->
 <div id="cta-bar">
-  <a href="tel:{{tel}}" class="cta-tel">
+  <a href="tel:03-1234-5678" class="cta-tel">
     <svg width="17" height="17" fill="none" stroke="#fff" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
     <div>
       <div style="font-size:8px; color:rgba(255,255,255,0.45); letter-spacing:0.15em; line-height:1;">TEL</div>
-      <div style="font-size:15px; font-weight:700; color:#fff; letter-spacing:0.05em; line-height:1.3;">{{tel}}</div>
+      <div style="font-size:15px; font-weight:700; color:#fff; letter-spacing:0.05em; line-height:1.3;">03-1234-5678</div>
     </div>
   </a>
   <a href="#reserve" class="cta-reserve">

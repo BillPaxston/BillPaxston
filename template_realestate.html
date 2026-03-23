@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{company_name}} | {{tagline}}</title>
+  <title>渋谷ホームズ | あなたの理想の住まいを、
+誠実に探し抜く。</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -22,8 +23,8 @@
 <nav class="fixed top-0 w-full z-50 bg-[#1A2B4A]/97 backdrop-blur-sm border-b border-white/10">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
     <div>
-      <div class="font-serif text-xl text-white font-bold tracking-wide">{{company_name}}</div>
-      <div class="text-[10px] tracking-[.2em] text-[#C9A84C]">{{company_name_en}}</div>
+      <div class="font-serif text-xl text-white font-bold tracking-wide">渋谷ホームズ</div>
+      <div class="text-[10px] tracking-[.2em] text-[#C9A84C]">SHIBUYA HOMES REAL ESTATE</div>
     </div>
     <div class="hidden md:flex items-center gap-8">
       <a href="#properties" class="text-xs tracking-widest text-white/70 hover:text-white transition">物件情報</a>
@@ -36,13 +37,14 @@
 
 <!-- HERO -->
 <section id="top" class="relative h-screen flex items-center">
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('{{hero_image}}')"></div>
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.pexels.com/photos/6180674/pexels-photo-6180674.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
   <div class="absolute inset-0 bg-gradient-to-r from-[#0F1C33]/90 via-[#0F1C33]/60 to-transparent"></div>
   <div class="relative z-10 max-w-6xl mx-auto px-8 text-white">
     <div class="gold-line mb-8" style="margin:0 0 2rem 0"></div>
-    <p class="text-xs tracking-[.3em] text-[#C9A84C] uppercase mb-4">{{company_name_en}}</p>
-    <h1 class="font-serif text-5xl md:text-6xl font-bold leading-tight mb-5">{{tagline}}</h1>
-    <p class="text-sm text-white/75 mb-10 max-w-lg leading-relaxed">{{sub_tagline}}</p>
+    <p class="text-xs tracking-[.3em] text-[#C9A84C] uppercase mb-4">SHIBUYA HOMES REAL ESTATE</p>
+    <h1 class="font-serif text-5xl md:text-6xl font-bold leading-tight mb-5">あなたの理想の住まいを、
+誠実に探し抜く。</h1>
+    <p class="text-sm text-white/75 mb-10 max-w-lg leading-relaxed">渋谷・代官山・恵比寿エリアを中心に、賃貸・売買物件を豊富にご用意。地域密着20年の実績で、あなたに最適な一室をご提案します。</p>
     <div class="flex flex-wrap gap-4">
       <a href="#properties" class="bg-[#C9A84C] hover:bg-[#B8943E] text-white px-8 py-3.5 text-sm tracking-wide transition">物件を探す</a>
       <a href="#contact" class="border border-white/40 hover:bg-white/10 text-white px-8 py-3.5 text-sm tracking-wide transition">無料相談はこちら</a>
@@ -54,10 +56,10 @@
 <section class="py-10 bg-[#C9A84C]">
   <div class="max-w-5xl mx-auto px-6">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center text-white">
-      <div><div class="font-serif text-4xl font-bold">{{stat1_num}}</div><div class="text-xs tracking-widest mt-1 text-white/80">{{stat1_label}}</div></div>
-      <div><div class="font-serif text-4xl font-bold">{{stat2_num}}</div><div class="text-xs tracking-widest mt-1 text-white/80">{{stat2_label}}</div></div>
-      <div><div class="font-serif text-4xl font-bold">{{stat3_num}}</div><div class="text-xs tracking-widest mt-1 text-white/80">{{stat3_label}}</div></div>
-      <div><div class="font-serif text-4xl font-bold">{{stat4_num}}</div><div class="text-xs tracking-widest mt-1 text-white/80">{{stat4_label}}</div></div>
+      <div><div class="font-serif text-4xl font-bold">5,000+</div><div class="text-xs tracking-widest mt-1 text-white/80">取扱物件数</div></div>
+      <div><div class="font-serif text-4xl font-bold">20年</div><div class="text-xs tracking-widest mt-1 text-white/80">地域密着の実績</div></div>
+      <div><div class="font-serif text-4xl font-bold">98%</div><div class="text-xs tracking-widest mt-1 text-white/80">顧客満足度</div></div>
+      <div><div class="font-serif text-4xl font-bold">2,300+</div><div class="text-xs tracking-widest mt-1 text-white/80">成約実績</div></div>
     </div>
   </div>
 </section>
@@ -67,9 +69,9 @@
   <div class="max-w-3xl mx-auto px-6">
     <p class="section-label mb-5">News</p>
     <div class="divide-y divide-gray-100">
-      <div class="py-4 flex gap-4 text-sm"><span class="text-[#C9A84C] w-28 shrink-0 font-light">{{news1_date}}</span><span class="text-gray-700">{{news1_text}}</span></div>
-      <div class="py-4 flex gap-4 text-sm"><span class="text-[#C9A84C] w-28 shrink-0 font-light">{{news2_date}}</span><span class="text-gray-700">{{news2_text}}</span></div>
-      <div class="py-4 flex gap-4 text-sm"><span class="text-[#C9A84C] w-28 shrink-0 font-light">{{news3_date}}</span><span class="text-gray-700">{{news3_text}}</span></div>
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#C9A84C] w-28 shrink-0 font-light">2025.03.15</span><span class="text-gray-700">渋谷区・恵比寿エリアに新規物件10件を追加しました</span></div>
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#C9A84C] w-28 shrink-0 font-light">2025.02.20</span><span class="text-gray-700">春の引越しシーズンに向けたキャンペーンを開始しました</span></div>
+      <div class="py-4 flex gap-4 text-sm"><span class="text-[#C9A84C] w-28 shrink-0 font-light">2025.01.10</span><span class="text-gray-700">2025年の営業時間・休業日についてのご案内</span></div>
     </div>
   </div>
 </section>
@@ -79,43 +81,43 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
       <p class="section-label mb-3">Featured Properties</p>
-      <h2 class="font-serif text-4xl text-[#1A2B4A]">{{property_heading}}</h2>
+      <h2 class="font-serif text-4xl text-[#1A2B4A]">おすすめ物件</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="bg-white rounded-xl overflow-hidden card-hover shadow-sm">
         <div class="aspect-[4/3] overflow-hidden relative">
-          <img src="{{property1_image}}" alt="{{property1_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
-          <span class="absolute top-3 left-3 bg-[#1A2B4A] text-white text-[10px] tracking-widest px-3 py-1">{{property1_tag}}</span>
+          <img src="https://images.pexels.com/photos/3316922/pexels-photo-3316922.jpeg?auto=compress&cs=tinysrgb&w=800" alt="代官山ビューレジデンス" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <span class="absolute top-3 left-3 bg-[#1A2B4A] text-white text-[10px] tracking-widest px-3 py-1">賃貸</span>
         </div>
         <div class="p-6">
-          <h3 class="font-serif text-lg text-[#1A2B4A] mb-1">{{property1_name}}</h3>
-          <p class="text-xs text-gray-500 mb-3">{{property1_area}} ／ {{property1_station}}</p>
-          <p class="text-[#C9A84C] font-bold text-xl mb-2">{{property1_price}}</p>
-          <p class="text-xs text-gray-500">{{property1_detail}}</p>
+          <h3 class="font-serif text-lg text-[#1A2B4A] mb-1">代官山ビューレジデンス</h3>
+          <p class="text-xs text-gray-500 mb-3">代官山 ／ 代官山駅 徒歩3分</p>
+          <p class="text-[#C9A84C] font-bold text-xl mb-2">¥220,000 / 月</p>
+          <p class="text-xs text-gray-500">2LDK / 68㎡ / 築3年</p>
         </div>
       </div>
       <div class="bg-white rounded-xl overflow-hidden card-hover shadow-sm">
         <div class="aspect-[4/3] overflow-hidden relative">
-          <img src="{{property2_image}}" alt="{{property2_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
-          <span class="absolute top-3 left-3 bg-[#C9A84C] text-white text-[10px] tracking-widest px-3 py-1">{{property2_tag}}</span>
+          <img src="https://images.pexels.com/photos/5997959/pexels-photo-5997959.jpeg?auto=compress&cs=tinysrgb&w=800" alt="渋谷プレミアムタワー" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <span class="absolute top-3 left-3 bg-[#C9A84C] text-white text-[10px] tracking-widest px-3 py-1">売買</span>
         </div>
         <div class="p-6">
-          <h3 class="font-serif text-lg text-[#1A2B4A] mb-1">{{property2_name}}</h3>
-          <p class="text-xs text-gray-500 mb-3">{{property2_area}} ／ {{property2_station}}</p>
-          <p class="text-[#C9A84C] font-bold text-xl mb-2">{{property2_price}}</p>
-          <p class="text-xs text-gray-500">{{property2_detail}}</p>
+          <h3 class="font-serif text-lg text-[#1A2B4A] mb-1">渋谷プレミアムタワー</h3>
+          <p class="text-xs text-gray-500 mb-3">渋谷 ／ 渋谷駅 徒歩5分</p>
+          <p class="text-[#C9A84C] font-bold text-xl mb-2">¥9,800万円</p>
+          <p class="text-xs text-gray-500">3LDK / 82㎡ / 築7年</p>
         </div>
       </div>
       <div class="bg-white rounded-xl overflow-hidden card-hover shadow-sm">
         <div class="aspect-[4/3] overflow-hidden relative">
-          <img src="{{property3_image}}" alt="{{property3_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
-          <span class="absolute top-3 left-3 bg-[#1A2B4A] text-white text-[10px] tracking-widest px-3 py-1">{{property3_tag}}</span>
+          <img src="https://images.pexels.com/photos/13067890/pexels-photo-13067890.jpeg?auto=compress&cs=tinysrgb&w=800" alt="恵比寿ガーデンテラス" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <span class="absolute top-3 left-3 bg-[#1A2B4A] text-white text-[10px] tracking-widest px-3 py-1">賃貸</span>
         </div>
         <div class="p-6">
-          <h3 class="font-serif text-lg text-[#1A2B4A] mb-1">{{property3_name}}</h3>
-          <p class="text-xs text-gray-500 mb-3">{{property3_area}} ／ {{property3_station}}</p>
-          <p class="text-[#C9A84C] font-bold text-xl mb-2">{{property3_price}}</p>
-          <p class="text-xs text-gray-500">{{property3_detail}}</p>
+          <h3 class="font-serif text-lg text-[#1A2B4A] mb-1">恵比寿ガーデンテラス</h3>
+          <p class="text-xs text-gray-500 mb-3">恵比寿 ／ 恵比寿駅 徒歩6分</p>
+          <p class="text-[#C9A84C] font-bold text-xl mb-2">¥185,000 / 月</p>
+          <p class="text-xs text-gray-500">1LDK / 55㎡ / 築5年</p>
         </div>
       </div>
     </div>
@@ -127,23 +129,23 @@
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-14">
       <p class="section-label mb-3">Services</p>
-      <h2 class="font-serif text-4xl">{{service_heading}}</h2>
+      <h2 class="font-serif text-4xl">サービスラインアップ</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="border border-white/10 rounded-xl p-8 text-center hover:border-[#C9A84C]/50 transition">
-        <div class="text-[#C9A84C] text-4xl mb-5">{{service1_icon}}</div>
-        <h3 class="font-serif text-lg mb-3">{{service1_name}}</h3>
-        <p class="text-white/55 text-xs leading-relaxed">{{service1_desc}}</p>
+        <div class="text-[#C9A84C] text-4xl mb-5">🏠</div>
+        <h3 class="font-serif text-lg mb-3">賃貸物件</h3>
+        <p class="text-white/55 text-xs leading-relaxed">渋谷・代官山・恵比寿エリアを中心に、単身〜ファミリー向けまで豊富なラインアップ。</p>
       </div>
       <div class="border border-white/10 rounded-xl p-8 text-center hover:border-[#C9A84C]/50 transition">
-        <div class="text-[#C9A84C] text-4xl mb-5">{{service2_icon}}</div>
-        <h3 class="font-serif text-lg mb-3">{{service2_name}}</h3>
-        <p class="text-white/55 text-xs leading-relaxed">{{service2_desc}}</p>
+        <div class="text-[#C9A84C] text-4xl mb-5">🏢</div>
+        <h3 class="font-serif text-lg mb-3">売買物件</h3>
+        <p class="text-white/55 text-xs leading-relaxed">マンション・一戸建て・土地。資産価値と住みやすさを兼ね備えた物件をご提案。</p>
       </div>
       <div class="border border-white/10 rounded-xl p-8 text-center hover:border-[#C9A84C]/50 transition">
-        <div class="text-[#C9A84C] text-4xl mb-5">{{service3_icon}}</div>
-        <h3 class="font-serif text-lg mb-3">{{service3_name}}</h3>
-        <p class="text-white/55 text-xs leading-relaxed">{{service3_desc}}</p>
+        <div class="text-[#C9A84C] text-4xl mb-5">📊</div>
+        <h3 class="font-serif text-lg mb-3">資産運用相談</h3>
+        <p class="text-white/55 text-xs leading-relaxed">投資用不動産・リノベーション相談など、資産形成のサポートも承ります。</p>
       </div>
     </div>
   </div>
@@ -154,23 +156,23 @@
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-14">
       <p class="section-label mb-3">Why Choose Us</p>
-      <h2 class="font-serif text-4xl text-[#1A2B4A]">{{feature_heading}}</h2>
+      <h2 class="font-serif text-4xl text-[#1A2B4A]">渋谷ホームズが選ばれる理由</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="text-center p-8 bg-[#EEF2F8] rounded-xl">
-        <div class="text-[#C9A84C] text-3xl font-serif font-bold mb-3">{{feature1_num}}</div>
-        <h3 class="font-medium text-[#1A2B4A] mb-3">{{feature1_title}}</h3>
-        <p class="text-gray-500 text-xs leading-relaxed">{{feature1_desc}}</p>
+        <div class="text-[#C9A84C] text-3xl font-serif font-bold mb-3">20年</div>
+        <h3 class="font-medium text-[#1A2B4A] mb-3">地域密着の実績</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">渋谷エリアに根ざして20年。地域の相場・特性を誰よりも熟知しています。</p>
       </div>
       <div class="text-center p-8 bg-[#EEF2F8] rounded-xl">
-        <div class="text-[#C9A84C] text-3xl font-serif font-bold mb-3">{{feature2_num}}</div>
-        <h3 class="font-medium text-[#1A2B4A] mb-3">{{feature2_title}}</h3>
-        <p class="text-gray-500 text-xs leading-relaxed">{{feature2_desc}}</p>
+        <div class="text-[#C9A84C] text-3xl font-serif font-bold mb-3">98%</div>
+        <h3 class="font-medium text-[#1A2B4A] mb-3">高い顧客満足度</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">ご成約後のアンケートで98%のお客様から「満足」の評価をいただいています。</p>
       </div>
       <div class="text-center p-8 bg-[#EEF2F8] rounded-xl">
-        <div class="text-[#C9A84C] text-3xl font-serif font-bold mb-3">{{feature3_num}}</div>
-        <h3 class="font-medium text-[#1A2B4A] mb-3">{{feature3_title}}</h3>
-        <p class="text-gray-500 text-xs leading-relaxed">{{feature3_desc}}</p>
+        <div class="text-[#C9A84C] text-3xl font-serif font-bold mb-3">無料</div>
+        <h3 class="font-medium text-[#1A2B4A] mb-3">物件探しから手続きまで</h3>
+        <p class="text-gray-500 text-xs leading-relaxed">物件探し・内見・契約手続きのサポートはすべて無料。安心してお任せください。</p>
       </div>
     </div>
   </div>
@@ -186,13 +188,13 @@
     <div class="flex flex-col md:flex-row gap-12 items-center">
       <div class="w-full md:w-64 shrink-0">
         <div class="aspect-square rounded-2xl overflow-hidden shadow-lg">
-          <img src="{{agent_image}}" alt="{{agent_name}}" class="w-full h-full object-cover object-top">
+          <img src="https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=800" alt="中村 誠一" class="w-full h-full object-cover object-top">
         </div>
       </div>
       <div>
-        <p class="section-label mb-2">{{agent_title}}</p>
-        <h3 class="font-serif text-3xl text-[#1A2B4A] mb-5">{{agent_name}}</h3>
-        <p class="text-gray-600 leading-loose text-sm">{{agent_bio}}</p>
+        <p class="section-label mb-2">代表取締役・宅地建物取引士</p>
+        <h3 class="font-serif text-3xl text-[#1A2B4A] mb-5">中村 誠一</h3>
+        <p class="text-gray-600 leading-loose text-sm">20年以上、渋谷エリア一筋で不動産業に携わってきました。「お客様にとって本当に良い物件だけを提案する」という信念のもと、無理な営業は一切行いません。住まい選びに関するお悩みは何でもご相談ください。</p>
       </div>
     </div>
   </div>
@@ -206,11 +208,11 @@
       <h2 class="font-serif text-4xl text-[#1A2B4A]">ご利用の流れ</h2>
     </div>
     <div class="space-y-5">
-      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">1</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">{{flow1_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow1_desc}}</p></div></div>
-      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">2</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">{{flow2_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow2_desc}}</p></div></div>
-      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">3</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">{{flow3_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow3_desc}}</p></div></div>
-      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">4</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">{{flow4_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow4_desc}}</p></div></div>
-      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">5</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">{{flow5_title}}</h3><p class="text-gray-500 text-xs leading-relaxed">{{flow5_desc}}</p></div></div>
+      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">1</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">お問い合わせ・ご相談</h3><p class="text-gray-500 text-xs leading-relaxed">電話・メール・ご来店にて受け付けております。まずはお気軽にどうぞ。</p></div></div>
+      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">2</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">ヒアリング・物件のご提案</h3><p class="text-gray-500 text-xs leading-relaxed">ご希望の条件や予算をお聞きし、最適な物件をご提案します。</p></div></div>
+      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">3</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">内見</h3><p class="text-gray-500 text-xs leading-relaxed">実際に物件をご覧いただきます。気になる点は何でもお聞きください。</p></div></div>
+      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">4</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">お申し込み・審査</h3><p class="text-gray-500 text-xs leading-relaxed">ご希望の物件が決まりましたらお申し込みへ。各種手続きをサポートします。</p></div></div>
+      <div class="flex gap-5 items-start border border-gray-100 rounded-xl p-5"><div class="w-10 h-10 shrink-0 bg-[#1A2B4A] rounded-full flex items-center justify-center font-bold text-[#C9A84C] text-sm">5</div><div><h3 class="font-medium text-[#1A2B4A] mb-1">ご契約・お引き渡し</h3><p class="text-gray-500 text-xs leading-relaxed">契約内容を丁寧にご説明。鍵のお引き渡しまで責任を持って対応します。</p></div></div>
     </div>
   </div>
 </section>
@@ -225,18 +227,18 @@
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-white/5 border border-white/10 rounded-xl p-7">
         <p class="text-[#C9A84C] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-white/70 leading-relaxed mb-5">{{voice1_text}}</p>
-        <p class="text-xs text-white/40">{{voice1_name}} 様</p>
+        <p class="text-sm text-white/70 leading-relaxed mb-5">初めての一人暮らしで不安でしたが、こちらのスタッフさんが丁寧に説明してくれて安心できました。希望通りの物件に出会えて大満足です。</p>
+        <p class="text-xs text-white/40">K.T 様</p>
       </div>
       <div class="bg-white/5 border border-white/10 rounded-xl p-7">
         <p class="text-[#C9A84C] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-white/70 leading-relaxed mb-5">{{voice2_text}}</p>
-        <p class="text-xs text-white/40">{{voice2_name}} 様</p>
+        <p class="text-sm text-white/70 leading-relaxed mb-5">売却相談から実際の売却まで約2ヶ月でスムーズに完了しました。査定額も他社より高く、対応も誠実で信頼できました。</p>
+        <p class="text-xs text-white/40">M.Y 様</p>
       </div>
       <div class="bg-white/5 border border-white/10 rounded-xl p-7">
         <p class="text-[#C9A84C] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-white/70 leading-relaxed mb-5">{{voice3_text}}</p>
-        <p class="text-xs text-white/40">{{voice3_name}} 様</p>
+        <p class="text-sm text-white/70 leading-relaxed mb-5">転勤で急いで物件を探していたにも関わらず、希望条件に合った物件を3日で見つけてもらえました。対応の早さに感動しました。</p>
+        <p class="text-xs text-white/40">S.H 様</p>
       </div>
     </div>
   </div>
@@ -252,12 +254,12 @@
     <div class="grid md:grid-cols-2 gap-10 items-start">
       <table class="w-full text-sm">
         <tbody class="divide-y divide-gray-100">
-          <tr><td class="py-4 text-[#C9A84C] font-medium w-28 align-top">会社名</td><td class="py-4 text-gray-700">{{company_name}}</td></tr>
-          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">住所</td><td class="py-4 text-gray-700">{{address}}</td></tr>
-          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">電話</td><td class="py-4 text-gray-700"><a href="tel:{{tel}}" class="hover:text-[#C9A84C]">{{tel}}</a></td></tr>
-          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">営業時間</td><td class="py-4 text-gray-700">{{hours}}</td></tr>
-          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">定休日</td><td class="py-4 text-gray-700">{{closed}}</td></tr>
-          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">免許番号</td><td class="py-4 text-gray-700">{{license}}</td></tr>
+          <tr><td class="py-4 text-[#C9A84C] font-medium w-28 align-top">会社名</td><td class="py-4 text-gray-700">渋谷ホームズ</td></tr>
+          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">住所</td><td class="py-4 text-gray-700">東京都渋谷区渋谷1-8-5 渋谷ファーストビル 2F</td></tr>
+          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">電話</td><td class="py-4 text-gray-700"><a href="tel:03-5678-9012" class="hover:text-[#C9A84C]">03-5678-9012</a></td></tr>
+          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">営業時間</td><td class="py-4 text-gray-700">10:00〜18:00</td></tr>
+          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">定休日</td><td class="py-4 text-gray-700">日曜・祝日・水曜</td></tr>
+          <tr><td class="py-4 text-[#C9A84C] font-medium align-top">免許番号</td><td class="py-4 text-gray-700">東京都知事（1）第XXXXX号</td></tr>
         </tbody>
       </table>
       <div class="h-64 rounded-xl overflow-hidden shadow-sm">
@@ -274,8 +276,8 @@
     <h2 class="font-serif text-5xl mb-5">無料相談・お問い合わせ</h2>
     <p class="text-white/70 text-sm mb-10 leading-relaxed">お電話またはメールにて、まずはお気軽にご相談ください。<br>経験豊富なスタッフが丁寧に対応いたします。</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="tel:{{tel}}" class="flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#B8943E] text-white px-8 py-4 text-sm font-medium tracking-wide transition">{{tel}}</a>
-      <a href="mailto:{{email}}" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 text-sm font-medium transition">メールで問い合わせ</a>
+      <a href="tel:03-5678-9012" class="flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#B8943E] text-white px-8 py-4 text-sm font-medium tracking-wide transition">03-5678-9012</a>
+      <a href="mailto:info@shibuya-homes.jp" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 text-sm font-medium transition">メールで問い合わせ</a>
     </div>
   </div>
 </section>
@@ -283,23 +285,23 @@
 <!-- FOOTER -->
 <footer class="bg-[#0F1C33] text-white/50 py-10">
   <div class="max-w-6xl mx-auto px-6 text-center">
-    <p class="font-serif text-xl text-white mb-1">{{company_name}}</p>
-    <p class="text-xs text-[#C9A84C] mb-2">{{company_name_en}}</p>
-    <p class="text-xs mb-6">{{address}}</p>
+    <p class="font-serif text-xl text-white mb-1">渋谷ホームズ</p>
+    <p class="text-xs text-[#C9A84C] mb-2">SHIBUYA HOMES REAL ESTATE</p>
+    <p class="text-xs mb-6">東京都渋谷区渋谷1-8-5 渋谷ファーストビル 2F</p>
     <div class="flex justify-center gap-8 text-xs mb-6">
       <a href="#properties" class="hover:text-white transition">物件情報</a>
       <a href="#services" class="hover:text-white transition">サービス</a>
       <a href="#access" class="hover:text-white transition">アクセス</a>
       <a href="#contact" class="hover:text-white transition">お問い合わせ</a>
     </div>
-    <p class="text-xs">© 2025 {{company_name}}. All rights reserved.</p>
+    <p class="text-xs">© 2025 渋谷ホームズ. All rights reserved.</p>
   </div>
 </footer>
 
 <!-- FIXED CTA BAR (mobile) -->
 <div class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden shadow-lg">
-  <a href="tel:{{tel}}" class="flex-1 flex items-center justify-center bg-[#C9A84C] text-white py-4 text-sm font-medium">電話で相談</a>
-  <a href="mailto:{{email}}" class="flex-1 flex items-center justify-center bg-[#1A2B4A] text-white py-4 text-sm font-medium">メールで相談</a>
+  <a href="tel:03-5678-9012" class="flex-1 flex items-center justify-center bg-[#C9A84C] text-white py-4 text-sm font-medium">電話で相談</a>
+  <a href="mailto:info@shibuya-homes.jp" class="flex-1 flex items-center justify-center bg-[#1A2B4A] text-white py-4 text-sm font-medium">メールで相談</a>
 </div>
 
 </body>

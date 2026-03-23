@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{shop_name}} | {{tagline}}</title>
+  <title>カフェ ブラン | 丁寧に淹れた一杯と、手作りの焼き菓子を</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
   <style>
@@ -23,8 +23,8 @@
 <nav class="fixed top-0 w-full z-50 bg-[#FAF6F0]/95 backdrop-blur-sm border-b border-[#E8D8C8]">
   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
     <div>
-      <div class="font-disp text-2xl leading-tight text-[#4A2C18]">{{shop_name}}</div>
-      <div class="text-[10px] tracking-[.2em] text-[#C8956C]">{{shop_name_en}}</div>
+      <div class="font-disp text-2xl leading-tight text-[#4A2C18]">カフェ ブラン</div>
+      <div class="text-[10px] tracking-[.2em] text-[#C8956C]">Café BLANC</div>
     </div>
     <div class="hidden md:flex items-center gap-8">
       <a href="#menu" class="nav-link">メニュー</a>
@@ -37,12 +37,12 @@
 
 <!-- HERO -->
 <section id="top" class="relative h-screen flex items-end pb-24">
-  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('{{hero_image}}')"></div>
+  <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://images.pexels.com/photos/35134952/pexels-photo-35134952.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
   <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent"></div>
   <div class="relative z-10 max-w-6xl mx-auto px-8 text-white">
-    <p class="font-disp italic text-xl mb-2 text-[#D4A575]">{{shop_name_en}}</p>
-    <h1 class="font-disp text-6xl md:text-8xl font-semibold mb-4 leading-tight">{{shop_name}}</h1>
-    <p class="text-base md:text-lg mb-8 text-white/85 max-w-md">{{tagline}}</p>
+    <p class="font-disp italic text-xl mb-2 text-[#D4A575]">Café BLANC</p>
+    <h1 class="font-disp text-6xl md:text-8xl font-semibold mb-4 leading-tight">カフェ ブラン</h1>
+    <p class="text-base md:text-lg mb-8 text-white/85 max-w-md">丁寧に淹れた一杯と、手作りの焼き菓子を</p>
     <div class="flex flex-wrap gap-4">
       <a href="#menu" class="bg-[#C8956C] hover:bg-[#B07A55] text-white px-8 py-3.5 rounded-full text-sm tracking-wide transition">メニューを見る</a>
       <a href="#reserve" class="border border-white/60 hover:bg-white/10 text-white px-8 py-3.5 rounded-full text-sm tracking-wide transition">ご予約はこちら</a>
@@ -55,9 +55,9 @@
   <div class="max-w-3xl mx-auto px-6">
     <p class="section-label mb-5">News</p>
     <div class="divide-y divide-gray-100">
-      <div class="py-3.5 flex gap-4 text-sm"><span class="text-[#C8956C] w-28 shrink-0 font-light">{{news1_date}}</span><span class="text-gray-700">{{news1_text}}</span></div>
-      <div class="py-3.5 flex gap-4 text-sm"><span class="text-[#C8956C] w-28 shrink-0 font-light">{{news2_date}}</span><span class="text-gray-700">{{news2_text}}</span></div>
-      <div class="py-3.5 flex gap-4 text-sm"><span class="text-[#C8956C] w-28 shrink-0 font-light">{{news3_date}}</span><span class="text-gray-700">{{news3_text}}</span></div>
+      <div class="py-3.5 flex gap-4 text-sm"><span class="text-[#C8956C] w-28 shrink-0 font-light">2025.03.10</span><span class="text-gray-700">春の新メニュー「桜ラテ」が登場しました</span></div>
+      <div class="py-3.5 flex gap-4 text-sm"><span class="text-[#C8956C] w-28 shrink-0 font-light">2025.02.14</span><span class="text-gray-700">バレンタイン限定チョコレートケーキ好評販売中</span></div>
+      <div class="py-3.5 flex gap-4 text-sm"><span class="text-[#C8956C] w-28 shrink-0 font-light">2025.01.06</span><span class="text-gray-700">新年のご挨拶と1月の営業時間についてお知らせ</span></div>
     </div>
   </div>
 </section>
@@ -67,37 +67,37 @@
   <div class="max-w-6xl mx-auto px-6">
     <div class="text-center mb-14">
       <p class="section-label mb-3">Menu</p>
-      <h2 class="font-disp text-5xl text-[#4A2C18]">{{menu_heading}}</h2>
+      <h2 class="font-disp text-5xl text-[#4A2C18]">本日のメニュー</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-8">
       <div class="bg-white rounded-2xl overflow-hidden card-hover">
         <div class="aspect-[4/3] overflow-hidden">
-          <img src="{{menu1_image}}" alt="{{menu1_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <img src="https://images.pexels.com/photos/13119734/pexels-photo-13119734.jpeg?auto=compress&cs=tinysrgb&w=800" alt="ドリップコーヒー" class="w-full h-full object-cover hover:scale-105 transition duration-700">
         </div>
         <div class="p-7">
-          <h3 class="font-disp text-2xl text-[#4A2C18] mb-2">{{menu1_name}}</h3>
-          <p class="text-xs text-gray-500 mb-4 leading-relaxed">{{menu1_desc}}</p>
-          <p class="text-[#C8956C] font-medium text-sm">{{menu1_price}}</p>
+          <h3 class="font-disp text-2xl text-[#4A2C18] mb-2">ドリップコーヒー</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">毎朝その日のために厳選した豆を手挽きで。余韻まで楽しめる一杯です。</p>
+          <p class="text-[#C8956C] font-medium text-sm">¥650〜</p>
         </div>
       </div>
       <div class="bg-white rounded-2xl overflow-hidden card-hover">
         <div class="aspect-[4/3] overflow-hidden">
-          <img src="{{menu2_image}}" alt="{{menu2_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <img src="https://images.pexels.com/photos/31505379/pexels-photo-31505379.jpeg?auto=compress&cs=tinysrgb&w=800" alt="季節のパティスリー" class="w-full h-full object-cover hover:scale-105 transition duration-700">
         </div>
         <div class="p-7">
-          <h3 class="font-disp text-2xl text-[#4A2C18] mb-2">{{menu2_name}}</h3>
-          <p class="text-xs text-gray-500 mb-4 leading-relaxed">{{menu2_desc}}</p>
-          <p class="text-[#C8956C] font-medium text-sm">{{menu2_price}}</p>
+          <h3 class="font-disp text-2xl text-[#4A2C18] mb-2">季節のパティスリー</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">フランス仕込みのレシピで仕上げた、毎日変わる手作り焼き菓子です。</p>
+          <p class="text-[#C8956C] font-medium text-sm">¥420〜</p>
         </div>
       </div>
       <div class="bg-white rounded-2xl overflow-hidden card-hover">
         <div class="aspect-[4/3] overflow-hidden">
-          <img src="{{menu3_image}}" alt="{{menu3_name}}" class="w-full h-full object-cover hover:scale-105 transition duration-700">
+          <img src="https://images.pexels.com/photos/30403595/pexels-photo-30403595.jpeg?auto=compress&cs=tinysrgb&w=800" alt="モーニングセット" class="w-full h-full object-cover hover:scale-105 transition duration-700">
         </div>
         <div class="p-7">
-          <h3 class="font-disp text-2xl text-[#4A2C18] mb-2">{{menu3_name}}</h3>
-          <p class="text-xs text-gray-500 mb-4 leading-relaxed">{{menu3_desc}}</p>
-          <p class="text-[#C8956C] font-medium text-sm">{{menu3_price}}</p>
+          <h3 class="font-disp text-2xl text-[#4A2C18] mb-2">モーニングセット</h3>
+          <p class="text-xs text-gray-500 mb-4 leading-relaxed">トーストと旬のフルーツ、コーヒーまたは紅茶がセットになったモーニング。</p>
+          <p class="text-[#C8956C] font-medium text-sm">¥980</p>
         </div>
       </div>
     </div>
@@ -109,23 +109,23 @@
   <div class="max-w-5xl mx-auto px-6">
     <div class="text-center mb-14">
       <p class="section-label text-[#D4A575] mb-3">Our Promise</p>
-      <h2 class="font-disp text-5xl">{{feature_heading}}</h2>
+      <h2 class="font-disp text-5xl">カフェ ブランのこだわり</h2>
     </div>
     <div class="grid md:grid-cols-3 gap-12 text-center">
       <div>
-        <div class="text-5xl mb-5">{{feature1_icon}}</div>
-        <h3 class="font-medium text-base mb-3">{{feature1_title}}</h3>
-        <p class="text-white/65 text-xs leading-relaxed">{{feature1_desc}}</p>
+        <div class="text-5xl mb-5">☕</div>
+        <h3 class="font-medium text-base mb-3">スペシャルティコーヒー</h3>
+        <p class="text-white/65 text-xs leading-relaxed">産地直送の豆を毎週仕入れ、最高の状態で提供します。</p>
       </div>
       <div>
-        <div class="text-5xl mb-5">{{feature2_icon}}</div>
-        <h3 class="font-medium text-base mb-3">{{feature2_title}}</h3>
-        <p class="text-white/65 text-xs leading-relaxed">{{feature2_desc}}</p>
+        <div class="text-5xl mb-5">🥐</div>
+        <h3 class="font-medium text-base mb-3">毎日手作りの焼き菓子</h3>
+        <p class="text-white/65 text-xs leading-relaxed">防腐剤・添加物不使用。オーナーパティシエが毎朝焼き上げます。</p>
       </div>
       <div>
-        <div class="text-5xl mb-5">{{feature3_icon}}</div>
-        <h3 class="font-medium text-base mb-3">{{feature3_title}}</h3>
-        <p class="text-white/65 text-xs leading-relaxed">{{feature3_desc}}</p>
+        <div class="text-5xl mb-5">🌿</div>
+        <h3 class="font-medium text-base mb-3">くつろぎの空間</h3>
+        <p class="text-white/65 text-xs leading-relaxed">一人でも、大切な人と過ごすひとときにも。ゆったりとした時間をどうぞ。</p>
       </div>
     </div>
   </div>
@@ -141,13 +141,13 @@
     <div class="flex flex-col md:flex-row gap-12 items-center">
       <div class="w-full md:w-72 shrink-0">
         <div class="aspect-square rounded-3xl overflow-hidden shadow-lg">
-          <img src="{{staff_image}}" alt="{{staff_name}}" class="w-full h-full object-cover object-top">
+          <img src="https://images.pexels.com/photos/3768914/pexels-photo-3768914.jpeg?auto=compress&cs=tinysrgb&w=800" alt="田中 美咲" class="w-full h-full object-cover object-top">
         </div>
       </div>
       <div>
-        <p class="section-label mb-2">{{staff_title}}</p>
-        <h3 class="font-disp text-4xl text-[#4A2C18] mb-5">{{staff_name}}</h3>
-        <p class="text-gray-600 leading-loose text-sm">{{staff_bio}}</p>
+        <p class="section-label mb-2">オーナー・パティシエ</p>
+        <h3 class="font-disp text-4xl text-[#4A2C18] mb-5">田中 美咲</h3>
+        <p class="text-gray-600 leading-loose text-sm">フランス・リヨンにてパティスリーを学んだ後、都内カフェで5年のキャリアを積み独立。「日常の中に小さな幸せを」をテーマに、毎日丁寧に焼き菓子とコーヒーを提供しています。お客様が笑顔でお帰りになる瞬間が、いちばんの喜びです。</p>
       </div>
     </div>
   </div>
@@ -163,18 +163,18 @@
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-white rounded-2xl p-7 shadow-sm">
         <p class="text-[#C8956C] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-gray-600 leading-relaxed mb-5">{{voice1_text}}</p>
-        <p class="text-xs text-gray-400">{{voice1_name}} 様</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">毎週末に通っています。コーヒーの香りと静かな空間がお気に入り。焼き菓子も種類が多くていつも迷ってしまいます。</p>
+        <p class="text-xs text-gray-400">K.T 様</p>
       </div>
       <div class="bg-white rounded-2xl p-7 shadow-sm">
         <p class="text-[#C8956C] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-gray-600 leading-relaxed mb-5">{{voice2_text}}</p>
-        <p class="text-xs text-gray-400">{{voice2_name}} 様</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">モーニングの質が高くてコスパ最高。近所にこんなカフェがあって幸せです。スタッフさんも感じよくて居心地抜群。</p>
+        <p class="text-xs text-gray-400">M.S 様</p>
       </div>
       <div class="bg-white rounded-2xl p-7 shadow-sm">
         <p class="text-[#C8956C] text-lg tracking-wide mb-4">★★★★★</p>
-        <p class="text-sm text-gray-600 leading-relaxed mb-5">{{voice3_text}}</p>
-        <p class="text-xs text-gray-400">{{voice3_name}} 様</p>
+        <p class="text-sm text-gray-600 leading-relaxed mb-5">手土産に焼き菓子を買って帰ることが多いです。友人にも好評で、プレゼントにも重宝しています。</p>
+        <p class="text-xs text-gray-400">A.Y 様</p>
       </div>
     </div>
   </div>
@@ -190,11 +190,11 @@
     <div class="grid md:grid-cols-2 gap-10 items-start">
       <table class="w-full text-sm">
         <tbody class="divide-y divide-gray-100">
-          <tr><td class="py-4 text-[#C8956C] font-medium w-24 align-top">店名</td><td class="py-4 text-gray-700">{{shop_name}}</td></tr>
-          <tr><td class="py-4 text-[#C8956C] font-medium align-top">住所</td><td class="py-4 text-gray-700">{{address}}</td></tr>
-          <tr><td class="py-4 text-[#C8956C] font-medium align-top">電話</td><td class="py-4 text-gray-700"><a href="tel:{{tel}}" class="hover:text-[#6B4226]">{{tel}}</a></td></tr>
-          <tr><td class="py-4 text-[#C8956C] font-medium align-top">営業時間</td><td class="py-4 text-gray-700">{{hours}}</td></tr>
-          <tr><td class="py-4 text-[#C8956C] font-medium align-top">定休日</td><td class="py-4 text-gray-700">{{closed}}</td></tr>
+          <tr><td class="py-4 text-[#C8956C] font-medium w-24 align-top">店名</td><td class="py-4 text-gray-700">カフェ ブラン</td></tr>
+          <tr><td class="py-4 text-[#C8956C] font-medium align-top">住所</td><td class="py-4 text-gray-700">東京都渋谷区神南1-2-3 レジデンス渋谷 1F</td></tr>
+          <tr><td class="py-4 text-[#C8956C] font-medium align-top">電話</td><td class="py-4 text-gray-700"><a href="tel:03-1234-5678" class="hover:text-[#6B4226]">03-1234-5678</a></td></tr>
+          <tr><td class="py-4 text-[#C8956C] font-medium align-top">営業時間</td><td class="py-4 text-gray-700">8:00〜20:00（L.O. 19:30）</td></tr>
+          <tr><td class="py-4 text-[#C8956C] font-medium align-top">定休日</td><td class="py-4 text-gray-700">不定休</td></tr>
         </tbody>
       </table>
       <div class="h-64 rounded-2xl overflow-hidden bg-gray-100">
@@ -211,8 +211,8 @@
     <h2 class="font-disp text-5xl mb-5">ご予約・お問い合わせ</h2>
     <p class="text-white/70 text-sm mb-10 leading-relaxed">お席のご予約はお電話またはLINEにてお受けしております。<br>お気軽にお問い合わせください。</p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-      <a href="https://line.me/R/ti/p/@{{line_id}}" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-8 py-4 rounded-full text-sm font-medium transition">LINE で予約する</a>
-      <a href="tel:{{tel}}" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-full text-sm font-medium transition">{{tel}}</a>
+      <a href="https://line.me/R/ti/p/@cafeblanc" class="flex items-center justify-center gap-2 bg-[#06C755] hover:bg-[#05b34c] text-white px-8 py-4 rounded-full text-sm font-medium transition">LINE で予約する</a>
+      <a href="tel:03-1234-5678" class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/30 text-white px-8 py-4 rounded-full text-sm font-medium transition">03-1234-5678</a>
     </div>
   </div>
 </section>
@@ -220,22 +220,22 @@
 <!-- FOOTER -->
 <footer class="bg-[#4A2C18] text-white/60 py-10">
   <div class="max-w-6xl mx-auto px-6 text-center">
-    <p class="font-disp text-2xl text-white mb-1">{{shop_name}}</p>
-    <p class="text-xs mb-6">{{address}}</p>
+    <p class="font-disp text-2xl text-white mb-1">カフェ ブラン</p>
+    <p class="text-xs mb-6">東京都渋谷区神南1-2-3 レジデンス渋谷 1F</p>
     <div class="flex justify-center gap-8 text-xs mb-6">
       <a href="#menu" class="hover:text-white transition">メニュー</a>
       <a href="#concept" class="hover:text-white transition">コンセプト</a>
       <a href="#access" class="hover:text-white transition">アクセス</a>
       <a href="#reserve" class="hover:text-white transition">ご予約</a>
     </div>
-    <p class="text-xs">© 2025 {{shop_name}}. All rights reserved.</p>
+    <p class="text-xs">© 2025 カフェ ブラン. All rights reserved.</p>
   </div>
 </footer>
 
 <!-- FIXED CTA BAR (mobile) -->
 <div class="fixed bottom-0 left-0 right-0 z-50 flex md:hidden shadow-lg">
-  <a href="https://line.me/R/ti/p/@{{line_id}}" class="flex-1 flex items-center justify-center gap-2 bg-[#06C755] text-white py-4 text-sm font-medium">LINE 予約</a>
-  <a href="tel:{{tel}}" class="flex-1 flex items-center justify-center gap-2 bg-[#6B4226] text-white py-4 text-sm font-medium">電話する</a>
+  <a href="https://line.me/R/ti/p/@cafeblanc" class="flex-1 flex items-center justify-center gap-2 bg-[#06C755] text-white py-4 text-sm font-medium">LINE 予約</a>
+  <a href="tel:03-1234-5678" class="flex-1 flex items-center justify-center gap-2 bg-[#6B4226] text-white py-4 text-sm font-medium">電話する</a>
 </div>
 
 </body>

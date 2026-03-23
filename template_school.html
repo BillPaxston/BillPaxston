@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{school_name}} | {{school_genre}}</title>
+  <title>青山アカデミー | 個別指導・集団授業・映像授業</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
@@ -111,7 +111,7 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background: url('{{hero_image}}') center/cover no-repeat;
+      background: url('images/hero/hero_school.jpg') top center/cover no-repeat;
       background-color: #1A3A5C;
     }
     .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(26,58,92,0.88) 50%, rgba(26,58,92,0.3)); }
@@ -365,8 +365,8 @@
 <header id="header" class="is-top">
   <div class="c header-inner">
     <a href="#" class="logo-wrap">
-      <span class="logo-name">{{school_name}}</span>
-      <span class="logo-sub">{{school_genre}}</span>
+      <span class="logo-name">青山アカデミー</span>
+      <span class="logo-sub">個別指導・集団授業・映像授業</span>
     </a>
     <nav class="header-nav">
       <a href="#courses">コース</a>
@@ -386,7 +386,7 @@
 
 <div id="mobile-nav">
   <div style="display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:64px; border-bottom:1px solid rgba(255,255,255,0.1); flex-shrink:0;">
-    <span class="logo-name">{{school_name}}</span>
+    <span class="logo-name">青山アカデミー</span>
     <button id="mnav-close" aria-label="閉じる" style="width:30px;height:30px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
       <svg width="18" height="18" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
@@ -410,9 +410,11 @@
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <span class="hero-badge">{{school_genre}}</span>
-    <h1 class="hero-title serif">{{hero_title}}</h1>
-    <p class="hero-sub">{{hero_sub}}</p>
+    <span class="hero-badge">個別指導・集団授業・映像授業</span>
+    <h1 class="hero-title serif">志望校合格へ、
+ともに歩む。</h1>
+    <p class="hero-sub">渋谷駅徒歩5分。小学生から高校生まで対応。
+一人ひとりの目標に合わせた指導で確かな結果を出します。</p>
     <div class="hero-btns">
       <a href="#trial" class="btn-hero-primary">
         無料体験を申し込む
@@ -432,20 +434,20 @@
   <div class="c">
     <div class="results-grid">
       <div class="result-item fi">
-        <div><span class="result-num">{{result1_num}}</span><span class="result-unit">{{result1_unit}}</span></div>
-        <p class="result-label">{{result1_label}}</p>
+        <div><span class="result-num">98</span><span class="result-unit">%</span></div>
+        <p class="result-label">志望校合格率</p>
       </div>
       <div class="result-item fi fi-d1">
-        <div><span class="result-num">{{result2_num}}</span><span class="result-unit">{{result2_unit}}</span></div>
-        <p class="result-label">{{result2_label}}</p>
+        <div><span class="result-num">15</span><span class="result-unit">年</span></div>
+        <p class="result-label">指導実績</p>
       </div>
       <div class="result-item fi fi-d2">
-        <div><span class="result-num">{{result3_num}}</span><span class="result-unit">{{result3_unit}}</span></div>
-        <p class="result-label">{{result3_label}}</p>
+        <div><span class="result-num">1,200</span><span class="result-unit">名</span></div>
+        <p class="result-label">累計卒塾生</p>
       </div>
       <div class="result-item fi fi-d3">
-        <div><span class="result-num">{{result4_num}}</span><span class="result-unit">{{result4_unit}}</span></div>
-        <p class="result-label">{{result4_label}}</p>
+        <div><span class="result-num">4.9</span><span class="result-unit"></span></div>
+        <p class="result-label">保護者満足度（5点満点）</p>
       </div>
     </div>
   </div>
@@ -461,19 +463,19 @@
     </div>
     <div class="fi fi-d1">
       <div class="news-row">
-        <span class="news-date">{{news1_date}}</span>
-        <span class="news-cat">{{news1_cat}}</span>
-        <span class="news-ttl">{{news1_text}}</span>
+        <span class="news-date">2025.12.01</span>
+        <span class="news-cat">お知らせ</span>
+        <span class="news-ttl">2026年度 春期講習の受付を開始しました。定員に限りがございますのでお早めにお申し込みください。</span>
       </div>
       <div class="news-row">
-        <span class="news-date">{{news2_date}}</span>
-        <span class="news-cat">{{news2_cat}}</span>
-        <span class="news-ttl">{{news2_text}}</span>
+        <span class="news-date">2025.11.15</span>
+        <span class="news-cat">合格速報</span>
+        <span class="news-ttl">2025年度 大学入試で東京大学2名・慶應義塾大学5名など多数の合格者が出ました。</span>
       </div>
       <div class="news-row">
-        <span class="news-date">{{news3_date}}</span>
-        <span class="news-cat">{{news3_cat}}</span>
-        <span class="news-ttl">{{news3_text}}</span>
+        <span class="news-date">2025.10.01</span>
+        <span class="news-cat">キャンペーン</span>
+        <span class="news-ttl">入塾金無料キャンペーン実施中。11月末までにご入塾の方は入塾金（22,000円）が0円になります。</span>
       </div>
     </div>
   </div>
@@ -489,30 +491,30 @@
     </div>
     <div class="course-grid">
       <div class="course-card fi fi-d1">
-        <img class="course-img" src="{{course1_image}}" alt="{{course1_name}}" loading="lazy">
+        <img class="course-img" src="images/courses/course_individual.jpg" alt="個別指導コース" loading="lazy">
         <div class="course-body">
-          <span class="course-badge">{{course1_badge}}</span>
-          <h3 class="course-name">{{course1_name}}</h3>
-          <p class="course-desc">{{course1_desc}}</p>
-          <p class="course-target">対象：{{course1_target}}</p>
+          <span class="course-badge">人気No.1</span>
+          <h3 class="course-name">個別指導コース</h3>
+          <p class="course-desc">マンツーマンで徹底サポート。苦手科目の克服から受験対策まで、完全オーダーメイドのカリキュラムで効率よく学力を伸ばします。</p>
+          <p class="course-target">対象：小学生・中学生・高校生</p>
         </div>
       </div>
       <div class="course-card fi fi-d2">
-        <img class="course-img" src="{{course2_image}}" alt="{{course2_name}}" loading="lazy">
+        <img class="course-img" src="images/courses/course_group.jpg" alt="集団授業コース" loading="lazy">
         <div class="course-body">
-          <span class="course-badge">{{course2_badge}}</span>
-          <h3 class="course-name">{{course2_name}}</h3>
-          <p class="course-desc">{{course2_desc}}</p>
-          <p class="course-target">対象：{{course2_target}}</p>
+          <span class="course-badge">基礎力養成</span>
+          <h3 class="course-name">集団授業コース</h3>
+          <p class="course-desc">仲間と切磋琢磨しながら学ぶ集団授業。競争意識の中で学習意欲を高め、基礎から応用までしっかり身につけます。</p>
+          <p class="course-target">対象：中学生・高校生</p>
         </div>
       </div>
       <div class="course-card fi fi-d3">
-        <img class="course-img" src="{{course3_image}}" alt="{{course3_name}}" loading="lazy">
+        <img class="course-img" src="https://images.pexels.com/photos/5538618/pexels-photo-5538618.jpeg?auto=compress&cs=tinysrgb&w=800" alt="映像授業・自習コース" loading="lazy">
         <div class="course-body">
-          <span class="course-badge">{{course3_badge}}</span>
-          <h3 class="course-name">{{course3_name}}</h3>
-          <p class="course-desc">{{course3_desc}}</p>
-          <p class="course-target">対象：{{course3_target}}</p>
+          <span class="course-badge">自分のペースで</span>
+          <h3 class="course-name">映像授業・自習コース</h3>
+          <p class="course-desc">人気講師の映像授業をいつでも受講可能。自習室も完備しており、集中できる環境で自分のペースで学べます。</p>
+          <p class="course-target">対象：中学生・高校生</p>
         </div>
       </div>
     </div>
@@ -530,18 +532,18 @@
     <div class="feature-grid">
       <div class="feature-card fi fi-d1">
         <p class="feature-num">FEATURE 01</p>
-        <h3 class="feature-title">{{feature1_title}}</h3>
-        <p class="feature-desc">{{feature1_desc}}</p>
+        <h3 class="feature-title">現役難関大学生講師</h3>
+        <p class="feature-desc">東大・京大・早慶などの難関大学に在籍する現役学生講師が指導。受験を乗り越えた生きた経験とノウハウで、合格への最短ルートを一緒に歩みます。</p>
       </div>
       <div class="feature-card fi fi-d2">
         <p class="feature-num">FEATURE 02</p>
-        <h3 class="feature-title">{{feature2_title}}</h3>
-        <p class="feature-desc">{{feature2_desc}}</p>
+        <h3 class="feature-title">徹底した進捗管理</h3>
+        <p class="feature-desc">毎月の面談と保護者報告で学習状況を可視化。担当講師とスタッフが連携し、目標達成に向けて細かくフォローアップします。</p>
       </div>
       <div class="feature-card fi fi-d3">
         <p class="feature-num">FEATURE 03</p>
-        <h3 class="feature-title">{{feature3_title}}</h3>
-        <p class="feature-desc">{{feature3_desc}}</p>
+        <h3 class="feature-title">自習室完備・通い放題</h3>
+        <p class="feature-desc">授業のない日も自習室を無料で利用できます。静かで集中できる環境を整備。講師への質問もいつでもOKです。</p>
       </div>
     </div>
   </div>
@@ -556,17 +558,17 @@
       <div class="navy-line"></div>
     </div>
     <div class="teacher-grid fi">
-      <img class="teacher-img" src="{{teacher_image}}" alt="{{teacher_name}}" loading="lazy">
+      <img class="teacher-img" src="images/staff/teacher_school.jpg" alt="中村 彩" loading="lazy">
       <div>
-        <p class="teacher-role">{{teacher_role}}</p>
-        <h3 class="teacher-name">{{teacher_name}}</h3>
-        <p class="teacher-name-en">{{teacher_name_en}}</p>
+        <p class="teacher-role">塾長・英語担当</p>
+        <h3 class="teacher-name">中村 彩</h3>
+        <p class="teacher-name-en">Aya Nakamura</p>
         <div class="teacher-divider"></div>
-        <p class="teacher-profile">{{teacher_profile}}</p>
+        <p class="teacher-profile">「わかる喜びを、すべての生徒に」という信念で指導歴12年。一人ひとりの個性と学習スタイルを大切に、苦手意識を自信へと変える授業を実践しています。</p>
         <ul class="teacher-qual">
-          <li>{{teacher_qual1}}</li>
-          <li>{{teacher_qual2}}</li>
-          <li>{{teacher_qual3}}</li>
+          <li>東京大学文学部 卒業</li>
+          <li>英語検定1級・TOEIC 990点取得</li>
+          <li>中学・高校英語教員免許保有</li>
         </ul>
       </div>
     </div>
@@ -624,19 +626,19 @@
     </div>
     <div class="voice-grid">
       <div class="voice-card fi fi-d1">
-        <p class="voice-grade">{{voice1_grade}}</p>
-        <p class="voice-text">{{voice1_text}}</p>
-        <p class="voice-author">— {{voice1_author}}</p>
+        <p class="voice-grade">高校3年生 → 早稲田大学合格</p>
+        <p class="voice-text">部活と両立しながら通えるか不安でしたが、先生が柔軟に対応してくれて助かりました。英語の偏差値が半年で15も上がり、志望校に現役合格できました！</p>
+        <p class="voice-author">— Kさん（保護者）</p>
       </div>
       <div class="voice-card fi fi-d2">
-        <p class="voice-grade">{{voice2_grade}}</p>
-        <p class="voice-text">{{voice2_text}}</p>
-        <p class="voice-author">— {{voice2_author}}</p>
+        <p class="voice-grade">中学3年生 → 都立重点校合格</p>
+        <p class="voice-text">数学が苦手で困っていましたが、個別指導で基礎から丁寧に教えていただき、入試本番では得意科目になっていました。先生方の熱心なサポートに感謝しています。</p>
+        <p class="voice-author">— Tくん本人</p>
       </div>
       <div class="voice-card fi fi-d3">
-        <p class="voice-grade">{{voice3_grade}}</p>
-        <p class="voice-text">{{voice3_text}}</p>
-        <p class="voice-author">— {{voice3_author}}</p>
+        <p class="voice-grade">小学6年生 → 中学受験合格</p>
+        <p class="voice-text">子どもが「塾が楽しい」と言うようになったのが一番嬉しかったです。先生との信頼関係の中で、子ども自身が自ら勉強するようになりました。</p>
+        <p class="voice-author">— Mさん（保護者）</p>
       </div>
     </div>
   </div>
@@ -654,27 +656,27 @@
       <div class="info-row">
         <div>
           <p class="info-lbl">SCHOOL NAME</p>
-          <p class="info-val">{{school_name}}</p>
+          <p class="info-val">青山アカデミー</p>
         </div>
         <div>
           <p class="info-lbl">ADDRESS</p>
-          <p class="info-val">{{address}}</p>
+          <p class="info-val">東京都渋谷区渋谷3-5-8 渋谷TKビル5F<br>JR渋谷駅 東口より徒歩5分</p>
         </div>
         <div>
           <p class="info-lbl">TEL</p>
-          <p class="info-val"><a href="tel:{{tel}}" style="color:var(--dark);text-decoration:none;">{{tel}}</a></p>
+          <p class="info-val"><a href="tel:03-1234-5678" style="color:var(--dark);text-decoration:none;">03-1234-5678</a></p>
         </div>
         <div>
           <p class="info-lbl">HOURS</p>
-          <p class="info-val">{{hours}}</p>
+          <p class="info-val">平日 15:00〜21:30<br>土曜 10:00〜19:00</p>
         </div>
         <div>
           <p class="info-lbl">CLOSED</p>
-          <p class="info-val">{{holiday}}</p>
+          <p class="info-val">日曜・祝日・年末年始</p>
         </div>
       </div>
       <div class="map-wrap">
-        <iframe src="{{map_embed}}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.748023809469!2d139.69716!3d35.65918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188ca6f89f61e1%3A0x7d104bc70a37c9de!2z5riL6LC35Y2X!5e0!3m2!1sja!2sjp!4v1700000000000" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </div>
@@ -732,10 +734,10 @@
 <footer id="footer">
   <div class="c">
     <div class="footer-inner">
-      <a href="#" class="footer-logo">{{school_name}}</a>
+      <a href="#" class="footer-logo">青山アカデミー</a>
       <p class="footer-info">
-        {{address}}<br>
-        TEL: <a href="tel:{{tel}}" style="color:rgba(255,255,255,0.35);text-decoration:none;">{{tel}}</a>
+        東京都渋谷区渋谷3-5-8 渋谷TKビル5F<br>JR渋谷駅 東口より徒歩5分<br>
+        TEL: <a href="tel:03-1234-5678" style="color:rgba(255,255,255,0.35);text-decoration:none;">03-1234-5678</a>
       </p>
       <nav class="footer-nav">
         <a href="#courses">コース</a>
@@ -746,18 +748,18 @@
         <a href="#access">アクセス</a>
         <a href="#trial">無料体験</a>
       </nav>
-      <p class="footer-copy">© 2025 {{school_name}}. All Rights Reserved.</p>
+      <p class="footer-copy">© 2025 青山アカデミー. All Rights Reserved.</p>
     </div>
   </div>
 </footer>
 
 <!-- FIXED CTA BAR -->
 <div id="cta-bar">
-  <a href="tel:{{tel}}" class="cta-tel">
+  <a href="tel:03-1234-5678" class="cta-tel">
     <svg width="17" height="17" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
     <div>
       <div style="font-size:8px; color:rgba(255,255,255,0.4); letter-spacing:0.15em; line-height:1;">TEL</div>
-      <div style="font-size:15px; font-weight:700; color:#fff; letter-spacing:0.05em; line-height:1.3;">{{tel}}</div>
+      <div style="font-size:15px; font-weight:700; color:#fff; letter-spacing:0.05em; line-height:1.3;">03-1234-5678</div>
     </div>
   </a>
   <a href="#trial" class="cta-trial">
