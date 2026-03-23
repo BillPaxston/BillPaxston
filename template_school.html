@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{school_name}} | {{school_genre}}</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy:    #1A3A5C;
+      --navy-lt: #EEF3F9;
+      --blue:    #2563EB;
+      --orange:  #F97316;
+      --orange-lt:#FFF7ED;
+      --dark:    #1C1C2E;
+      --gray:    #64748B;
+      --border:  #E2E8F0;
+      --light:   #F8FAFF;
+      --white:   #FFFFFF;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .serif { font-family: 'Noto Serif JP', serif; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 10px; letter-spacing: 0.4em;
+      color: var(--orange); text-transform: uppercase;
+      margin-bottom: 10px; font-weight: 500;
+    }
+    .section-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 3vw, 34px);
+      font-weight: 400; letter-spacing: 0.06em; line-height: 1.5;
+      color: var(--dark);
+    }
+    .section-title.on-dark { color: var(--white); }
+    .navy-line { width: 36px; height: 3px; background: var(--orange); margin: 14px 0 44px; border-radius: 2px; }
+    .navy-line.center { margin: 14px auto 44px; }
+
+    .c { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+    @media (max-width: 768px) { .c { padding: 0 20px; } }
+
+    /* HEADER */
+    #header {
+      position: fixed; inset: 0 0 auto; z-index: 100;
+      transition: background 0.4s, box-shadow 0.4s;
+    }
+    #header.is-top    { background: rgba(26,58,92,0.96); }
+    #header.is-scroll { background: rgba(26,58,92,1); box-shadow: 0 2px 20px rgba(0,0,0,0.2); }
+    .header-inner {
+      display: flex; align-items: center;
+      justify-content: space-between; height: 64px; gap: 16px;
+    }
+    .logo-wrap { display: flex; flex-direction: column; line-height: 1.2; text-decoration: none; flex-shrink: 0; }
+    .logo-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(14px, 1.8vw, 20px); font-weight: 500;
+      color: #fff; letter-spacing: 0.08em;
+    }
+    .logo-sub { font-size: 9px; letter-spacing: 0.22em; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    .header-nav { display: flex; align-items: center; gap: 24px; }
+    .header-nav a {
+      font-size: 10px; letter-spacing: 0.2em; color: rgba(255,255,255,0.7);
+      text-decoration: none; white-space: nowrap; transition: color 0.2s;
+    }
+    .header-nav a:hover { color: var(--orange); }
+    .btn-trial-hd {
+      background: var(--orange); color: #fff;
+      font-size: 10px; letter-spacing: 0.2em; font-weight: 500;
+      padding: 10px 22px; text-decoration: none;
+      border-radius: 2px; white-space: nowrap;
+      transition: background 0.2s; flex-shrink: 0;
+    }
+    .btn-trial-hd:hover { background: #EA6C0A; }
+    #hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      align-items: center; gap: 5px; width: 30px; height: 30px;
+      background: none; border: none; cursor: pointer; padding: 0; flex-shrink: 0;
+    }
+    #hamburger span { width: 22px; height: 1.5px; background: #fff; display: block; transition: transform 0.3s, opacity 0.3s; }
+
+    #mobile-nav {
+      display: none; position: fixed; inset: 0; z-index: 200;
+      background: rgba(26,58,92,0.99); flex-direction: column;
+      overflow-y: auto; opacity: 0; transform: translateY(-10px);
+      transition: opacity 0.3s ease, transform 0.3s ease; pointer-events: none;
+    }
+    #mobile-nav.is-open { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .mnav-link {
+      display: block; padding: 18px 24px; font-size: 13px; letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08); transition: color 0.2s, background 0.2s;
+    }
+    .mnav-link:hover { color: var(--orange); }
+
+    /* HERO */
+    #hero {
+      position: relative; height: 88vh; min-height: 560px;
+      display: flex; align-items: center; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('{{hero_image}}') center/cover no-repeat;
+      background-color: #1A3A5C;
+    }
+    .hero-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(26,58,92,0.88) 50%, rgba(26,58,92,0.3)); }
+    .hero-content { position: relative; z-index: 1; padding: 0 48px; max-width: 680px; }
+    @media (max-width: 768px) { .hero-content { padding: 0 24px; } }
+    .hero-badge {
+      display: inline-block; background: var(--orange);
+      font-size: 10px; letter-spacing: 0.2em; color: #fff; font-weight: 500;
+      padding: 5px 16px; margin-bottom: 20px; border-radius: 2px;
+    }
+    .hero-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(26px, 4.5vw, 54px); font-weight: 400;
+      color: #fff; letter-spacing: 0.06em; line-height: 1.5;
+      margin-bottom: 24px;
+    }
+    .hero-sub {
+      font-size: clamp(12px, 1.2vw, 15px); color: rgba(255,255,255,0.75);
+      letter-spacing: 0.08em; line-height: 2; margin-bottom: 40px; font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn-hero-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--orange); color: #fff;
+      font-size: 12px; letter-spacing: 0.2em; font-weight: 500;
+      padding: 16px 36px; text-decoration: none;
+      border-radius: 2px; transition: background 0.3s;
+    }
+    .btn-hero-primary:hover { background: #EA6C0A; }
+    .btn-hero-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      border: 1px solid rgba(255,255,255,0.5); color: #fff;
+      font-size: 12px; letter-spacing: 0.2em;
+      padding: 16px 36px; text-decoration: none;
+      border-radius: 2px; transition: background 0.3s, border-color 0.3s;
+    }
+    .btn-hero-secondary:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+    .scroll-indicator {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .scroll-indicator span { font-size: 8px; letter-spacing: 0.35em; color: rgba(255,255,255,0.4); }
+
+    /* RESULTS BANNER */
+    #results-banner { background: var(--navy); padding: 32px 0; }
+    .results-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+    @media (max-width: 768px) { .results-grid { grid-template-columns: repeat(2,1fr); gap: 0; } }
+    .result-item { text-align: center; padding: 20px; border-right: 1px solid rgba(255,255,255,0.1); }
+    .result-item:last-child { border-right: none; }
+    .result-num {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(28px, 4vw, 44px); font-weight: 400;
+      color: var(--orange); letter-spacing: 0.02em; line-height: 1;
+    }
+    .result-unit { font-size: 14px; color: var(--orange); }
+    .result-label { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; margin-top: 6px; }
+
+    /* NEWS */
+    #news { background: var(--light); padding: 72px 0; }
+    .news-row {
+      display: flex; align-items: baseline; gap: 20px; padding: 18px 0;
+      border-bottom: 1px solid var(--border); flex-wrap: wrap;
+    }
+    .news-row:first-child { border-top: 1px solid var(--border); }
+    .news-date { font-size: 13px; letter-spacing: 0.06em; color: var(--gray); white-space: nowrap; }
+    .news-cat {
+      font-size: 9px; letter-spacing: 0.2em; color: var(--orange);
+      border: 1px solid var(--orange); padding: 3px 10px; white-space: nowrap; flex-shrink: 0;
+    }
+    .news-ttl { font-size: 14px; color: var(--dark); letter-spacing: 0.04em; line-height: 1.7; }
+
+    /* COURSES */
+    #courses { background: var(--white); padding: 96px 0; }
+    .course-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    @media (max-width: 768px) { .course-grid { grid-template-columns: 1fr; } }
+    .course-card {
+      border: 1px solid var(--border); overflow: hidden;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .course-card:hover { box-shadow: 0 8px 32px rgba(37,99,235,0.1); transform: translateY(-3px); }
+    .course-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .course-body { padding: 24px 24px 28px; }
+    .course-badge {
+      display: inline-block; background: var(--navy-lt);
+      font-size: 9px; letter-spacing: 0.2em; color: var(--navy); font-weight: 500;
+      padding: 4px 12px; margin-bottom: 14px; border-radius: 2px;
+    }
+    .course-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 18px; font-weight: 400; color: var(--dark);
+      letter-spacing: 0.06em; margin-bottom: 12px;
+    }
+    .course-desc { font-size: 13px; color: var(--gray); line-height: 1.95; letter-spacing: 0.04em; margin-bottom: 16px; }
+    .course-target { font-size: 11px; color: var(--navy); letter-spacing: 0.08em; font-weight: 500; }
+
+    /* FEATURES */
+    #features { background: var(--navy); padding: 96px 0; }
+    .feature-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    @media (max-width: 768px) { .feature-grid { grid-template-columns: 1fr; gap: 20px; } }
+    .feature-card {
+      background: rgba(255,255,255,0.06); padding: 36px 28px;
+      border-radius: 2px; border-top: 3px solid var(--orange);
+    }
+    .feature-num { font-size: 10px; letter-spacing: 0.35em; color: var(--orange); margin-bottom: 18px; }
+    .feature-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 17px; font-weight: 400; color: #fff;
+      letter-spacing: 0.08em; margin-bottom: 16px; line-height: 1.6;
+    }
+    .feature-desc { font-size: 13px; color: rgba(255,255,255,0.58); line-height: 2.1; letter-spacing: 0.04em; }
+
+    /* TEACHER */
+    #teacher { background: var(--light); padding: 96px 0; }
+    .teacher-grid { display: grid; grid-template-columns: 1fr 1.8fr; gap: 64px; align-items: center; }
+    @media (max-width: 768px) { .teacher-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .teacher-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block; }
+    .teacher-role { font-size: 10px; letter-spacing: 0.3em; color: var(--orange); margin-bottom: 10px; font-weight: 500; }
+    .teacher-name {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(20px, 2.5vw, 28px); font-weight: 400;
+      color: var(--dark); letter-spacing: 0.08em; margin-bottom: 6px;
+    }
+    .teacher-name-en { font-size: 11px; color: var(--gray); letter-spacing: 0.18em; margin-bottom: 28px; }
+    .teacher-divider { width: 28px; height: 3px; background: var(--orange); margin-bottom: 28px; border-radius: 2px; }
+    .teacher-profile { font-size: 14px; color: var(--gray); line-height: 2.2; letter-spacing: 0.04em; margin-bottom: 24px; }
+    .teacher-qual { display: flex; flex-direction: column; gap: 8px; }
+    .teacher-qual li { font-size: 12px; color: var(--dark); letter-spacing: 0.04em; padding-left: 16px; position: relative; line-height: 1.6; }
+    .teacher-qual li::before { content: '–'; position: absolute; left: 0; color: var(--orange); }
+
+    /* FLOW */
+    #flow { background: var(--white); padding: 96px 0; }
+    .flow-list { max-width: 720px; margin: 0 auto; }
+    .flow-item { display: flex; gap: 24px; padding: 28px 0; border-bottom: 1px solid var(--border); }
+    .flow-item:first-child { border-top: 1px solid var(--border); }
+    .flow-num {
+      display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: var(--orange); color: #fff;
+      font-family: 'Noto Serif JP', serif; font-size: 16px; font-weight: 400;
+      border-radius: 50%;
+    }
+    .flow-content { flex: 1; padding-top: 8px; }
+    .flow-title { font-size: 15px; font-weight: 500; color: var(--dark); letter-spacing: 0.08em; margin-bottom: 8px; }
+    .flow-desc { font-size: 13px; color: var(--gray); line-height: 1.95; letter-spacing: 0.04em; }
+
+    /* TESTIMONIALS */
+    #testimonials { background: var(--navy); padding: 96px 0; }
+    .voice-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    @media (max-width: 768px) { .voice-grid { grid-template-columns: 1fr; } }
+    .voice-card { background: rgba(255,255,255,0.07); padding: 32px 28px; border-radius: 2px; }
+    .voice-grade { font-size: 10px; letter-spacing: 0.2em; color: var(--orange); margin-bottom: 14px; font-weight: 500; }
+    .voice-text { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 2.1; letter-spacing: 0.04em; margin-bottom: 16px; font-weight: 300; }
+    .voice-author { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.15em; }
+
+    /* ACCESS */
+    #access { background: var(--light); padding: 96px 0; }
+    .access-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; }
+    @media (max-width: 768px) { .access-grid { grid-template-columns: 1fr; } }
+    .info-row { display: flex; flex-direction: column; gap: 28px; }
+    .info-lbl { font-size: 9px; letter-spacing: 0.28em; color: var(--orange); margin-bottom: 6px; font-weight: 500; }
+    .info-val { font-size: 14px; color: var(--dark); line-height: 1.85; letter-spacing: 0.04em; }
+    .map-wrap { width: 100%; height: 380px; overflow: hidden; }
+    .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+    @media (max-width: 768px) { .map-wrap { height: 260px; } }
+
+    /* TRIAL */
+    #trial { background: var(--orange-lt); padding: 88px 0; }
+    .trial-inner { max-width: 640px; margin: 0 auto; text-align: center; }
+    .trial-badge {
+      display: inline-block; background: var(--orange);
+      font-size: 10px; letter-spacing: 0.2em; color: #fff; font-weight: 500;
+      padding: 6px 20px; margin-bottom: 24px; border-radius: 2px;
+    }
+    .trial-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(22px, 3vw, 32px); font-weight: 400;
+      color: var(--dark); letter-spacing: 0.08em; margin-bottom: 16px;
+    }
+    .trial-desc { font-size: 14px; color: var(--gray); letter-spacing: 0.06em; line-height: 2; margin-bottom: 40px; }
+    .trial-form { background: #fff; padding: 40px; border-radius: 4px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); text-align: left; }
+    .form-field { margin-bottom: 24px; }
+    .form-lbl { display: block; font-size: 11px; letter-spacing: 0.15em; color: var(--gray); margin-bottom: 8px; font-weight: 500; }
+    .form-lbl .req { color: var(--orange); margin-left: 4px; }
+    .form-ctrl {
+      width: 100%; border: 1px solid var(--border); background: var(--light);
+      padding: 12px 16px; font-size: 14px; font-family: 'Noto Sans JP', sans-serif;
+      color: var(--dark); outline: none; border-radius: 2px;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .form-ctrl:focus { border-color: var(--orange); background: #fff; }
+    select.form-ctrl { appearance: none; cursor: pointer; }
+    .btn-submit {
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; background: var(--orange); color: #fff;
+      font-size: 13px; letter-spacing: 0.2em; font-weight: 500;
+      padding: 18px; border: none; cursor: pointer;
+      font-family: 'Noto Sans JP', sans-serif; border-radius: 2px;
+      transition: background 0.3s; margin-top: 8px;
+    }
+    .btn-submit:hover { background: #EA6C0A; }
+
+    /* FOOTER */
+    #footer { background: var(--dark); padding: 64px 0 80px; }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 28px; }
+    .footer-logo {
+      font-family: 'Noto Serif JP', serif;
+      font-size: clamp(18px, 2vw, 24px); font-weight: 400;
+      color: #fff; letter-spacing: 0.1em; text-decoration: none;
+    }
+    .footer-info { font-size: 12px; color: rgba(255,255,255,0.35); letter-spacing: 0.06em; line-height: 2.2; text-align: center; }
+    .footer-nav { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .footer-nav a { font-size: 10px; letter-spacing: 0.2em; color: rgba(255,255,255,0.3); text-decoration: none; transition: color 0.2s; }
+    .footer-nav a:hover { color: var(--orange); }
+    .footer-copy { font-size: 10px; color: rgba(255,255,255,0.18); letter-spacing: 0.1em; }
+
+    /* FIXED CTA BAR */
+    #cta-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      display: flex; transform: translateY(100%); transition: transform 0.4s ease;
+    }
+    #cta-bar.show { transform: translateY(0); }
+    .cta-tel {
+      flex: 1; background: var(--navy); border-top: 2px solid var(--orange);
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      padding: 12px; text-decoration: none; transition: background 0.2s;
+    }
+    .cta-tel:hover { background: #243f61; }
+    .cta-trial {
+      flex: 1; background: var(--orange);
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 12px; text-decoration: none; transition: background 0.2s;
+    }
+    .cta-trial:hover { background: #EA6C0A; }
+
+    /* ANIMATIONS */
+    .fi { opacity: 0; transform: translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .fi.on { opacity: 1; transform: translateY(0); }
+    .fi-d1 { transition-delay: 0.1s; }
+    .fi-d2 { transition-delay: 0.2s; }
+    .fi-d3 { transition-delay: 0.3s; }
+
+    @media (max-width: 768px) {
+      .header-nav { display: none !important; }
+      .btn-trial-hd { display: none !important; }
+      #hamburger { display: flex !important; }
+    }
+  </style>
+</head>
+<body>
+
+<header id="header" class="is-top">
+  <div class="c header-inner">
+    <a href="#" class="logo-wrap">
+      <span class="logo-name">{{school_name}}</span>
+      <span class="logo-sub">{{school_genre}}</span>
+    </a>
+    <nav class="header-nav">
+      <a href="#courses">コース</a>
+      <a href="#features">当塾の特徴</a>
+      <a href="#teacher">講師紹介</a>
+      <a href="#flow">入塾の流れ</a>
+      <a href="#access">アクセス</a>
+    </nav>
+    <div style="display:flex; align-items:center; gap:16px;">
+      <a href="#trial" class="btn-trial-hd">無料体験申込</a>
+      <button id="hamburger" aria-label="メニューを開く">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="mobile-nav">
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:64px; border-bottom:1px solid rgba(255,255,255,0.1); flex-shrink:0;">
+    <span class="logo-name">{{school_name}}</span>
+    <button id="mnav-close" aria-label="閉じる" style="width:30px;height:30px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
+      <svg width="18" height="18" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <nav style="flex:1; padding:8px 0;">
+    <a href="#news"         class="mnav-link">お知らせ</a>
+    <a href="#courses"      class="mnav-link">コース・料金</a>
+    <a href="#features"     class="mnav-link">当塾の特徴</a>
+    <a href="#teacher"      class="mnav-link">講師紹介</a>
+    <a href="#flow"         class="mnav-link">入塾の流れ</a>
+    <a href="#testimonials" class="mnav-link">先輩の声</a>
+    <a href="#access"       class="mnav-link">アクセス</a>
+    <a href="#trial"        class="mnav-link">無料体験申込</a>
+  </nav>
+  <div style="padding:20px; flex-shrink:0;">
+    <a href="#trial" class="btn-trial-hd" style="display:block; text-align:center; padding:14px;">無料体験を申し込む</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <span class="hero-badge">{{school_genre}}</span>
+    <h1 class="hero-title serif">{{hero_title}}</h1>
+    <p class="hero-sub">{{hero_sub}}</p>
+    <div class="hero-btns">
+      <a href="#trial" class="btn-hero-primary">
+        無料体験を申し込む
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <a href="#courses" class="btn-hero-secondary">コースを見る</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div style="width:1px;height:48px;background:linear-gradient(to bottom,rgba(255,255,255,0.4),transparent);"></div>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- RESULTS BANNER -->
+<section id="results-banner">
+  <div class="c">
+    <div class="results-grid">
+      <div class="result-item fi">
+        <div><span class="result-num">{{result1_num}}</span><span class="result-unit">{{result1_unit}}</span></div>
+        <p class="result-label">{{result1_label}}</p>
+      </div>
+      <div class="result-item fi fi-d1">
+        <div><span class="result-num">{{result2_num}}</span><span class="result-unit">{{result2_unit}}</span></div>
+        <p class="result-label">{{result2_label}}</p>
+      </div>
+      <div class="result-item fi fi-d2">
+        <div><span class="result-num">{{result3_num}}</span><span class="result-unit">{{result3_unit}}</span></div>
+        <p class="result-label">{{result3_label}}</p>
+      </div>
+      <div class="result-item fi fi-d3">
+        <div><span class="result-num">{{result4_num}}</span><span class="result-unit">{{result4_unit}}</span></div>
+        <p class="result-label">{{result4_label}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="c">
+    <div class="fi">
+      <span class="section-label">NEWS</span>
+      <h2 class="section-title">お知らせ</h2>
+      <div class="navy-line"></div>
+    </div>
+    <div class="fi fi-d1">
+      <div class="news-row">
+        <span class="news-date">{{news1_date}}</span>
+        <span class="news-cat">{{news1_cat}}</span>
+        <span class="news-ttl">{{news1_text}}</span>
+      </div>
+      <div class="news-row">
+        <span class="news-date">{{news2_date}}</span>
+        <span class="news-cat">{{news2_cat}}</span>
+        <span class="news-ttl">{{news2_text}}</span>
+      </div>
+      <div class="news-row">
+        <span class="news-date">{{news3_date}}</span>
+        <span class="news-cat">{{news3_cat}}</span>
+        <span class="news-ttl">{{news3_text}}</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-label">COURSE</span>
+      <h2 class="section-title">コース・料金</h2>
+      <div class="navy-line center"></div>
+    </div>
+    <div class="course-grid">
+      <div class="course-card fi fi-d1">
+        <img class="course-img" src="{{course1_image}}" alt="{{course1_name}}" loading="lazy">
+        <div class="course-body">
+          <span class="course-badge">{{course1_badge}}</span>
+          <h3 class="course-name">{{course1_name}}</h3>
+          <p class="course-desc">{{course1_desc}}</p>
+          <p class="course-target">対象：{{course1_target}}</p>
+        </div>
+      </div>
+      <div class="course-card fi fi-d2">
+        <img class="course-img" src="{{course2_image}}" alt="{{course2_name}}" loading="lazy">
+        <div class="course-body">
+          <span class="course-badge">{{course2_badge}}</span>
+          <h3 class="course-name">{{course2_name}}</h3>
+          <p class="course-desc">{{course2_desc}}</p>
+          <p class="course-target">対象：{{course2_target}}</p>
+        </div>
+      </div>
+      <div class="course-card fi fi-d3">
+        <img class="course-img" src="{{course3_image}}" alt="{{course3_name}}" loading="lazy">
+        <div class="course-body">
+          <span class="course-badge">{{course3_badge}}</span>
+          <h3 class="course-name">{{course3_name}}</h3>
+          <p class="course-desc">{{course3_desc}}</p>
+          <p class="course-target">対象：{{course3_target}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-label" style="color:rgba(249,115,22,0.85);">FEATURES</span>
+      <h2 class="section-title on-dark">当塾の特徴</h2>
+      <div class="navy-line center"></div>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card fi fi-d1">
+        <p class="feature-num">FEATURE 01</p>
+        <h3 class="feature-title">{{feature1_title}}</h3>
+        <p class="feature-desc">{{feature1_desc}}</p>
+      </div>
+      <div class="feature-card fi fi-d2">
+        <p class="feature-num">FEATURE 02</p>
+        <h3 class="feature-title">{{feature2_title}}</h3>
+        <p class="feature-desc">{{feature2_desc}}</p>
+      </div>
+      <div class="feature-card fi fi-d3">
+        <p class="feature-num">FEATURE 03</p>
+        <h3 class="feature-title">{{feature3_title}}</h3>
+        <p class="feature-desc">{{feature3_desc}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHER -->
+<section id="teacher">
+  <div class="c">
+    <div class="fi">
+      <span class="section-label">TEACHER</span>
+      <h2 class="section-title">講師紹介</h2>
+      <div class="navy-line"></div>
+    </div>
+    <div class="teacher-grid fi">
+      <img class="teacher-img" src="{{teacher_image}}" alt="{{teacher_name}}" loading="lazy">
+      <div>
+        <p class="teacher-role">{{teacher_role}}</p>
+        <h3 class="teacher-name">{{teacher_name}}</h3>
+        <p class="teacher-name-en">{{teacher_name_en}}</p>
+        <div class="teacher-divider"></div>
+        <p class="teacher-profile">{{teacher_profile}}</p>
+        <ul class="teacher-qual">
+          <li>{{teacher_qual1}}</li>
+          <li>{{teacher_qual2}}</li>
+          <li>{{teacher_qual3}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section id="flow">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-label">FLOW</span>
+      <h2 class="section-title">入塾の流れ</h2>
+      <div class="navy-line center"></div>
+    </div>
+    <div class="flow-list fi">
+      <div class="flow-item">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h3 class="flow-title">無料体験授業の申込</h3>
+          <p class="flow-desc">WEBフォーム・お電話にてお申し込みください。希望コース・ご都合の良い日程をお知らせください。</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h3 class="flow-title">学力診断・カウンセリング</h3>
+          <p class="flow-desc">現在の学力・目標・課題を確認します。お子様の状況に合わせた最適なコースをご提案します。</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h3 class="flow-title">無料体験授業</h3>
+          <p class="flow-desc">実際の授業を無料で体験いただけます。講師との相性や授業スタイルをご確認ください。</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h3 class="flow-title">ご入塾・授業開始</h3>
+          <p class="flow-desc">入塾のご意思が固まりましたらお手続きをいたします。担当講師と学習計画を立て、授業スタートです。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-label" style="color:rgba(249,115,22,0.85);">VOICE</span>
+      <h2 class="section-title on-dark">先輩・保護者の声</h2>
+      <div class="navy-line center"></div>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card fi fi-d1">
+        <p class="voice-grade">{{voice1_grade}}</p>
+        <p class="voice-text">{{voice1_text}}</p>
+        <p class="voice-author">— {{voice1_author}}</p>
+      </div>
+      <div class="voice-card fi fi-d2">
+        <p class="voice-grade">{{voice2_grade}}</p>
+        <p class="voice-text">{{voice2_text}}</p>
+        <p class="voice-author">— {{voice2_author}}</p>
+      </div>
+      <div class="voice-card fi fi-d3">
+        <p class="voice-grade">{{voice3_grade}}</p>
+        <p class="voice-text">{{voice3_text}}</p>
+        <p class="voice-author">— {{voice3_author}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section id="access">
+  <div class="c">
+    <div class="text-center fi">
+      <span class="section-label">ACCESS</span>
+      <h2 class="section-title">アクセス・授業時間</h2>
+      <div class="navy-line center"></div>
+    </div>
+    <div class="access-grid fi">
+      <div class="info-row">
+        <div>
+          <p class="info-lbl">SCHOOL NAME</p>
+          <p class="info-val">{{school_name}}</p>
+        </div>
+        <div>
+          <p class="info-lbl">ADDRESS</p>
+          <p class="info-val">{{address}}</p>
+        </div>
+        <div>
+          <p class="info-lbl">TEL</p>
+          <p class="info-val"><a href="tel:{{tel}}" style="color:var(--dark);text-decoration:none;">{{tel}}</a></p>
+        </div>
+        <div>
+          <p class="info-lbl">HOURS</p>
+          <p class="info-val">{{hours}}</p>
+        </div>
+        <div>
+          <p class="info-lbl">CLOSED</p>
+          <p class="info-val">{{holiday}}</p>
+        </div>
+      </div>
+      <div class="map-wrap">
+        <iframe src="{{map_embed}}" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRIAL -->
+<section id="trial">
+  <div class="c">
+    <div class="trial-inner">
+      <span class="trial-badge fi">無料体験実施中</span>
+      <h2 class="trial-title fi">まずは無料体験から<br>始めてみませんか？</h2>
+      <p class="trial-desc fi">授業料・入塾金は一切不要。お気軽にお申し込みください。</p>
+      <div class="trial-form fi">
+        <div class="form-field">
+          <label class="form-lbl">お名前<span class="req">*</span></label>
+          <input type="text" class="form-ctrl" placeholder="山田 太郎">
+        </div>
+        <div class="form-field">
+          <label class="form-lbl">電話番号<span class="req">*</span></label>
+          <input type="tel" class="form-ctrl" placeholder="090-1234-5678">
+        </div>
+        <div class="form-field">
+          <label class="form-lbl">メールアドレス<span class="req">*</span></label>
+          <input type="email" class="form-ctrl" placeholder="example@email.com">
+        </div>
+        <div class="form-field">
+          <label class="form-lbl">学年</label>
+          <select class="form-ctrl">
+            <option value="">選択してください</option>
+            <option>小学1年生</option><option>小学2年生</option><option>小学3年生</option>
+            <option>小学4年生</option><option>小学5年生</option><option>小学6年生</option>
+            <option>中学1年生</option><option>中学2年生</option><option>中学3年生</option>
+            <option>高校1年生</option><option>高校2年生</option><option>高校3年生</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-lbl">希望コース</label>
+          <select class="form-ctrl">
+            <option value="">選択してください</option>
+            <option>個別指導コース</option>
+            <option>集団授業コース</option>
+            <option>映像授業コース</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">
+          無料体験を申し込む
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="c">
+    <div class="footer-inner">
+      <a href="#" class="footer-logo">{{school_name}}</a>
+      <p class="footer-info">
+        {{address}}<br>
+        TEL: <a href="tel:{{tel}}" style="color:rgba(255,255,255,0.35);text-decoration:none;">{{tel}}</a>
+      </p>
+      <nav class="footer-nav">
+        <a href="#courses">コース</a>
+        <a href="#features">当塾の特徴</a>
+        <a href="#teacher">講師紹介</a>
+        <a href="#flow">入塾の流れ</a>
+        <a href="#testimonials">先輩の声</a>
+        <a href="#access">アクセス</a>
+        <a href="#trial">無料体験</a>
+      </nav>
+      <p class="footer-copy">© 2025 {{school_name}}. All Rights Reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FIXED CTA BAR -->
+<div id="cta-bar">
+  <a href="tel:{{tel}}" class="cta-tel">
+    <svg width="17" height="17" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.14 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+    <div>
+      <div style="font-size:8px; color:rgba(255,255,255,0.4); letter-spacing:0.15em; line-height:1;">TEL</div>
+      <div style="font-size:15px; font-weight:700; color:#fff; letter-spacing:0.05em; line-height:1.3;">{{tel}}</div>
+    </div>
+  </a>
+  <a href="#trial" class="cta-trial">
+    <svg width="16" height="16" fill="none" stroke="#fff" stroke-width="2" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+    <div>
+      <div style="font-size:8px; color:rgba(255,255,255,0.7); letter-spacing:0.12em; line-height:1;">FREE</div>
+      <div style="font-size:12px; font-weight:700; color:#fff; letter-spacing:0.12em; line-height:1.3;">無料体験申込</div>
+    </div>
+  </a>
+</div>
+
+<script>
+  const header = document.getElementById('header');
+  const ctaBar = document.getElementById('cta-bar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      header.classList.remove('is-top');
+      header.classList.add('is-scroll');
+      ctaBar.classList.add('show');
+    } else {
+      header.classList.add('is-top');
+      header.classList.remove('is-scroll');
+      ctaBar.classList.remove('show');
+    }
+  }, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mnavClose = document.getElementById('mnav-close');
+  hamburger.addEventListener('click', () => {
+    mobileNav.style.display = 'flex';
+    requestAnimationFrame(() => mobileNav.classList.add('is-open'));
+  });
+  function closeMNav() {
+    mobileNav.classList.remove('is-open');
+    setTimeout(() => { mobileNav.style.display = 'none'; }, 300);
+  }
+  mnavClose.addEventListener('click', closeMNav);
+  mobileNav.querySelectorAll('.mnav-link, [href="#trial"]').forEach(a => a.addEventListener('click', closeMNav));
+
+  const fiObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); fiObs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fi').forEach(el => fiObs.observe(el));
+</script>
+</body>
+</html>
